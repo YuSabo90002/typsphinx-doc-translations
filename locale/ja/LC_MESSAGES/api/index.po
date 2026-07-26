@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 1980-01-01 00:00+0000\n"
+"POT-Creation-Date: 2026-07-26 08:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -99,93 +99,93 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.extract_toctree_options
 #: typsphinx.template_engine.TemplateEngine.generate_package_import
 #: typsphinx.template_engine.TemplateEngine.get_template_content
-#: typsphinx.template_engine.TemplateEngine.load_template
 #: typsphinx.template_engine.TemplateEngine.render
+#: typsphinx.template_engine.TemplateEngine.resolve_template
 #: typsphinx.translator.TypstTranslator.visit_toctree
 msgid "Return type"
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.copy_image_files:7
-#: typsphinx.builder.TypstBuilder.copy_template_assets:16
-#: typsphinx.builder.TypstBuilder.finish:7
-#: typsphinx.builder.TypstBuilder.init:6
+#: of typsphinx.builder.TypstBuilder.copy_image_files:6
+#: typsphinx.builder.TypstBuilder.copy_template_assets:15
+#: typsphinx.builder.TypstBuilder.finish:6
+#: typsphinx.builder.TypstBuilder.init:5
 #: typsphinx.builder.TypstBuilder.post_process_images:26
 #: typsphinx.builder.TypstBuilder.prepare_writing:9
 #: typsphinx.builder.TypstBuilder.write:16
 #: typsphinx.builder.TypstBuilder.write_doc:15
-#: typsphinx.builder.TypstPDFBuilder.finish:24
+#: typsphinx.builder.TypstPDFBuilder.finish:23
 #: typsphinx.builder.TypstPDFBuilder.write_doc:11
-#: typsphinx.pdf.check_typst_available:9
+#: typsphinx.pdf.check_typst_available:8
 #: typsphinx.translator.TypstTranslator.add_text:6
 #: typsphinx.translator.TypstTranslator.depart_Text:6
-#: typsphinx.translator.TypstTranslator.depart_abbreviation:20
-#: typsphinx.translator.TypstTranslator.depart_admonition:4
-#: typsphinx.translator.TypstTranslator.depart_attention:4
+#: typsphinx.translator.TypstTranslator.depart_abbreviation:19
+#: typsphinx.translator.TypstTranslator.depart_admonition:3
+#: typsphinx.translator.TypstTranslator.depart_attention:3
 #: typsphinx.translator.TypstTranslator.depart_attribution:6
 #: typsphinx.translator.TypstTranslator.depart_block_quote:6
 #: typsphinx.translator.TypstTranslator.depart_bullet_list:8
 #: typsphinx.translator.TypstTranslator.depart_caption:6
-#: typsphinx.translator.TypstTranslator.depart_caution:4
+#: typsphinx.translator.TypstTranslator.depart_caution:3
 #: typsphinx.translator.TypstTranslator.depart_colspec:6
-#: typsphinx.translator.TypstTranslator.depart_comment:5
+#: typsphinx.translator.TypstTranslator.depart_comment:6
 #: typsphinx.translator.TypstTranslator.depart_compound:6
 #: typsphinx.translator.TypstTranslator.depart_container:6
-#: typsphinx.translator.TypstTranslator.depart_danger:4
+#: typsphinx.translator.TypstTranslator.depart_danger:3
 #: typsphinx.translator.TypstTranslator.depart_definition:8
 #: typsphinx.translator.TypstTranslator.depart_definition_list:8
 #: typsphinx.translator.TypstTranslator.depart_definition_list_item:6
-#: typsphinx.translator.TypstTranslator.depart_desc:14
-#: typsphinx.translator.TypstTranslator.depart_desc_addname:4
-#: typsphinx.translator.TypstTranslator.depart_desc_annotation:6
-#: typsphinx.translator.TypstTranslator.depart_desc_content:4
-#: typsphinx.translator.TypstTranslator.depart_desc_inline:4
-#: typsphinx.translator.TypstTranslator.depart_desc_name:4
-#: typsphinx.translator.TypstTranslator.depart_desc_optional:4
-#: typsphinx.translator.TypstTranslator.depart_desc_parameter:6
-#: typsphinx.translator.TypstTranslator.depart_desc_parameterlist:4
-#: typsphinx.translator.TypstTranslator.depart_desc_returns:4
-#: typsphinx.translator.TypstTranslator.depart_desc_sig_keyword:4
-#: typsphinx.translator.TypstTranslator.depart_desc_sig_name:4
-#: typsphinx.translator.TypstTranslator.depart_desc_sig_operator:4
-#: typsphinx.translator.TypstTranslator.depart_desc_sig_punctuation:4
-#: typsphinx.translator.TypstTranslator.depart_desc_sig_space:4
-#: typsphinx.translator.TypstTranslator.depart_desc_signature:4
-#: typsphinx.translator.TypstTranslator.depart_desc_signature_line:4
+#: typsphinx.translator.TypstTranslator.depart_desc:13
+#: typsphinx.translator.TypstTranslator.depart_desc_addname:3
+#: typsphinx.translator.TypstTranslator.depart_desc_annotation:5
+#: typsphinx.translator.TypstTranslator.depart_desc_content:3
+#: typsphinx.translator.TypstTranslator.depart_desc_inline:3
+#: typsphinx.translator.TypstTranslator.depart_desc_name:3
+#: typsphinx.translator.TypstTranslator.depart_desc_optional:3
+#: typsphinx.translator.TypstTranslator.depart_desc_parameter:5
+#: typsphinx.translator.TypstTranslator.depart_desc_parameterlist:3
+#: typsphinx.translator.TypstTranslator.depart_desc_returns:3
+#: typsphinx.translator.TypstTranslator.depart_desc_sig_keyword:3
+#: typsphinx.translator.TypstTranslator.depart_desc_sig_name:3
+#: typsphinx.translator.TypstTranslator.depart_desc_sig_operator:3
+#: typsphinx.translator.TypstTranslator.depart_desc_sig_punctuation:3
+#: typsphinx.translator.TypstTranslator.depart_desc_sig_space:3
+#: typsphinx.translator.TypstTranslator.depart_desc_signature:3
+#: typsphinx.translator.TypstTranslator.depart_desc_signature_line:3
 #: typsphinx.translator.TypstTranslator.depart_document:8
 #: typsphinx.translator.TypstTranslator.depart_emphasis:8
 #: typsphinx.translator.TypstTranslator.depart_entry:6
 #: typsphinx.translator.TypstTranslator.depart_enumerated_list:8
-#: typsphinx.translator.TypstTranslator.depart_error:4
-#: typsphinx.translator.TypstTranslator.depart_field:20
-#: typsphinx.translator.TypstTranslator.depart_field_body:7
-#: typsphinx.translator.TypstTranslator.depart_field_list:6
-#: typsphinx.translator.TypstTranslator.depart_field_name:4
+#: typsphinx.translator.TypstTranslator.depart_error:3
+#: typsphinx.translator.TypstTranslator.depart_field:19
+#: typsphinx.translator.TypstTranslator.depart_field_body:6
+#: typsphinx.translator.TypstTranslator.depart_field_list:5
+#: typsphinx.translator.TypstTranslator.depart_field_name:3
 #: typsphinx.translator.TypstTranslator.depart_figure:6
-#: typsphinx.translator.TypstTranslator.depart_glossary:4
-#: typsphinx.translator.TypstTranslator.depart_hint:4
+#: typsphinx.translator.TypstTranslator.depart_glossary:3
+#: typsphinx.translator.TypstTranslator.depart_hint:3
 #: typsphinx.translator.TypstTranslator.depart_image:6
-#: typsphinx.translator.TypstTranslator.depart_important:4
-#: typsphinx.translator.TypstTranslator.depart_index:4
-#: typsphinx.translator.TypstTranslator.depart_inline:7
-#: typsphinx.translator.TypstTranslator.depart_line:8
-#: typsphinx.translator.TypstTranslator.depart_line_block:4
+#: typsphinx.translator.TypstTranslator.depart_important:3
+#: typsphinx.translator.TypstTranslator.depart_index:3
+#: typsphinx.translator.TypstTranslator.depart_inline:6
+#: typsphinx.translator.TypstTranslator.depart_line:7
+#: typsphinx.translator.TypstTranslator.depart_line_block:3
 #: typsphinx.translator.TypstTranslator.depart_list_item:8
 #: typsphinx.translator.TypstTranslator.depart_literal:8
 #: typsphinx.translator.TypstTranslator.depart_literal_block:8
-#: typsphinx.translator.TypstTranslator.depart_literal_emphasis:4
-#: typsphinx.translator.TypstTranslator.depart_literal_strong:4
+#: typsphinx.translator.TypstTranslator.depart_literal_emphasis:3
+#: typsphinx.translator.TypstTranslator.depart_literal_strong:3
 #: typsphinx.translator.TypstTranslator.depart_manpage:8
 #: typsphinx.translator.TypstTranslator.depart_math:6
 #: typsphinx.translator.TypstTranslator.depart_math_block:6
-#: typsphinx.translator.TypstTranslator.depart_note:4
+#: typsphinx.translator.TypstTranslator.depart_note:3
 #: typsphinx.translator.TypstTranslator.depart_paragraph:8
 #: typsphinx.translator.TypstTranslator.depart_pending_xref:6
-#: typsphinx.translator.TypstTranslator.depart_raw:5
+#: typsphinx.translator.TypstTranslator.depart_raw:6
 #: typsphinx.translator.TypstTranslator.depart_reference:6
 #: typsphinx.translator.TypstTranslator.depart_row:6
-#: typsphinx.translator.TypstTranslator.depart_rubric:14
+#: typsphinx.translator.TypstTranslator.depart_rubric:13
 #: typsphinx.translator.TypstTranslator.depart_section:6
-#: typsphinx.translator.TypstTranslator.depart_seealso:4
+#: typsphinx.translator.TypstTranslator.depart_seealso:3
 #: typsphinx.translator.TypstTranslator.depart_strong:8
 #: typsphinx.translator.TypstTranslator.depart_subscript:8
 #: typsphinx.translator.TypstTranslator.depart_subtitle:8
@@ -196,112 +196,112 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_term:16
 #: typsphinx.translator.TypstTranslator.depart_tgroup:6
 #: typsphinx.translator.TypstTranslator.depart_thead:6
-#: typsphinx.translator.TypstTranslator.depart_tip:4
+#: typsphinx.translator.TypstTranslator.depart_tip:3
 #: typsphinx.translator.TypstTranslator.depart_title:17
-#: typsphinx.translator.TypstTranslator.depart_title_reference:4
+#: typsphinx.translator.TypstTranslator.depart_title_reference:3
 #: typsphinx.translator.TypstTranslator.depart_toctree:6
-#: typsphinx.translator.TypstTranslator.depart_todo_node:4
-#: typsphinx.translator.TypstTranslator.depart_topic:4
-#: typsphinx.translator.TypstTranslator.depart_transition:4
-#: typsphinx.translator.TypstTranslator.depart_versionmodified:4
-#: typsphinx.translator.TypstTranslator.depart_warning:4
+#: typsphinx.translator.TypstTranslator.depart_todo_node:3
+#: typsphinx.translator.TypstTranslator.depart_topic:3
+#: typsphinx.translator.TypstTranslator.depart_transition:3
+#: typsphinx.translator.TypstTranslator.depart_versionmodified:3
+#: typsphinx.translator.TypstTranslator.depart_warning:3
 #: typsphinx.translator.TypstTranslator.unknown_departure:6
 #: typsphinx.translator.TypstTranslator.unknown_visit:6
 #: typsphinx.translator.TypstTranslator.visit_Text:12
-#: typsphinx.translator.TypstTranslator.visit_abbreviation:6
-#: typsphinx.translator.TypstTranslator.visit_admonition:11
-#: typsphinx.translator.TypstTranslator.visit_attention:8
+#: typsphinx.translator.TypstTranslator.visit_abbreviation:5
+#: typsphinx.translator.TypstTranslator.visit_admonition:10
+#: typsphinx.translator.TypstTranslator.visit_attention:7
 #: typsphinx.translator.TypstTranslator.visit_attribution:6
 #: typsphinx.translator.TypstTranslator.visit_block_quote:8
 #: typsphinx.translator.TypstTranslator.visit_bullet_list:8
 #: typsphinx.translator.TypstTranslator.visit_caption:8
-#: typsphinx.translator.TypstTranslator.visit_caution:4
+#: typsphinx.translator.TypstTranslator.visit_caution:3
 #: typsphinx.translator.TypstTranslator.visit_colspec:6
 #: typsphinx.translator.TypstTranslator.visit_comment:11
 #: typsphinx.translator.TypstTranslator.visit_compound:9
 #: typsphinx.translator.TypstTranslator.visit_container:9
-#: typsphinx.translator.TypstTranslator.visit_danger:4
+#: typsphinx.translator.TypstTranslator.visit_danger:3
 #: typsphinx.translator.TypstTranslator.visit_definition:8
 #: typsphinx.translator.TypstTranslator.visit_definition_list:9
 #: typsphinx.translator.TypstTranslator.visit_definition_list_item:6
-#: typsphinx.translator.TypstTranslator.visit_desc:17
-#: typsphinx.translator.TypstTranslator.visit_desc_addname:4
-#: typsphinx.translator.TypstTranslator.visit_desc_annotation:4
-#: typsphinx.translator.TypstTranslator.visit_desc_content:4
-#: typsphinx.translator.TypstTranslator.visit_desc_inline:11
-#: typsphinx.translator.TypstTranslator.visit_desc_name:4
-#: typsphinx.translator.TypstTranslator.visit_desc_optional:12
-#: typsphinx.translator.TypstTranslator.visit_desc_parameter:4
-#: typsphinx.translator.TypstTranslator.visit_desc_parameterlist:6
-#: typsphinx.translator.TypstTranslator.visit_desc_returns:9
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_keyword:4
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_name:4
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_operator:4
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_punctuation:4
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_space:4
-#: typsphinx.translator.TypstTranslator.visit_desc_signature:16
-#: typsphinx.translator.TypstTranslator.visit_desc_signature_line:12
+#: typsphinx.translator.TypstTranslator.visit_desc:16
+#: typsphinx.translator.TypstTranslator.visit_desc_addname:3
+#: typsphinx.translator.TypstTranslator.visit_desc_annotation:3
+#: typsphinx.translator.TypstTranslator.visit_desc_content:3
+#: typsphinx.translator.TypstTranslator.visit_desc_inline:10
+#: typsphinx.translator.TypstTranslator.visit_desc_name:3
+#: typsphinx.translator.TypstTranslator.visit_desc_optional:11
+#: typsphinx.translator.TypstTranslator.visit_desc_parameter:3
+#: typsphinx.translator.TypstTranslator.visit_desc_parameterlist:5
+#: typsphinx.translator.TypstTranslator.visit_desc_returns:8
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_keyword:3
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_name:3
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_operator:3
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_punctuation:3
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_space:3
+#: typsphinx.translator.TypstTranslator.visit_desc_signature:15
+#: typsphinx.translator.TypstTranslator.visit_desc_signature_line:11
 #: typsphinx.translator.TypstTranslator.visit_document:24
 #: typsphinx.translator.TypstTranslator.visit_emphasis:9
 #: typsphinx.translator.TypstTranslator.visit_entry:6
 #: typsphinx.translator.TypstTranslator.visit_enumerated_list:8
-#: typsphinx.translator.TypstTranslator.visit_error:4
-#: typsphinx.translator.TypstTranslator.visit_field:4
-#: typsphinx.translator.TypstTranslator.visit_field_body:19
-#: typsphinx.translator.TypstTranslator.visit_field_list:4
-#: typsphinx.translator.TypstTranslator.visit_field_name:6
+#: typsphinx.translator.TypstTranslator.visit_error:3
+#: typsphinx.translator.TypstTranslator.visit_field:3
+#: typsphinx.translator.TypstTranslator.visit_field_body:18
+#: typsphinx.translator.TypstTranslator.visit_field_list:3
+#: typsphinx.translator.TypstTranslator.visit_field_name:5
 #: typsphinx.translator.TypstTranslator.visit_figure:20
 #: typsphinx.translator.TypstTranslator.visit_footnote:14
 #: typsphinx.translator.TypstTranslator.visit_footnote_reference:39
-#: typsphinx.translator.TypstTranslator.visit_glossary:14
-#: typsphinx.translator.TypstTranslator.visit_graphviz:4
-#: typsphinx.translator.TypstTranslator.visit_hint:7
+#: typsphinx.translator.TypstTranslator.visit_glossary:13
+#: typsphinx.translator.TypstTranslator.visit_graphviz:3
+#: typsphinx.translator.TypstTranslator.visit_hint:6
 #: typsphinx.translator.TypstTranslator.visit_image:9
-#: typsphinx.translator.TypstTranslator.visit_important:4
-#: typsphinx.translator.TypstTranslator.visit_index:6
-#: typsphinx.translator.TypstTranslator.visit_inheritance_diagram:4
-#: typsphinx.translator.TypstTranslator.visit_inline:22
-#: typsphinx.translator.TypstTranslator.visit_line:11
-#: typsphinx.translator.TypstTranslator.visit_line_block:12
+#: typsphinx.translator.TypstTranslator.visit_important:3
+#: typsphinx.translator.TypstTranslator.visit_index:5
+#: typsphinx.translator.TypstTranslator.visit_inheritance_diagram:3
+#: typsphinx.translator.TypstTranslator.visit_inline:21
+#: typsphinx.translator.TypstTranslator.visit_line:10
+#: typsphinx.translator.TypstTranslator.visit_line_block:11
 #: typsphinx.translator.TypstTranslator.visit_list_item:8
 #: typsphinx.translator.TypstTranslator.visit_literal:9
 #: typsphinx.translator.TypstTranslator.visit_literal_block:13
-#: typsphinx.translator.TypstTranslator.visit_literal_emphasis:4
-#: typsphinx.translator.TypstTranslator.visit_literal_strong:4
+#: typsphinx.translator.TypstTranslator.visit_literal_emphasis:3
+#: typsphinx.translator.TypstTranslator.visit_literal_strong:3
 #: typsphinx.translator.TypstTranslator.visit_manpage:17
 #: typsphinx.translator.TypstTranslator.visit_math:16
 #: typsphinx.translator.TypstTranslator.visit_math_block:16
-#: typsphinx.translator.TypstTranslator.visit_note:4
+#: typsphinx.translator.TypstTranslator.visit_note:3
 #: typsphinx.translator.TypstTranslator.visit_paragraph:16
 #: typsphinx.translator.TypstTranslator.visit_pending_xref:6
 #: typsphinx.translator.TypstTranslator.visit_raw:10
 #: typsphinx.translator.TypstTranslator.visit_reference:8
 #: typsphinx.translator.TypstTranslator.visit_row:6
-#: typsphinx.translator.TypstTranslator.visit_rubric:6
+#: typsphinx.translator.TypstTranslator.visit_rubric:5
 #: typsphinx.translator.TypstTranslator.visit_section:6
-#: typsphinx.translator.TypstTranslator.visit_seealso:4
+#: typsphinx.translator.TypstTranslator.visit_seealso:3
 #: typsphinx.translator.TypstTranslator.visit_strong:9
 #: typsphinx.translator.TypstTranslator.visit_subscript:9
 #: typsphinx.translator.TypstTranslator.visit_substitution_definition:15
 #: typsphinx.translator.TypstTranslator.visit_subtitle:9
 #: typsphinx.translator.TypstTranslator.visit_superscript:9
 #: typsphinx.translator.TypstTranslator.visit_table:6
-#: typsphinx.translator.TypstTranslator.visit_tabular_col_spec:9
+#: typsphinx.translator.TypstTranslator.visit_tabular_col_spec:8
 #: typsphinx.translator.TypstTranslator.visit_target:6
 #: typsphinx.translator.TypstTranslator.visit_tbody:6
 #: typsphinx.translator.TypstTranslator.visit_term:8
 #: typsphinx.translator.TypstTranslator.visit_tgroup:6
 #: typsphinx.translator.TypstTranslator.visit_thead:6
-#: typsphinx.translator.TypstTranslator.visit_tip:4
+#: typsphinx.translator.TypstTranslator.visit_tip:3
 #: typsphinx.translator.TypstTranslator.visit_title:22
-#: typsphinx.translator.TypstTranslator.visit_title_reference:6
-#: typsphinx.translator.TypstTranslator.visit_toctree:14
-#: typsphinx.translator.TypstTranslator.visit_todo_node:24
-#: typsphinx.translator.TypstTranslator.visit_topic:15
-#: typsphinx.translator.TypstTranslator.visit_transition:9
-#: typsphinx.translator.TypstTranslator.visit_versionmodified:4
-#: typsphinx.translator.TypstTranslator.visit_warning:4
-#: typsphinx.writer.TypstWriter.translate:10
+#: typsphinx.translator.TypstTranslator.visit_title_reference:5
+#: typsphinx.translator.TypstTranslator.visit_toctree:15
+#: typsphinx.translator.TypstTranslator.visit_todo_node:23
+#: typsphinx.translator.TypstTranslator.visit_topic:14
+#: typsphinx.translator.TypstTranslator.visit_transition:8
+#: typsphinx.translator.TypstTranslator.visit_versionmodified:3
+#: typsphinx.translator.TypstTranslator.visit_warning:3
+#: typsphinx.writer.TypstWriter.translate:9
 msgid ":sphinx_autodoc_typehints_type:`\\:py\\:obj\\:\\`None\\``"
 msgstr ""
 
@@ -324,8 +324,8 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.extract_toctree_options
 #: typsphinx.template_engine.TemplateEngine.generate_package_import
 #: typsphinx.template_engine.TemplateEngine.get_template_content
-#: typsphinx.template_engine.TemplateEngine.load_template
 #: typsphinx.template_engine.TemplateEngine.render
+#: typsphinx.template_engine.TemplateEngine.resolve_template
 msgid "Returns"
 msgstr ""
 
@@ -370,7 +370,7 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.generate_package_import:3
 #: typsphinx.template_engine.TemplateEngine.get_default_template_path:3
 #: typsphinx.template_engine.TemplateEngine.get_template_content:3
-#: typsphinx.template_engine.TemplateEngine.load_template:6
+#: typsphinx.template_engine.TemplateEngine.load_template:9
 #: typsphinx.template_engine.TemplateEngine.render:12
 #: typsphinx.translator.TypstTranslator.astext:3
 #: typsphinx.translator.escape_typst_string:23
@@ -1075,7 +1075,7 @@ msgstr ""
 msgid "Depart a comment node."
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.depart_comment:7
+#: of typsphinx.translator.TypstTranslator.depart_comment:8
 msgid "This method is not called when SkipNode is raised in visit_comment."
 msgstr ""
 
@@ -1124,7 +1124,7 @@ msgstr ""
 msgid "Depart a raw node."
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.depart_raw:7
+#: of typsphinx.translator.TypstTranslator.depart_raw:8
 msgid "This method is not called when SkipNode is raised in visit_raw."
 msgstr ""
 
@@ -1813,11 +1813,11 @@ msgstr ""
 msgid "The toctree node"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:17
+#: of typsphinx.translator.TypstTranslator.visit_toctree:18
 msgid "Notes"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:18
+#: of typsphinx.translator.TypstTranslator.visit_toctree:19
 msgid ""
 "This method generates Typst #include() directives for each toctree entry "
 "within a single content block #[...] to apply heading offset without "
@@ -2697,6 +2697,102 @@ msgid ""
 "``_format_typst_value()`` and would be quoted a second time."
 msgstr ""
 
+#: of typsphinx.template_engine.TemplateResolution:1
+msgid ""
+"Records which of ``TemplateEngine.resolve_template()``'s three priorities"
+" actually resolved, as a side effect of the SAME priority walk "
+"``load_template()`` already performs -- never a second, independently "
+"derived check (CONF-07/D-06 explicitly rejects duplicating the priority "
+"logic in a second place)."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateResolution.content:1
+msgid ""
+"The loaded template content, identical to what ``load_template()`` "
+"returns for the same engine state."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateResolution.source:1
+msgid ""
+"One of the three literal values ``\"explicit\"`` (Priority 1, an explicit"
+" ``template_path`` that was found), ``\"search\"`` (Priority 2, a "
+"``search_paths`` hit -- this is also where the ``<srcdir>/base.typ`` "
+"shadow of the bundled default lives), or ``\"default\"`` (Priority 3, the"
+" bundled ``templates/base.typ``)."
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:1
+msgid "Convert a Sphinx ``language`` config value into a Typst ``lang`` code."
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:3
+msgid ""
+"CONF-07/D-02: the conversion is a single generic rule, not a hand-"
+"maintained per-language mapping table -- take the substring before the "
+"first ``_``/``-``/``@`` separator and lowercase it. This covers every "
+"measured case (``\"ja\"`` -> ``\"ja\"``, ``\"zh_CN\"`` -> ``\"zh\"``, "
+"``\"pt-BR\"`` -> ``\"pt\"``, ``\"sr@latin\"`` -> ``\"sr\"``, ``\"en\"`` "
+"-> ``\"en\"``, ``\"JA\"`` -> ``\"ja\"``) without needing to hand-maintain"
+" a table of Sphinx's ~70 supported languages, and survives new locales "
+"being added upstream."
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:11
+#, python-brace-format
+msgid ""
+"D-03: the converted head is accepted ONLY when it is 2-3 ASCII letters "
+"(``re.fullmatch(r\"[a-z]{2,3}\", head)`` -- deliberately NOT ``len(head) "
+"in (2, 3) and head.isalpha()``, because Python's ``str.isalpha()`` is "
+"Unicode-aware and answers True for CJK/Cyrillic code points; a ``language"
+" = \"日本語\"`` project would then forward a three-code-point value that "
+"Typst rejects with a hard ``TypstError: expected two or three letter "
+"language code``, exactly the abort SC#4 exists to prevent). Any rejection"
+" -- non-str/None input, an empty string, wrong length, or non-ASCII-alpha"
+" content -- logs a ``logger.warning`` naming the offending value via "
+"``repr()`` and returns ``None``. Returning ``None`` (never raising, and "
+"never substituting a literal ``\"en\"`` fallback) is what lets "
+"``base.typ``'s own ``lang: \"en\"`` parameter default apply -- a "
+"hardcoded Python-side fallback would create a second source of truth that"
+" silently diverges the day that default changes."
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:27
+msgid ""
+"An unknown-but-well-formed 2-3-letter code (e.g. ``\"xyz\"``) is NOT "
+"rejected and does NOT warn: Typst itself falls back to English for a code"
+" it does not recognize, without aborting the compile, so this is not a "
+"value this helper needs to second-guess (D-03)."
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:32
+msgid ""
+"This helper is applied ONLY to the auto-derived value computed from "
+"Sphinx's ``language`` config. It must never be applied to a user's "
+"explicit ``typst_elements[\"lang\"]`` value -- that value is a Typst "
+"literal the user wrote directly for this builder-specific setting and "
+"passes through unvalidated, exactly like every other ``typst_elements`` "
+"key (D-04, Phase 26 D-09 precedent)."
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:40
+msgid ""
+"The Sphinx ``config.language`` value (normally a non-``None`` ``str``; "
+"defensively accepts ``None`` too)."
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:43
+#: typsphinx.template_engine.resolve_package_for_engine:19
+msgid ""
+":sphinx_autodoc_typehints_type:`\\:py\\:class\\:\\`str\\` \\| "
+"\\:py\\:obj\\:\\`None\\``"
+msgstr ""
+
+#: of typsphinx.template_engine.derive_typst_lang:44
+msgid ""
+"A lowercase 2-3-letter ASCII Typst ``lang`` code, or ``None`` if no such "
+"code could be derived."
+msgstr ""
+
 #: of typsphinx.template_engine.resolve_package_for_engine:1
 msgid ""
 "Decide which ``typst_package`` value a TemplateEngine should be built "
@@ -2726,12 +2822,6 @@ msgstr ""
 
 #: of typsphinx.template_engine.resolve_package_for_engine:17
 msgid "The configured ``typst_template`` value, if any"
-msgstr ""
-
-#: of typsphinx.template_engine.resolve_package_for_engine:19
-msgid ""
-":sphinx_autodoc_typehints_type:`\\:py\\:class\\:\\`str\\` \\| "
-"\\:py\\:obj\\:\\`None\\``"
 msgstr ""
 
 #: of typsphinx.template_engine.resolve_package_for_engine:20
@@ -2767,23 +2857,117 @@ msgstr ""
 msgid "Absolute path to default template file"
 msgstr ""
 
-#: of typsphinx.template_engine.TemplateEngine.load_template:1
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:1
+msgid "Resolve Typst template with priority order:"
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:3
+msgid "Explicit template_path if provided"
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:4
 msgid ""
-"Load Typst template with priority order: 1. Explicit template_path if "
-"provided 2. Search for template_name in search_paths (first match wins) "
-"3. Default template bundled with package"
+"Search for template_name in search_paths (first match wins) -- this is "
+"also where a ``<srcdir>/base.typ`` shadow of the bundled default template"
+" is discovered (CONF-07/D-06)."
 msgstr ""
 
-#: of typsphinx.template_engine.TemplateEngine.get_template_content:4
-#: typsphinx.template_engine.TemplateEngine.load_template:7
-msgid "Template content as string"
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:7
+msgid "Default template bundled with package"
 msgstr ""
 
-#: of typsphinx.template_engine.TemplateEngine.load_template:9
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:9
+msgid ""
+"This is the SINGLE priority walk both ``load_template()`` (below, which "
+"now delegates here) and ``uses_bundled_default_template()`` rely on -- "
+"CONF-07/D-06 explicitly rejects a second, independently hand-written "
+"existence check duplicating this same logic elsewhere, because such a "
+"duplicate would drift the moment ``search_paths``/ ``template_name`` "
+"semantics change."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:16
+msgid ":sphinx_autodoc_typehints_type:`\\:py\\:class\\:\\`\\~typsphinx.template\\_engine.TemplateResolution\\``"
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:17
+msgid ""
+"A ``TemplateResolution`` recording both the loaded content and WHICH "
+"priority actually supplied it (``\"explicit\"``, ``\"search\"``, or "
+"``\"default\"``)."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.resolve_template:21
 msgid ""
 "Requirement 8.1: Load default template Requirement 8.2: Load custom "
 "template Requirement 8.7: Search in user project directory Requirement "
 "8.9: Fallback to default with warning"
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.load_template:1
+msgid "Load Typst template content."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.load_template:3
+msgid ""
+"UNCHANGED public contract: still returns just the content ``str``, for "
+"every existing caller (``get_template_content()``, ``render()``, and "
+"every pre-existing test in ``tests/test_template_engine.py``). Delegates "
+"the actual priority walk to ``resolve_template()``."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.get_template_content:4
+#: typsphinx.template_engine.TemplateEngine.load_template:10
+msgid "Template content as string"
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.uses_bundled_default_template:1
+msgid ""
+"CONF-07/D-06: the single judgment point for \"is the default (bundled) "
+"template actually going to be used for this build?\"."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.uses_bundled_default_template:4
+msgid ""
+"Returns True only when this engine carries no ``typst_package`` AND "
+"``resolve_template().source == \"default\"``."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.uses_bundled_default_template:7
+msgid ""
+"Why judged from an actual resolution result rather than a declaration "
+"check (``typst_template is None and typst_package is None``): a "
+"``<srcdir>/base.typ`` shadow leaves BOTH ``typst_template`` and "
+"``typst_package`` unset while still routing the build onto a user-"
+"authored template (Priority 2's search-path hit). A declaration-based "
+"check would miss this shadow entirely, inject a parameter (``lang``) that"
+" shadow template never declared, and manufacture the exact undeclared-"
+"kwarg Typst compile fatal (``unexpected argument: lang``) this predicate "
+"exists to prevent (SC#3)."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.uses_bundled_default_template:18
+msgid ""
+"Why the ``typst_package`` guard is load-bearing and NOT redundant with "
+"the priority walk: on the package-alone path, this engine is constructed "
+"with ``template_path=None``, so its OWN priority walk legitimately "
+"resolves to ``\"default\"`` even though ``render()`` never loads that "
+"template at all -- the emitted ``#show`` rule calls the package's own "
+"entry function instead. Passing a bundled-template-only parameter "
+"(``lang``) into a package function that never declared it would be the "
+"exact same undeclared-kwarg fatal, just reached via a different route."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.uses_bundled_default_template:28
+msgid ":sphinx_autodoc_typehints_type:`\\:py\\:class\\:\\`bool\\``"
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.uses_bundled_default_template:29
+msgid ""
+"``True`` only for a package-free engine whose priority walk resolves to "
+"the bundled default template; ``False`` for ``\"explicit\"``, ``False`` "
+"for ``\"search\"`` (including the ``<srcdir>/base.typ`` shadow case), and"
+" ``False`` whenever ``typst_package`` is configured."
 msgstr ""
 
 #: of typsphinx.template_engine.TemplateEngine.map_parameters:1
@@ -3057,5 +3241,13 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "``\"11pt\"``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Load Typst template with priority order:"
+#~ " 1. Explicit template_path if provided "
+#~ "2. Search for template_name in "
+#~ "search_paths (first match wins) 3. "
+#~ "Default template bundled with package"
 #~ msgstr ""
 

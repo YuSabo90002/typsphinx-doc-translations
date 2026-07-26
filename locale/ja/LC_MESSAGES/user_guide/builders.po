@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 21:21+0900\n"
+"POT-Creation-Date: 2026-07-26 08:21+0000\n"
 "PO-Revision-Date: 2025-11-01 22:10+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../source/user_guide/builders.rst:2
 msgid "Builders"
@@ -190,96 +190,110 @@ msgstr "両方のビルダーは、``conf.py`` で同じ設定オプションを
 msgid "Document Definitions"
 msgstr "ドキュメント定義"
 
-#: ../../source/user_guide/builders.rst:115
+#: ../../source/user_guide/builders.rst:114
+msgid ""
+"The second tuple element is the output filename stem, and it governs both"
+" the emitted ``.typ`` file and the compiled ``.pdf`` (under the "
+"``typstpdf`` builder). With the configuration shown above, the builders "
+"therefore emit ``main.typ`` / ``main.pdf`` and ``api-ref.typ`` / ``api-"
+"ref.pdf`` -- not ``index.typ`` / ``index.pdf`` or ``api.typ`` / "
+"``api.pdf``. The CLI walkthroughs elsewhere on this page assume the "
+"default identity configuration, where the source name and the target name"
+" agree, so their docname-named artifacts are correct for that "
+"configuration."
+msgstr ""
+
+#: ../../source/user_guide/builders.rst:124
 msgid "Builder-Specific Options"
 msgstr "ビルダー固有のオプション"
 
-#: ../../source/user_guide/builders.rst:117
+#: ../../source/user_guide/builders.rst:126
 msgid ""
 "There are no builder-specific options currently. All ``typst_*`` "
 "configuration options apply to both builders."
 msgstr "現在、ビルダー固有のオプションはありません。すべての ``typst_*`` 設定オプションは両方のビルダーに適用されます。"
 
-#: ../../source/user_guide/builders.rst:121
+#: ../../source/user_guide/builders.rst:130
 msgid "Choosing a Builder"
 msgstr "ビルダーの選択"
 
-#: ../../source/user_guide/builders.rst:123
+#: ../../source/user_guide/builders.rst:132
 msgid "Use ``typst`` if:"
 msgstr "``typst`` を使用すべき場合："
 
-#: ../../source/user_guide/builders.rst:125
+#: ../../source/user_guide/builders.rst:134
 msgid "You want to customize the generated Typst code"
 msgstr "生成されたTypstコードをカスタマイズしたい場合"
 
-#: ../../source/user_guide/builders.rst:126
+#: ../../source/user_guide/builders.rst:135
 msgid "You need specific Typst CLI features"
 msgstr "特定のTypst CLI機能が必要な場合"
 
-#: ../../source/user_guide/builders.rst:127
+#: ../../source/user_guide/builders.rst:136
 msgid "You're learning Typst and want to see the markup"
 msgstr "Typstを学習中でマークアップを確認したい場合"
 
-#: ../../source/user_guide/builders.rst:129
+#: ../../source/user_guide/builders.rst:138
 msgid "Use ``typstpdf`` if:"
 msgstr "``typstpdf`` を使用すべき場合："
 
-#: ../../source/user_guide/builders.rst:131
+#: ../../source/user_guide/builders.rst:140
 msgid "You just want PDF output"
 msgstr "単にPDF出力が必要な場合"
 
-#: ../../source/user_guide/builders.rst:132
+#: ../../source/user_guide/builders.rst:141
 msgid "You're building in CI/CD"
 msgstr "CI/CDでビルドしている場合"
 
-#: ../../source/user_guide/builders.rst:133
+#: ../../source/user_guide/builders.rst:142
 msgid "You want the simplest workflow"
 msgstr "最もシンプルなワークフローが必要な場合"
 
-#: ../../source/user_guide/builders.rst:134
+#: ../../source/user_guide/builders.rst:143
 msgid "You don't need to edit Typst code"
 msgstr "Typstコードを編集する必要がない場合"
 
-#: ../../source/user_guide/builders.rst:137
+#: ../../source/user_guide/builders.rst:146
 msgid "Common Workflow"
 msgstr "一般的なワークフロー"
 
-#: ../../source/user_guide/builders.rst:140
+#: ../../source/user_guide/builders.rst:149
 msgid "Development"
 msgstr "開発"
 
-#: ../../source/user_guide/builders.rst:142
+#: ../../source/user_guide/builders.rst:151
 msgid "During development, use ``typstpdf`` for quick feedback:"
 msgstr "開発中は、迅速なフィードバックのために ``typstpdf`` を使用します："
 
-#: ../../source/user_guide/builders.rst:150
+#: ../../source/user_guide/builders.rst:159
 msgid "Production"
 msgstr "プロダクション"
 
-#: ../../source/user_guide/builders.rst:152
+#: ../../source/user_guide/builders.rst:161
 msgid "For production, you can use either builder:"
 msgstr "プロダクション環境では、どちらのビルダーも使用できます："
 
-#: ../../source/user_guide/builders.rst:164
+#: ../../source/user_guide/builders.rst:173
 msgid "CI/CD"
 msgstr "CI/CD"
 
-#: ../../source/user_guide/builders.rst:166
+#: ../../source/user_guide/builders.rst:175
 msgid "In CI/CD, ``typstpdf`` is recommended for simplicity:"
 msgstr "CI/CDでは、シンプルさのために ``typstpdf`` が推奨されます："
 
-#: ../../source/user_guide/builders.rst:176
+#: ../../source/user_guide/builders.rst:185
 msgid "See Also"
 msgstr "関連項目"
 
-#: ../../source/user_guide/builders.rst:178
+#: ../../source/user_guide/builders.rst:187
 msgid ":doc:`configuration` - Configuration options"
 msgstr ":doc:`configuration` - 設定オプション"
 
-#: ../../source/user_guide/builders.rst:179
+#: ../../source/user_guide/builders.rst:188
 msgid ":doc:`templates` - Customizing templates"
 msgstr ":doc:`templates` - テンプレートのカスタマイズ"
 
-#: ../../source/user_guide/builders.rst:180
+#: ../../source/user_guide/builders.rst:189
 msgid ":doc:`/examples/basic` - Basic usage examples"
 msgstr ":doc:`/examples/basic` - 基本的な使用例"
+

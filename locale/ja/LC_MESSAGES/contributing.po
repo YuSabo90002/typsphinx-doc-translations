@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 21:21+0900\n"
+"POT-Creation-Date: 2026-07-26 08:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../source/contributing.rst:2
 msgid "Contributing"
@@ -359,56 +359,88 @@ msgid "Consider creating an OpenSpec proposal for major features"
 msgstr ""
 
 #: ../../source/contributing.rst:294
-msgid "Community"
+msgid "Translations"
 msgstr ""
 
 #: ../../source/contributing.rst:296
-msgid "**GitHub**: https://github.com/YuSabo90002/typsphinx"
-msgstr ""
-
-#: ../../source/contributing.rst:297
-msgid "**Issues**: https://github.com/YuSabo90002/typsphinx/issues"
-msgstr ""
-
-#: ../../source/contributing.rst:298
-msgid "**Discussions**: Use GitHub Discussions for questions"
+msgid ""
+"Japanese translation catalogs are maintained in a separate repository. "
+"The repository, ``typsphinx-doc-translations``, consumes this repository "
+"as a git submodule and is built by a Read the Docs translation project "
+"served at https://typsphinx.readthedocs.io/ja/latest/."
 msgstr ""
 
 #: ../../source/contributing.rst:301
+msgid "To work on the translation:"
+msgstr ""
+
+#: ../../source/contributing.rst:315
+msgid ""
+"If you already cloned without ``--recurse-submodules``, run ``git "
+"submodule update --init`` before ``make locale-update``."
+msgstr ""
+
+#: ../../source/contributing.rst:318
+msgid "Open a pull request in the translations repository with your changes."
+msgstr ""
+
+#: ../../source/contributing.rst:320
+msgid ""
+"Coverage is partial by design: untranslated strings fall back to English,"
+" so a partial translation is a working site rather than a broken one."
+msgstr ""
+
+#: ../../source/contributing.rst:324
+msgid "Community"
+msgstr ""
+
+#: ../../source/contributing.rst:326
+msgid "**GitHub**: https://github.com/YuSabo90002/typsphinx"
+msgstr ""
+
+#: ../../source/contributing.rst:327
+msgid "**Issues**: https://github.com/YuSabo90002/typsphinx/issues"
+msgstr ""
+
+#: ../../source/contributing.rst:328
+msgid "**Discussions**: Use GitHub Discussions for questions"
+msgstr ""
+
+#: ../../source/contributing.rst:331
 msgid "Code of Conduct"
 msgstr ""
 
-#: ../../source/contributing.rst:303
+#: ../../source/contributing.rst:333
 msgid "We follow the Contributor Covenant Code of Conduct:"
 msgstr ""
 
-#: ../../source/contributing.rst:305
+#: ../../source/contributing.rst:335
 msgid "Be respectful and inclusive"
 msgstr ""
 
-#: ../../source/contributing.rst:306
+#: ../../source/contributing.rst:336
 msgid "Welcome newcomers"
 msgstr ""
 
-#: ../../source/contributing.rst:307
+#: ../../source/contributing.rst:337
 msgid "Focus on constructive feedback"
 msgstr ""
 
-#: ../../source/contributing.rst:308
+#: ../../source/contributing.rst:338
 msgid "Respect differing viewpoints"
 msgstr ""
 
-#: ../../source/contributing.rst:311
+#: ../../source/contributing.rst:341
 msgid "License"
 msgstr ""
 
-#: ../../source/contributing.rst:313
+#: ../../source/contributing.rst:343
 msgid ""
 "By contributing, you agree that your contributions will be licensed under"
 " the MIT License."
 msgstr ""
 
-#: ../../source/contributing.rst:316
+#: ../../source/contributing.rst:346
 msgid "Thank you for contributing to typsphinx!"
 msgstr ""
 

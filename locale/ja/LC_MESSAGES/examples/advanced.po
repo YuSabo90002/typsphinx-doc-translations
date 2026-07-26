@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 21:21+0900\n"
+"POT-Creation-Date: 2026-07-26 08:21+0000\n"
 "PO-Revision-Date: 2025-11-01 22:25+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../source/examples/advanced.rst:2
 msgid "Advanced Examples"
@@ -38,133 +38,146 @@ msgstr "charged-ieeeテンプレート"
 msgid "Use the charged-ieee package for IEEE-style papers:"
 msgstr "IEEEスタイルの論文にはcharged-ieeeパッケージを使用します:"
 
-#: ../../source/examples/advanced.rst:14 ../../source/examples/advanced.rst:119
-#: ../../source/examples/advanced.rst:131
-#: ../../source/examples/advanced.rst:189
-#: ../../source/examples/advanced.rst:207
-#: ../../source/examples/advanced.rst:354
+#: ../../source/examples/advanced.rst:14 ../../source/examples/advanced.rst:100
+#: ../../source/examples/advanced.rst:122
+#: ../../source/examples/advanced.rst:180
+#: ../../source/examples/advanced.rst:198
+#: ../../source/examples/advanced.rst:345
 msgid "**conf.py**:"
 msgstr "**conf.py**:"
 
 #: ../../source/examples/advanced.rst:51
-msgid "modern-cv Template"
-msgstr "modern-cvテンプレート"
-
-#: ../../source/examples/advanced.rst:53
-msgid "Create a CV/resume with modern-cv:"
-msgstr "modern-cvで履歴書を作成:"
-
-#: ../../source/examples/advanced.rst:70
 msgid "Custom Template Wrapping"
 msgstr "カスタムテンプレートのラッピング"
 
-#: ../../source/examples/advanced.rst:72
+#: ../../source/examples/advanced.rst:53
 msgid "Wrap external packages with custom logic:"
 msgstr "外部パッケージをカスタムロジックでラップ:"
 
-#: ../../source/examples/advanced.rst:74
+#: ../../source/examples/advanced.rst:55
 msgid "**_templates/custom_ieee.typ**:"
 msgstr "**_templates/custom_ieee.typ**:"
 
-#: ../../source/examples/advanced.rst:127
+#: ../../source/examples/advanced.rst:108
+msgid ""
+"Do **not** also set ``typst_package`` here. The wrapping template already"
+" declares ``#import \"@preview/charged-ieee:0.1.4\": ieee`` itself, and "
+"setting both ``typst_package`` and ``typst_template`` together is "
+"unsupported: typsphinx emits a build warning naming both config values, "
+"ignores the ``typst_package`` setting, and honours ``typst_template`` — "
+"so the wrapper is written and imported as before."
+msgstr ""
+
+#: ../../source/examples/advanced.rst:115
+msgid "Use ``typst_package`` **or** ``typst_template`` — not both."
+msgstr ""
+
+#: ../../source/examples/advanced.rst:118
 msgid "Multi-Document Projects"
 msgstr "複数ドキュメントプロジェクト"
 
-#: ../../source/examples/advanced.rst:129
+#: ../../source/examples/advanced.rst:120
 msgid "Build multiple related documents:"
 msgstr "複数の関連ドキュメントをビルド:"
 
-#: ../../source/examples/advanced.rst:142
+#: ../../source/examples/advanced.rst:133
 msgid "Each document is built separately with its own output file."
 msgstr "各ドキュメントは独自の出力ファイルで個別にビルドされます。"
 
-#: ../../source/examples/advanced.rst:145
+#: ../../source/examples/advanced.rst:136
 msgid "Custom Styling"
 msgstr "カスタムスタイリング"
 
-#: ../../source/examples/advanced.rst:147
+#: ../../source/examples/advanced.rst:138
 msgid "Apply custom fonts and colors:"
 msgstr "カスタムフォントと色を適用:"
 
-#: ../../source/examples/advanced.rst:149
+#: ../../source/examples/advanced.rst:140
 msgid "**_templates/styled.typ**:"
 msgstr "**_templates/styled.typ**:"
 
-#: ../../source/examples/advanced.rst:203
+#: ../../source/examples/advanced.rst:194
 msgid "Conditional Content"
 msgstr "条件付きコンテンツ"
 
-#: ../../source/examples/advanced.rst:205
+#: ../../source/examples/advanced.rst:196
 msgid "Use different templates for different documents:"
 msgstr "異なるドキュメントに異なるテンプレートを使用:"
 
-#: ../../source/examples/advanced.rst:220
+#: ../../source/examples/advanced.rst:211
 msgid ""
 "For document-specific templates, you can use Sphinx's ``per-file`` "
 "configuration or conditional logic in your template."
 msgstr "ドキュメント固有のテンプレートには、Sphinxの ``per-file`` 設定またはテンプレート内の条件ロジックを使用できます。"
 
-#: ../../source/examples/advanced.rst:224
+#: ../../source/examples/advanced.rst:215
 msgid "Bibliographies"
 msgstr "参考文献"
 
-#: ../../source/examples/advanced.rst:226
+#: ../../source/examples/advanced.rst:217
 msgid "Include bibliographies with BibTeX:"
 msgstr "BibTeXで参考文献を含める:"
 
-#: ../../source/examples/advanced.rst:228
-#: ../../source/examples/advanced.rst:266
+#: ../../source/examples/advanced.rst:219
+#: ../../source/examples/advanced.rst:257
 msgid "**index.rst**:"
 msgstr "**index.rst**:"
 
-#: ../../source/examples/advanced.rst:243
+#: ../../source/examples/advanced.rst:234
 msgid "**Custom template with bibliography**:"
 msgstr "**参考文献付きカスタムテンプレート**:"
 
-#: ../../source/examples/advanced.rst:262
+#: ../../source/examples/advanced.rst:253
 msgid "Advanced Math"
 msgstr "高度な数式"
 
-#: ../../source/examples/advanced.rst:264
+#: ../../source/examples/advanced.rst:255
 msgid "Complex mathematical expressions:"
 msgstr "複雑な数式:"
 
-#: ../../source/examples/advanced.rst:301
+#: ../../source/examples/advanced.rst:292
 msgid "CI/CD Integration"
 msgstr "CI/CD統合"
 
-#: ../../source/examples/advanced.rst:303
+#: ../../source/examples/advanced.rst:294
 msgid "GitHub Actions workflow for documentation:"
 msgstr "ドキュメント用のGitHub Actionsワークフロー:"
 
-#: ../../source/examples/advanced.rst:305
+#: ../../source/examples/advanced.rst:296
 msgid "**.github/workflows/docs.yml**:"
 msgstr "**.github/workflows/docs.yml**:"
 
-#: ../../source/examples/advanced.rst:350
+#: ../../source/examples/advanced.rst:341
 msgid "Performance Optimization"
 msgstr "パフォーマンス最適化"
 
-#: ../../source/examples/advanced.rst:352
+#: ../../source/examples/advanced.rst:343
 msgid "For large documentation projects:"
 msgstr "大規模なドキュメントプロジェクトの場合:"
 
-#: ../../source/examples/advanced.rst:373
+#: ../../source/examples/advanced.rst:360
 msgid "See Also"
 msgstr "関連項目"
 
-#: ../../source/examples/advanced.rst:375
+#: ../../source/examples/advanced.rst:362
 msgid ":doc:`/user_guide/configuration` - All configuration options"
 msgstr ":doc:`/user_guide/configuration` - すべての設定オプション"
 
-#: ../../source/examples/advanced.rst:376
+#: ../../source/examples/advanced.rst:363
 msgid ":doc:`/user_guide/templates` - Template system details"
 msgstr ":doc:`/user_guide/templates` - テンプレートシステムの詳細"
 
-#: ../../source/examples/advanced.rst:377
+#: ../../source/examples/advanced.rst:364
 msgid "`Typst Documentation <https://typst.app/docs>`_ - Official Typst reference"
 msgstr "`Typst Documentation <https://typst.app/docs>`_ - 公式Typstリファレンス"
 
-#: ../../source/examples/advanced.rst:378
+#: ../../source/examples/advanced.rst:365
 msgid "`Typst Universe <https://typst.app/universe>`_ - Package repository"
 msgstr "`Typst Universe <https://typst.app/universe>`_ - パッケージリポジトリ"
+
+#~ msgid "modern-cv Template"
+#~ msgstr "modern-cvテンプレート"
+
+#~ msgid "Create a CV/resume with modern-cv:"
+#~ msgstr "modern-cvで履歴書を作成:"
+
