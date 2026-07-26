@@ -73,11 +73,14 @@ build:
       - fc-list :charset=5358
       - echo "=== DIAG fc-list -- charset query for 91c8 (釈) ==="
       - fc-list :charset=91c8
-      - echo "=== DIAG typst-py -- Fonts() family enumeration ==="
-      - python -c "import typst; fams = typst.Fonts().families(); print('family_count', len(fams)); [print(f) for f in fams]"
-      - echo "=== DIAG versions -- typst / typsphinx ==="
-      - python -c "import typst; print('typst', typst.__version__)"
-      - python -c "import typsphinx; print('typsphinx', typsphinx.__version__)"
+      - echo "=== DIAG typst-py -- Fonts() family count ==="
+      - python -c "import typst; print(len(typst.Fonts().families()))"
+      - echo "=== DIAG typst-py -- Fonts() family list ==="
+      - python -c "import typst; [print(x) for x in typst.Fonts().families()]"
+      - echo "=== DIAG versions -- typst ==="
+      - python -c "import typst; print(typst.__version__)"
+      - echo "=== DIAG versions -- typsphinx ==="
+      - python -c "import typsphinx; print(typsphinx.__version__)"
     build:
       pdf:
         # Same four commands as the parent's build.jobs.build.pdf, with
