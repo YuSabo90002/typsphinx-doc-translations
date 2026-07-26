@@ -1,0 +1,3 @@
+.venv/
+typsphinx/docs/_build/
+*.mo
