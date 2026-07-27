@@ -1,4 +1,4 @@
 [submodule "typsphinx"]
 	path = typsphinx
 	url = https://github.com/YuSabo90002/typsphinx.git
-	branch = gsd/v0.6.4-read-the-docs-migration
+	branch = main
