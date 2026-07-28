@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-26 08:21+0000\n"
+"POT-Creation-Date: 2026-07-28 20:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -269,8 +269,8 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_literal_emphasis:3
 #: typsphinx.translator.TypstTranslator.visit_literal_strong:3
 #: typsphinx.translator.TypstTranslator.visit_manpage:17
-#: typsphinx.translator.TypstTranslator.visit_math:16
-#: typsphinx.translator.TypstTranslator.visit_math_block:16
+#: typsphinx.translator.TypstTranslator.visit_math:20
+#: typsphinx.translator.TypstTranslator.visit_math_block:21
 #: typsphinx.translator.TypstTranslator.visit_note:3
 #: typsphinx.translator.TypstTranslator.visit_paragraph:16
 #: typsphinx.translator.TypstTranslator.visit_pending_xref:6
@@ -1871,11 +1871,15 @@ msgid ""
 "math should use #mi(`...`) format (LaTeX) Requirement 4.9: Fallback when "
 "typst_use_mitex=False Requirement 5.2: Inline math should use $...$ "
 "format (Typst native) Requirement 4.7: Labeled equations should generate "
-"<eq:label> format Design 3.3: Support both mitex and Typst native math"
+"<eq:label> format Design 3.3: Support both mitex and Typst native math "
+"MATH-01 (backlog 999.1): participates in all three separator protocols --"
+" paragraph, code-mode inline concat, and list-item -- exactly as "
+"visit_literal does, so math is never juxtaposed against a preceding "
+"sibling with zero separator characters."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_math:4
-#: typsphinx.translator.TypstTranslator.visit_math:14
+#: typsphinx.translator.TypstTranslator.visit_math:18
 msgid "The inline math node"
 msgstr ""
 
@@ -1895,11 +1899,15 @@ msgid ""
 "math should use #mitex(`...`) format (LaTeX) Requirement 4.9: Fallback "
 "when typst_use_mitex=False Requirement 5.2: Block math should use $ ... $"
 " format (Typst native) Requirement 4.7: Labeled equations should generate"
-" <eq:label> format Design 3.3: Support both mitex and Typst native math"
+" <eq:label> format Design 3.3: Support both mitex and Typst native math "
+"MATH-01 / D-01 (backlog 999.1): participates in the list-item separator "
+"protocol (display math shares the inline defect's root cause and was "
+"brought into scope by explicit owner decision) -- it is never a concat-"
+"context sibling, so only the in_list_item half of the pattern applies."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_math_block:4
-#: typsphinx.translator.TypstTranslator.visit_math_block:14
+#: typsphinx.translator.TypstTranslator.visit_math_block:19
 msgid "The block math node"
 msgstr ""
 
@@ -3249,5 +3257,38 @@ msgstr ""
 #~ "2. Search for template_name in "
 #~ "search_paths (first match wins) 3. "
 #~ "Default template bundled with package"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Implements Task 6.2: LaTeX math "
+#~ "conversion (mitex) Implements Task 6.3: "
+#~ "Labeled equations Implements Task 6.4: "
+#~ "Typst native math support Implements "
+#~ "Task 6.5: Math fallback functionality "
+#~ "Requirement 4.3: Inline math should use"
+#~ " #mi(`...`) format (LaTeX) Requirement 4.9:"
+#~ " Fallback when typst_use_mitex=False Requirement"
+#~ " 5.2: Inline math should use $...$"
+#~ " format (Typst native) Requirement 4.7: "
+#~ "Labeled equations should generate <eq:label>"
+#~ " format Design 3.3: Support both "
+#~ "mitex and Typst native math"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Implements Task 6.2: LaTeX math "
+#~ "conversion (mitex) Implements Task 6.3: "
+#~ "Labeled equations Implements Task 6.4: "
+#~ "Typst native math support Implements "
+#~ "Task 6.5: Math fallback functionality "
+#~ "Requirement 4.2: Block math should use"
+#~ " #mitex(`...`) format (LaTeX) Requirement "
+#~ "4.9: Fallback when typst_use_mitex=False "
+#~ "Requirement 5.2: Block math should use"
+#~ " $ ... $ format (Typst native) "
+#~ "Requirement 4.7: Labeled equations should "
+#~ "generate <eq:label> format Design 3.3: "
+#~ "Support both mitex and Typst native "
+#~ "math"
 #~ msgstr ""
 
