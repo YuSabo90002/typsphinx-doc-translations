@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-28 20:58+0000\n"
+"POT-Creation-Date: 2026-08-03 20:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -126,6 +126,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_bullet_list:8
 #: typsphinx.translator.TypstTranslator.depart_caption:6
 #: typsphinx.translator.TypstTranslator.depart_caution:3
+#: typsphinx.translator.TypstTranslator.depart_citation:13
 #: typsphinx.translator.TypstTranslator.depart_colspec:6
 #: typsphinx.translator.TypstTranslator.depart_comment:6
 #: typsphinx.translator.TypstTranslator.depart_compound:6
@@ -134,22 +135,22 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_definition:8
 #: typsphinx.translator.TypstTranslator.depart_definition_list:8
 #: typsphinx.translator.TypstTranslator.depart_definition_list_item:6
-#: typsphinx.translator.TypstTranslator.depart_desc:13
+#: typsphinx.translator.TypstTranslator.depart_desc:82
 #: typsphinx.translator.TypstTranslator.depart_desc_addname:3
 #: typsphinx.translator.TypstTranslator.depart_desc_annotation:5
-#: typsphinx.translator.TypstTranslator.depart_desc_content:3
+#: typsphinx.translator.TypstTranslator.depart_desc_content:47
 #: typsphinx.translator.TypstTranslator.depart_desc_inline:3
-#: typsphinx.translator.TypstTranslator.depart_desc_name:3
-#: typsphinx.translator.TypstTranslator.depart_desc_optional:3
+#: typsphinx.translator.TypstTranslator.depart_desc_name:9
+#: typsphinx.translator.TypstTranslator.depart_desc_optional:30
 #: typsphinx.translator.TypstTranslator.depart_desc_parameter:5
 #: typsphinx.translator.TypstTranslator.depart_desc_parameterlist:3
 #: typsphinx.translator.TypstTranslator.depart_desc_returns:3
 #: typsphinx.translator.TypstTranslator.depart_desc_sig_keyword:3
-#: typsphinx.translator.TypstTranslator.depart_desc_sig_name:3
+#: typsphinx.translator.TypstTranslator.depart_desc_sig_name:7
 #: typsphinx.translator.TypstTranslator.depart_desc_sig_operator:3
 #: typsphinx.translator.TypstTranslator.depart_desc_sig_punctuation:3
 #: typsphinx.translator.TypstTranslator.depart_desc_sig_space:3
-#: typsphinx.translator.TypstTranslator.depart_desc_signature:3
+#: typsphinx.translator.TypstTranslator.depart_desc_signature:14
 #: typsphinx.translator.TypstTranslator.depart_desc_signature_line:3
 #: typsphinx.translator.TypstTranslator.depart_document:8
 #: typsphinx.translator.TypstTranslator.depart_emphasis:8
@@ -157,8 +158,8 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_enumerated_list:8
 #: typsphinx.translator.TypstTranslator.depart_error:3
 #: typsphinx.translator.TypstTranslator.depart_field:19
-#: typsphinx.translator.TypstTranslator.depart_field_body:6
-#: typsphinx.translator.TypstTranslator.depart_field_list:5
+#: typsphinx.translator.TypstTranslator.depart_field_body:37
+#: typsphinx.translator.TypstTranslator.depart_field_list:11
 #: typsphinx.translator.TypstTranslator.depart_field_name:3
 #: typsphinx.translator.TypstTranslator.depart_figure:6
 #: typsphinx.translator.TypstTranslator.depart_glossary:3
@@ -172,18 +173,18 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_list_item:8
 #: typsphinx.translator.TypstTranslator.depart_literal:8
 #: typsphinx.translator.TypstTranslator.depart_literal_block:8
-#: typsphinx.translator.TypstTranslator.depart_literal_emphasis:3
-#: typsphinx.translator.TypstTranslator.depart_literal_strong:3
+#: typsphinx.translator.TypstTranslator.depart_literal_emphasis:9
+#: typsphinx.translator.TypstTranslator.depart_literal_strong:9
 #: typsphinx.translator.TypstTranslator.depart_manpage:8
 #: typsphinx.translator.TypstTranslator.depart_math:6
 #: typsphinx.translator.TypstTranslator.depart_math_block:6
 #: typsphinx.translator.TypstTranslator.depart_note:3
-#: typsphinx.translator.TypstTranslator.depart_paragraph:8
+#: typsphinx.translator.TypstTranslator.depart_paragraph:21
 #: typsphinx.translator.TypstTranslator.depart_pending_xref:6
 #: typsphinx.translator.TypstTranslator.depart_raw:6
 #: typsphinx.translator.TypstTranslator.depart_reference:6
 #: typsphinx.translator.TypstTranslator.depart_row:6
-#: typsphinx.translator.TypstTranslator.depart_rubric:13
+#: typsphinx.translator.TypstTranslator.depart_rubric:22
 #: typsphinx.translator.TypstTranslator.depart_section:6
 #: typsphinx.translator.TypstTranslator.depart_seealso:3
 #: typsphinx.translator.TypstTranslator.depart_strong:8
@@ -209,37 +210,38 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.unknown_visit:6
 #: typsphinx.translator.TypstTranslator.visit_Text:12
 #: typsphinx.translator.TypstTranslator.visit_abbreviation:5
-#: typsphinx.translator.TypstTranslator.visit_admonition:10
-#: typsphinx.translator.TypstTranslator.visit_attention:7
+#: typsphinx.translator.TypstTranslator.visit_admonition:9
+#: typsphinx.translator.TypstTranslator.visit_attention:9
 #: typsphinx.translator.TypstTranslator.visit_attribution:6
 #: typsphinx.translator.TypstTranslator.visit_block_quote:8
 #: typsphinx.translator.TypstTranslator.visit_bullet_list:8
 #: typsphinx.translator.TypstTranslator.visit_caption:8
 #: typsphinx.translator.TypstTranslator.visit_caution:3
+#: typsphinx.translator.TypstTranslator.visit_citation:96
 #: typsphinx.translator.TypstTranslator.visit_colspec:6
 #: typsphinx.translator.TypstTranslator.visit_comment:11
 #: typsphinx.translator.TypstTranslator.visit_compound:9
 #: typsphinx.translator.TypstTranslator.visit_container:9
-#: typsphinx.translator.TypstTranslator.visit_danger:3
+#: typsphinx.translator.TypstTranslator.visit_danger:8
 #: typsphinx.translator.TypstTranslator.visit_definition:8
 #: typsphinx.translator.TypstTranslator.visit_definition_list:9
 #: typsphinx.translator.TypstTranslator.visit_definition_list_item:6
 #: typsphinx.translator.TypstTranslator.visit_desc:16
-#: typsphinx.translator.TypstTranslator.visit_desc_addname:3
-#: typsphinx.translator.TypstTranslator.visit_desc_annotation:3
-#: typsphinx.translator.TypstTranslator.visit_desc_content:3
+#: typsphinx.translator.TypstTranslator.visit_desc_addname:8
+#: typsphinx.translator.TypstTranslator.visit_desc_annotation:13
+#: typsphinx.translator.TypstTranslator.visit_desc_content:36
 #: typsphinx.translator.TypstTranslator.visit_desc_inline:10
-#: typsphinx.translator.TypstTranslator.visit_desc_name:3
+#: typsphinx.translator.TypstTranslator.visit_desc_name:14
 #: typsphinx.translator.TypstTranslator.visit_desc_optional:11
-#: typsphinx.translator.TypstTranslator.visit_desc_parameter:3
-#: typsphinx.translator.TypstTranslator.visit_desc_parameterlist:5
-#: typsphinx.translator.TypstTranslator.visit_desc_returns:8
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_keyword:3
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_name:3
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_operator:3
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_punctuation:3
-#: typsphinx.translator.TypstTranslator.visit_desc_sig_space:3
-#: typsphinx.translator.TypstTranslator.visit_desc_signature:15
+#: typsphinx.translator.TypstTranslator.visit_desc_parameter:13
+#: typsphinx.translator.TypstTranslator.visit_desc_parameterlist:25
+#: typsphinx.translator.TypstTranslator.visit_desc_returns:12
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_keyword:7
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_name:44
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_operator:11
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_punctuation:10
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_space:7
+#: typsphinx.translator.TypstTranslator.visit_desc_signature:57
 #: typsphinx.translator.TypstTranslator.visit_desc_signature_line:11
 #: typsphinx.translator.TypstTranslator.visit_document:24
 #: typsphinx.translator.TypstTranslator.visit_emphasis:9
@@ -247,8 +249,8 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_enumerated_list:8
 #: typsphinx.translator.TypstTranslator.visit_error:3
 #: typsphinx.translator.TypstTranslator.visit_field:3
-#: typsphinx.translator.TypstTranslator.visit_field_body:18
-#: typsphinx.translator.TypstTranslator.visit_field_list:3
+#: typsphinx.translator.TypstTranslator.visit_field_body:36
+#: typsphinx.translator.TypstTranslator.visit_field_list:22
 #: typsphinx.translator.TypstTranslator.visit_field_name:5
 #: typsphinx.translator.TypstTranslator.visit_figure:20
 #: typsphinx.translator.TypstTranslator.visit_footnote:14
@@ -257,29 +259,30 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_graphviz:3
 #: typsphinx.translator.TypstTranslator.visit_hint:6
 #: typsphinx.translator.TypstTranslator.visit_image:9
-#: typsphinx.translator.TypstTranslator.visit_important:3
+#: typsphinx.translator.TypstTranslator.visit_important:6
 #: typsphinx.translator.TypstTranslator.visit_index:5
 #: typsphinx.translator.TypstTranslator.visit_inheritance_diagram:3
 #: typsphinx.translator.TypstTranslator.visit_inline:21
+#: typsphinx.translator.TypstTranslator.visit_label:18
 #: typsphinx.translator.TypstTranslator.visit_line:10
 #: typsphinx.translator.TypstTranslator.visit_line_block:11
 #: typsphinx.translator.TypstTranslator.visit_list_item:8
 #: typsphinx.translator.TypstTranslator.visit_literal:9
 #: typsphinx.translator.TypstTranslator.visit_literal_block:13
-#: typsphinx.translator.TypstTranslator.visit_literal_emphasis:3
-#: typsphinx.translator.TypstTranslator.visit_literal_strong:3
+#: typsphinx.translator.TypstTranslator.visit_literal_emphasis:18
+#: typsphinx.translator.TypstTranslator.visit_literal_strong:19
 #: typsphinx.translator.TypstTranslator.visit_manpage:17
 #: typsphinx.translator.TypstTranslator.visit_math:20
 #: typsphinx.translator.TypstTranslator.visit_math_block:21
 #: typsphinx.translator.TypstTranslator.visit_note:3
-#: typsphinx.translator.TypstTranslator.visit_paragraph:16
+#: typsphinx.translator.TypstTranslator.visit_paragraph:40
 #: typsphinx.translator.TypstTranslator.visit_pending_xref:6
 #: typsphinx.translator.TypstTranslator.visit_raw:10
 #: typsphinx.translator.TypstTranslator.visit_reference:8
 #: typsphinx.translator.TypstTranslator.visit_row:6
-#: typsphinx.translator.TypstTranslator.visit_rubric:5
+#: typsphinx.translator.TypstTranslator.visit_rubric:37
 #: typsphinx.translator.TypstTranslator.visit_section:6
-#: typsphinx.translator.TypstTranslator.visit_seealso:3
+#: typsphinx.translator.TypstTranslator.visit_seealso:6
 #: typsphinx.translator.TypstTranslator.visit_strong:9
 #: typsphinx.translator.TypstTranslator.visit_subscript:9
 #: typsphinx.translator.TypstTranslator.visit_substitution_definition:15
@@ -1029,17 +1032,42 @@ msgid ""
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_paragraph:6
+#, python-brace-format
 msgid ""
-"Exception: Inside list items, paragraphs are not wrapped in par() to "
-"avoid syntax like \"- par(text(...))\" which is invalid. A 2nd+ paragraph"
-" in a list item instead gets a real Typst parbreak() (FID-02) -- a bare "
-"source '\\n' between code-mode statements is cosmetic only and produces "
-"no visual break, so consecutive list-item paragraphs otherwise "
-"concatenate onto one running line."
+"FLD-02/D-07 (38-EMISSION-CONTRACT.md section 4.2) is checked FIRST, "
+"deliberately, ahead of the list-item fast-path below: a field body whose "
+"ONLY child is this single paragraph (the ordinary "
+"``:param:``/``:returns:`` docstring shape) skips the ``par({``/ ``})`` "
+"wrapper, because Typst's ``par(...)`` is intrinsically block-level and "
+"starts a new visual line regardless of any separator -- FLD-02's root "
+"defect. The order matters because nothing resets ``in_list_item`` for a "
+"``field_list``/``field``/``field_body``/``paragraph`` nested inside a "
+"list item, so it remains True for a field-body paragraph documented "
+"inside a bullet or enumerated list item; checking ``in_list_item`` first "
+"would let it unconditionally win and reintroduce the exact pre-Phase-38 "
+"label/value split (38-VERIFICATION.md gap 1, 38-REVIEW.md CR-01). See "
+"visit_field_body's docstring for the classification and "
+"depart_field_body's for the D-07/D-08 trap this interacts with."
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.depart_paragraph:6
-#: typsphinx.translator.TypstTranslator.visit_paragraph:14
+#: of typsphinx.translator.TypstTranslator.visit_paragraph:23
+msgid ""
+"Exception: Inside list items -- once the FLD-02 case above has already "
+"been ruled out -- paragraphs are not wrapped in par() to avoid syntax "
+"like \"- par(text(...))\" which is invalid. A 2nd+ paragraph in a list "
+"item instead gets a real Typst parbreak() (FID-02) -- a bare source '\\n'"
+" between code-mode statements is cosmetic only and produces no visual "
+"break, so consecutive list-item paragraphs otherwise concatenate onto one"
+" running line. D-13 (38-EMISSION-CONTRACT.md section 4.5): this stray "
+"parbreak() also fires at the head of every bulleted list item whose sole "
+"content is a paragraph -- an ordinary list-item paragraph, or a multi-"
+"value field body's own bulleted list items -- and Phase 38 leaves it in "
+"place by design; its exact shape is pinned by "
+"tests/test_inline_math_after_text_render_gate.py:291."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_paragraph:19
+#: typsphinx.translator.TypstTranslator.visit_paragraph:38
 msgid "The paragraph node"
 msgstr ""
 
@@ -1050,6 +1078,22 @@ msgstr ""
 #: of typsphinx.translator.TypstTranslator.depart_paragraph:3
 #, python-brace-format
 msgid "Closes par({}) function and adds spacing."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_paragraph:5
+#, python-brace-format
+msgid ""
+"Mirrors visit_paragraph's ORDER exactly (see that method's docstring for "
+"why the order is load-bearing): the FLD-02/D-07 branch is checked BEFORE "
+"the list-item branch, because ``in_list_item`` remains True for a field-"
+"body paragraph nested inside a list item and would otherwise win. No "
+"``par({...})`` was opened for a single-value field body's sole paragraph,"
+" so there is nothing to close here either -- and, deliberately, "
+"``list_item_needs_separator`` is NOT set for this case: the field-body "
+"paragraph opened no wrapper and emitted no block-level statement of its "
+"own, so there is nothing for a following sibling to be separated from "
+"that the field-body concat machinery and depart_field_body's own trailing"
+" bytes do not already handle."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_comment:1
@@ -1605,6 +1649,186 @@ msgstr ""
 msgid "The footnote_reference node"
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_citation:1
+msgid "Visit a citation definition node (D-01..D-08, D-13, D-14, SC#5)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:3
+msgid ""
+"Renders a RUN of consecutive sibling ``citation`` nodes as ONE two-column"
+" ``grid(columns: (auto, 1fr))`` (D-05): the first citation of a run opens"
+" the grid, each citation emits its own label/body row, and the last "
+"citation of a run (``depart_citation``) closes it. Run adjacency is "
+"decided by ``_citation_run_neighbour``, which scans THROUGH emit-nothing "
+"siblings (a comment must NOT break a run; a real paragraph MUST, D-06)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:11
+msgid ""
+"Deliberately does NOT call ``_emit_id_anchors`` -- the citation anchors "
+"its OWN id via the label cell's bracket-wrap below instead; calling both "
+"would define the SAME label twice and abort the whole compile at Typst's "
+"semantic pass, the exact hazard ``visit_table``'s captioned-table comment"
+" documents."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:17
+msgid ""
+"Label cell shapes (D-03/D-07), all sharing one derivation point "
+"(``_namespace_label`` over the CITATION's OWN ``node[\"docname\"]``, "
+"never ``_current_docname()`` -- D-13, load-bearing for D-10's duplicate-"
+"key-across-two-documents case):"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:22
+msgid ""
+"Zero backrefs: a plain, non-linked ``[Label]`` (D-07 -- the deliberate "
+"INVERSE of the footnote precedent, Phase 14 D-09, which silently drops an"
+" unreferenced footnote)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:25
+msgid ""
+"Exactly one backref: the label text itself (inside the brackets) becomes "
+"the back-link; no parenthesised marker (D-03)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:27
+msgid ""
+"Two or more backrefs: the bracketed label stays plain, followed by a "
+"parenthesised, comma-separated (no space) list of one-based ordinal "
+"markers, each linking to its own citing site (D-02/D-03). Built via an "
+"array ``.join(\",\")`` rather than ``+``-concatenation specifically so "
+"the separator is a BARE \",\" with nothing else between the two "
+"``link(...)`` calls at the .typ-source level."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:34
+msgid ""
+"A backref is skipped, and the remaining markers' ordinals are renumbered "
+"contiguously (achieved for free by enumerating the FILTERED list, never "
+"the raw ``backrefs``), in either of two cases:"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:38
+msgid ""
+"Its citing site's own anchor ``_reference_anchor_decision`` declines to "
+"grant (``decision.eligible`` is ``False`` -- WR-03, D-05/D-06/D-07, "
+"`40.1-CONTEXT.md`). This is the SAME predicate ``visit_reference`` "
+"consults to decide whether to emit that anchor in the first place, so the"
+" two sites cannot silently disagree about whether a citing site was "
+"actually anchored (the pre-Phase-40.1 defect this closes: a second, "
+"independent derivation -- ``_citing_reference_has_own_anchor``, checking "
+"only ``next_is_target`` -- could report \"anchor exists\" for a reference"
+" that ``visit_reference`` never anchored, e.g. because its "
+"``opens_wrapper`` was ``False``, reproducing WR-01's dangling-label fatal"
+" by a second route)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:50
+msgid ""
+"Its citing site cannot be located at all in the resolved doctree "
+"(``_find_citing_reference`` returns ``None`` -- WR-01, `40-REVIEW.md`). "
+"Real, reproducible trigger: a citing ``[Label]_`` inside a ``.. only::`` "
+"block whose tag is never set. Sphinx's ``only``-tag filter transform runs"
+" AFTER the citation domain populates ``backrefs``, so a backref id can "
+"survive referencing a node the writer never sees; unfixed, this appended "
+"a ``link()`` target for a label nothing ever attaches -- a whole-document"
+" Typst compile fatal. Silent, deliberately (G1, `40.1-GATE-"
+"EVIDENCE-01.md` § 5): the citing site genuinely is not in the output "
+"document, so dropping its marker is the correct answer, not an error to "
+"report."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:63
+msgid ""
+"The appended backref target is now ``decision.anchor_label`` -- the SAME "
+"predicate's own label, not a second independent "
+"``_namespace_label(docname, refid)`` call (D-07's whole point: the link "
+"target and the attached anchor come out of ONE expression). For a same-"
+"document backref the two values coincide today (this is exactly why "
+"SC#5's byte-identity control still holds after this change), but nothing "
+"enforced that equality before -- this closes that unenforced invariant "
+"rather than altering any current output."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:73
+msgid ""
+"Separator protocols (SC#5), checked explicitly rather than by analogy to "
+"the footnote handlers (RESEARCH Pitfall 1 -- a citation is a Body "
+"element, never Inline, and cannot structurally nest in any of the five "
+"code-mode concat contexts, all Inline-only):"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:78
+msgid ""
+"Paragraph protocol: mirrors ``_visit_admonition`` exactly -- no leading "
+"separator at top level; the previous sibling's own trailing break already"
+" separates it, and the grid's own trailing break (``depart_citation``) "
+"separates it from what follows."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:82
+msgid ""
+"List-item protocol: the leading newline on grid open (this method, first "
+"row of a run only) and ``list_item_needs_separator`` set on grid close "
+"(``depart_citation``), both mirrored from the admonition pair."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_citation:86
+msgid ""
+"Code-mode concat protocol: N/A on this (definition) side by construction "
+"-- a Body-level citation cannot appear inside any of ``_CONCAT_CONTEXTS``"
+" (all Inline-only: desc parameter, link body, def-list term, field body, "
+"attribution). The concat protocol matters on the CITING side instead "
+"(Task 1, ``visit_reference``, exercised by the fixture's definition-list-"
+"term citing site)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_citation:11
+#: typsphinx.translator.TypstTranslator.visit_citation:94
+msgid "The citation definition node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_citation:1
+msgid "Depart a citation definition node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_citation:3
+msgid ""
+"Closes the body cell's code block and emits the row-trailing comma so the"
+" next row is a separate ``grid(...)`` argument. If the next emitting "
+"sibling is another citation (``_citation_run_neighbour``), the grid stays"
+" open for that row. Otherwise closes the grid call and emits the trailing"
+" break the same way ``_depart_admonition`` does, and sets "
+"``list_item_needs_separator`` when inside a list item."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_label:1
+msgid "Visit a citation's ``label`` child node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_label:3
+msgid ""
+"Fires for citations ONLY -- ``visit_footnote`` raises ``SkipNode`` before"
+" its own ``label`` child is ever reached, and "
+"``visit_footnote_reference`` walks ``footnote_node.children[1:]``, "
+"skipping its ``label`` child positionally rather than via a real handler."
+" ``visit_citation`` above already renders THIS label's own children via a"
+" dedicated buffer-swap before the citation's remaining children (this "
+"node included) are walked normally by docutils -- so this handler's only "
+"job is to prevent the label's text from rendering a SECOND time into the "
+"body cell. As a side effect, this also removes the second ``unknown node "
+"type: <label ...>`` warning the shipped samples emit today (40-GATE-"
+"EVIDENCE-01/ 02.md)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_label:16
+msgid ""
+"Always -- the label's children were already     rendered by "
+"visit_citation."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.visit_table:1
 msgid "Visit a table node."
 msgstr ""
@@ -1945,6 +2169,12 @@ msgid ""
 "\"Important\")[])."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_important:3
+msgid ""
+"D-04/D-05: the title now comes from the `sphinx.locale.admonitionlabels` "
+"catalog lookup in `_visit_admonition`, not this static literal."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_important:1
 msgid "Depart an important admonition."
 msgstr ""
@@ -1958,7 +2188,13 @@ msgid "Depart a caution admonition."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_seealso:1
-msgid "Visit a seealso admonition (converts to #info(title: \"See Also\")[])."
+msgid "Visit a seealso admonition (converts to #tip[])."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_seealso:3
+msgid ""
+"D-02: seealso joins the success bucket (the same `tip` function "
+"`visit_hint`/`visit_tip` already pass), not the note bucket."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_seealso:1
@@ -1971,8 +2207,8 @@ msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_hint:3
 msgid ""
-"gentle-clues 1.3.1 has no dedicated `hint` clue; `tip` is the verified "
-"closest semantic analog (see RESEARCH.md D-06 mapping)."
+"D-02: hint is in the success bucket (`tip`), alongside `tip` itself and "
+"(as of this phase) `seealso`."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_hint:1
@@ -2026,19 +2262,28 @@ msgstr ""
 msgid "Visit a danger admonition (converts to #danger[])."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_danger:3
+msgid ""
+"D-03-R (gap G-39-1): supersedes D-03. The red family is three pairwise-"
+"distinct gentle-clues functions, not one collapsed function -- danger "
+"routes to its own `danger` id rather than to the function `visit_error` "
+"passes."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_danger:1
 msgid "Depart a danger admonition."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_attention:1
-msgid "Visit an attention admonition (converts to #warning[])."
+msgid "Visit an attention admonition (converts to #memo[])."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_attention:3
 msgid ""
-"gentle-clues 1.3.1 has no dedicated `attention` clue; `warning` is the "
-"verified analog, consistent with the existing `caution`/ `important` → "
-"`warning` precedent (see RESEARCH.md D-06 mapping)."
+"D-03-R (gap G-39-1): supersedes D-03. The red family is three pairwise-"
+"distinct gentle-clues functions, not one collapsed function -- attention "
+"routes to its own `memo` id rather than to the function `visit_error` "
+"passes, and it is still not in the warning bucket."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_attention:1
@@ -2046,16 +2291,16 @@ msgid "Depart an attention admonition."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_admonition:1
-msgid "Visit a generic ``.. admonition::`` (converts to #clue[])."
+msgid "Visit a generic ``.. admonition::`` (converts to #notify[])."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_admonition:3
 msgid ""
-"Maps to the base gentle-clues `clue` function (unstyled — no predefined "
-"icon/accent-color), since the generic directive always supplies its own "
-"directive-derived title (see RESEARCH.md D-06 mapping). The title flows "
-"through the existing admonition-aware `visit_title`/`depart_title` "
-"buffer-swap automatically; no `custom_title` is passed here."
+"D-09: maps to the gentle-clues `notify` function (accent `#1e66f5`), "
+"since the generic directive always supplies its own directive- derived "
+"title. The title flows through the existing admonition-aware "
+"`visit_title`/`depart_title` buffer-swap automatically; no `custom_title`"
+" is passed here."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_admonition:1
@@ -2063,15 +2308,15 @@ msgid "Depart a generic admonition."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_topic:1
-msgid "Visit a topic node (BLK-02/D-01/D-02/D-05)."
+msgid "Visit a topic node (BLK-02/D-01/D-02/D-05/D-10)."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_topic:3
 msgid ""
-"A `.. topic::` renders as a titled `clue` box, reusing the same "
-"admonition helper as `.. admonition::` (D-01) -- the widened "
-"visit_title/depart_title buffer-swap (D-02) is what makes the title "
-"actually get consumed by _depart_admonition."
+"A non-contents `.. topic::` renders as a titled `abstract` box (D-10), "
+"reusing the same admonition helper as `.. admonition::` (D-01) -- the "
+"widened visit_title/depart_title buffer-swap (D-02) is what makes the "
+"title actually get consumed by _depart_admonition."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_topic:8
@@ -2317,13 +2562,96 @@ msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_desc:5
 msgid ""
-"Emits a real Typst parbreak() unconditionally (FID-06) -- back-to-back "
-"body-less desc siblings (e.g. confvals with only :type:/:default: fields,"
-" no body paragraph) previously concatenated onto one running line because"
-" a bare cosmetic \"\\n\\n\" produces no visual break in Typst code mode. "
-"Applying parbreak() unconditionally (even when the desc's last content "
-"already ends in a par()) is verified harmless -- no double-gap artifact "
-"-- so no body-less-detection guard is needed."
+"Emits a real Typst parbreak() (FID-06) -- back-to-back body-less desc "
+"siblings (e.g. confvals with only :type:/:default: fields, no body "
+"paragraph) previously concatenated onto one running line because a bare "
+"cosmetic \"\\n\\n\" produces no visual break in Typst code mode. Applying"
+" parbreak() (even when the desc's last content already ends in a par()) "
+"is verified harmless -- no double-gap artifact -- so no body-less-"
+"detection guard is needed for THAT case; sibling body-less desc nodes "
+"always have something emitted between their two departures (id anchors, "
+"the next signature's wrapper), so the SIG-08 suppression below never "
+"fires for them (see tests/test_desc_bodyless_concat_render_gate.py, this "
+"fix's control)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc:17
+msgid ""
+"SIG-08 (D-12, 37-EMISSION-CONTRACT.md section 8): a nested `desc` (e.g. a"
+" py:method:: inside a py:class::) used to emit an unconditional "
+"parbreak() for its own departure and again for the outer desc's "
+"departure, producing two adjacent parbreak() statements with nothing "
+"between them. Suppressed here via an emission-position marker "
+"(self._desc_break_marker), mirroring the _is_first_desc_signature scalar-"
+"flag idiom (visit_desc, above): if nothing has been appended to self.body"
+" since the immediately preceding desc's own parbreak() was recorded, this"
+" desc's break is redundant and is skipped. The early return deliberately "
+"does NOT update the marker, so three levels of nesting still yield "
+"exactly one parbreak() rather than one per pair."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc:30
+msgid ""
+"Phase 38 (D-10, 38-EMISSION-CONTRACT.md section 6.2/6.3): the sentence "
+"above is still literally true, but the REASON it stays true changed once "
+"depart_desc_content stopped being `pass`. depart_desc_content now always "
+"appends the body wrapper's closing bytes (`})\\n`) to self.body between "
+"an inner desc's departure and this method's own comparison, so a literal "
+"reading of \"nothing has been appended\" would be false for every nested "
+"desc -- the suppression would never fire again. It stays correct because "
+"depart_desc_content itself propagates this marker through its own close "
+"(records whether the marker still matched immediately before emitting "
+"`})\\n`, then re-advances the marker past those bytes if it did): the "
+"wrapper's closing bytes are deliberately made to count as nothing for "
+"this comparison, without actually being absent from the emitted output. "
+"depart_desc's own comparison below is therefore unchanged and needs no "
+"code change -- only this corrected premise."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc:46
+msgid ""
+"This is deliberately NOT implemented as a desc-nesting-depth counter. A "
+"depth counter would suppress the INNER desc's break unconditionally, "
+"which is wrong whenever the outer desc_content continues with more "
+"content after the nested member -- the member and the following paragraph"
+" would then run together with no separation between them. The correct "
+"discriminator is \"was anything emitted between the two departures\", not"
+" \"how deep am I\" -- a depth counter cannot see the difference between "
+"\"the outer desc has nothing left\" and \"the outer desc has more content"
+" coming\"."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc:56
+msgid ""
+"The FID-03 sibling linebreak() in visit_desc_signature is a different "
+"mechanism solving a different problem (separating signature LINES within "
+"one visual block, not separating one desc paragraph-block from the next) "
+"and deliberately does not converge with this one."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc:62
+msgid ""
+"Inside a table cell, add_text routes into table_cell_content rather than "
+"self.body (see add_text), so len(self.body) would not advance between two"
+" departures there and the marker-based suppression would fire wrongly. "
+"The `not self.in_table` guard retains the pre-phase unconditional "
+"behaviour inside tables."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc:68
+msgid ""
+"Buffer-swap hazard (D-10, 38-EMISSION-CONTRACT.md section 6.4, closing "
+"the folded todo .planning/todos/pending/2026-08-01-desc-break-marker-"
+"stale-across-body-buffer-swaps.md): self.body is reassigned at multiple "
+"sites beyond the table-cell one above -- visit_term/visit_definition (via"
+" _saved_body_stack), the admonition-title save/restore, and the figure-"
+"caption save/restore. A marker recorded as a bare position integer could "
+"compare against a DIFFERENT list after such a swap, spuriously "
+"suppressing a needed break or spuriously letting a duplicate through. "
+"self._desc_break_marker is therefore a (id(self.body), len(self.body)) "
+"pair, not a bare int -- comparing both halves closes the hazard without "
+"adding a sixth per-site guard, since the existing table-cell guard "
+"already demonstrates that per-site guards do not generalise."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_signature:1
@@ -2331,11 +2659,14 @@ msgid "Visit a desc_signature node (API element signature)."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_signature:3
-#, python-brace-format
-msgid "Signatures are rendered in bold using strong({}) wrapper."
+msgid ""
+"Signatures are rendered as typeset code: a page-keep-together block "
+"carrying a hanging-indent paragraph (SIG-07 + SIG-09, D-10), with every "
+"text-bearing descendant routed through the monospace primitive via "
+"``self.in_signature_text`` (SIG-01..SIG-05, read by visit_Text)."
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_desc_signature:5
+#: of typsphinx.translator.TypstTranslator.visit_desc_signature:8
 msgid ""
 "Sibling desc_signatures (overloads / alias groups / multi-option "
 "directives) emit a real Typst linebreak() BEFORE every signature after "
@@ -2348,8 +2679,59 @@ msgid ""
 "unchanged."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_desc_signature:18
+msgid ""
+"ADM-06 / Phase 37: this handler owns its own emission -- it no longer "
+"delegates to visit_strong via a dummy strong() node. The block below WAS "
+"a deliberate verbatim copy of visit_strong's body (D-01: triplication is "
+"the decision, not an accident to be refactored away) up through Phase 36;"
+" Phase 37 is the phase that note anticipated -- desc_signature's emission"
+" now diverges from visit_strong's in exactly one literal: the opening "
+"wrapper call changes from ``strong({`` to the composed ``block(sticky: "
+"true, par(hanging-indent: {SHARED_INDENT_STEP}, {`` form (37-EMISSION-"
+"CONTRACT.md section 3, post-Wave-3 amendment, plan 37-09). "
+"``above``/``below`` are deliberately NOT overridden -- Typst's own "
+"``block()`` default spacing is used. An earlier version of this wrapper "
+"explicitly zeroed both (``above: 0pt, below: 0pt``); that zeroing was "
+"found, by the post-merge gate, to remove ALL vertical separation on both "
+"sides of every signature -- not a redundant amount, exactly 0pt -- "
+"causing every signature's glyphs to overlap the first line of its own "
+"description body. Measured (this plan, via ``context measure(...)`` "
+"deltas in real paragraph flow): dropping the override restores 13.2pt on "
+"both sides, byte-identical to ordinary paragraph-to-paragraph spacing. "
+"The original fear that default spacing would reintroduce a SIG-08-shaped "
+"doubled-gap defect does not hold: plan 37-05 already removed the "
+"duplicate ``parbreak()`` at its emission source (``depart_desc``'s "
+"emission-position marker), so there is no second break left for block-"
+"spacing collapse to double up on -- verified by re-rendering the SIG-08 "
+"nested-desc fixture under this wrapper, which shows uniform, single-gap "
+"spacing. ``sticky: true`` continues to carry SIG-09's keep-with-next "
+"unchanged. The hanging indent is D-06's chosen, non-negotiable overflow "
+"mechanism (a column-grid alternative and font-shrinking were both "
+"measured and rejected by the owner) -- neither may be reintroduced here "
+"as an improvement. Everything else in this block (the paragraph-separator"
+" call, the concat-element enter/exit pair, the in_paragraph/in_list_item/"
+" list_item_needs_separator save-and-restore, and the `_strong_was_*` "
+"attribute names shared with visit_strong/depart_strong on purpose, D-02) "
+"stays byte-identical -- renaming those attributes is Phase 39's deferred "
+"repair and would change emitted bytes outside this plan's scope."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_desc_signature:1
 msgid "Depart a desc_signature node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_signature:3
+msgid ""
+"ADM-06 / Phase 37: this handler owns its own emission -- the block below "
+"WAS a deliberate verbatim copy of depart_strong's body (D-01) up through "
+"Phase 36. Phase 37 makes it diverge in exactly one literal: the closing "
+"call changes from ``})`` to ``}))`` -- one ``}`` closing the content "
+"block, one ``)`` closing ``par(``, one ``)`` closing ``block(`` (37"
+"-EMISSION-CONTRACT.md section 3), matching visit_desc_signature's "
+"composed wrapper open. The `_strong_was_*` attribute names are shared "
+"with depart_strong on purpose (D-02); see visit_desc_signature's "
+"docstring for the deferred-repair note."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_returns:1
@@ -2357,10 +2739,16 @@ msgid "Visit a desc_returns node (a signature's return-type annotation)."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_returns:3
+#, python-brace-format
 msgid ""
-"Emits a literal ' -> ' arrow before the return type (DESC-01). Resolved "
-"return-type xref children already stream through the unmodified "
-"visit_reference refid branch -- no extra code needed for that case."
+"SIG-06 / D-13 (37-EMISSION-CONTRACT.md section 7): emits a real "
+"rightwards-arrow glyph (U+2192) before the return type, not the pre-phase"
+" ASCII \"->\" -- the three-expression monospace form `raw(\" \") + "
+"raw(\"\\u{2192}\") + raw(\" \")` is the exact shape that was compiled and"
+" pypdf-extraction-verified this session; a single `raw(\" -> \")`-shaped "
+"literal was not. Resolved return-type xref children already stream "
+"through the unmodified visit_reference refid branch -- no extra code "
+"needed for that case."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_desc_returns:1
@@ -2390,8 +2778,99 @@ msgstr ""
 msgid "Visit a desc_content node (API description content)."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_desc_content:3
+msgid ""
+"Opens the shared indent step around the description body "
+"(IND-01/02/03/05, D-01, 38-EMISSION-CONTRACT.md section 2): ``pad(left: "
+"SHARED_INDENT_STEP, {`` -- the exact block-quote analog "
+"(visit_block_quote, above) applied to a run of code-mode body statements,"
+" reusing that pattern's own reasoning for why the body must be a ``{ ... "
+"}`` content block (bug #15). Routed through self.add_text (D-12), never "
+"self.body.append: add_text routes into table_cell_content when "
+"self.in_table, and the 38-01 fixture proved a direct append breaks a desc"
+" inside a table cell. Nesting composes with NO depth counter (D-01) -- "
+"each pad closes structurally when its own node's depart_desc_content "
+"runs, so IND-05 (depth cannot leak to a following sibling) is asserted by"
+" that closure, not implemented by resetting anything."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_content:17
+msgid ""
+"Separator bookkeeping (D-12, decided by the fixture, section 2.6): "
+"desc_content structurally always follows a desc_signature departure, "
+"which itself unconditionally ends in a raw \"\\n\" (see "
+"depart_desc_signature's anchor-loop spacing line) -- so, unlike "
+"block_quote, this leading guard is not required to avoid a Typst parse "
+"fatal. It is still emitted, mirroring the block-visitor pattern (bug #4) "
+"byte-for-byte with block_quote/field_list, because depart_desc_signature "
+"ALSO sets list_item_needs_separator = True when in a list item -- the "
+"guard's own \"\\n\" then lands on top of the signature's already-present "
+"\"\\n\" (a harmless extra blank line in code mode, never a parse error) "
+"rather than diverging from every other block visitor's leading-guard "
+"shape. Falsified by "
+"``tests/fixtures/desc_content_indent_render_gate/index.rst``'s \"List-"
+"Item Desc CONTROL\" section (a py:function:: nested inside a bullet-list "
+"item, exercised via tests/test_desc_content_indent_render_gate.py) and "
+"confirmed non-regressing against "
+"tests/test_desc_bodyless_concat_render_gate.py (no list item involved, "
+"guard is a no-op there)."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_desc_content:1
 msgid "Depart a desc_content node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_content:3
+msgid ""
+"Closes the body wrapper opened in visit_desc_content: ``})\\n`` (38"
+"-EMISSION-CONTRACT.md section 2). The trailing \"\\n\" is load-bearing, "
+"not cosmetic (section 2.2): depart_desc immediately follows with "
+"_emit_forced_break(\"parbreak()\"), which prepends no newline of its own "
+"outside a list item, so a bare \"})\" would juxtapose the pad(...) "
+"expression against parbreak() on one physical source line -- the Typst "
+"\"expected semicolon or line break\" fatal class this codebase has hit "
+"four separate times. depart_block_quote (the direct analog) already "
+"carries the same trailing newline for the same reason."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_content:14
+msgid ""
+"D-10 marker propagation (section 6.2): depart_desc suppresses a duplicate"
+" parbreak() by testing whether self._desc_break_marker still equals "
+"len(self.body) -- \"was anything emitted between the two departs\". "
+"Before this handler had a body, that test was reliable because nothing at"
+" all was appended between an inner and an outer desc's departure. Now "
+"that this handler always emits the close, len(self.body) would advance on"
+" EVERY nested desc's departure and the suppression could never fire "
+"again. Fixed by recording, before emitting the close, whether the marker "
+"still matches the pre-close position; emitting the close; and if it did "
+"match, advancing the marker to the POST-close position. depart_desc then "
+"still sees \"nothing happened\" (its own comparison against the advanced "
+"marker is unaffected) and correctly suppresses its own duplicate for a "
+"nested desc with no trailing sibling content. This makes the wrapper's "
+"closing bytes a byte sequence that counts as nothing for the "
+"suppression's purposes, without actually being absent. depart_desc itself"
+" needs no code change under this fix (see its own docstring for the "
+"corrected premise)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_content:33
+msgid ""
+"The `not self.in_table` guard mirrors depart_desc's own: inside a table "
+"cell, add_text routes into table_cell_content rather than self.body, so "
+"len(self.body) does not advance there and comparing against it would be "
+"meaningless (and is never read, since depart_desc's own check is guarded "
+"the same way)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_content:39
+msgid ""
+"The marker is a (id(self.body), len(self.body)) pair, not a bare position"
+" integer (D-10, 38-EMISSION-CONTRACT.md section 6.4) -- self.body is "
+"reassigned at several sites (visit_term/ visit_definition, the "
+"admonition-title and figure-caption save/restores) and a bare integer "
+"could otherwise be compared against a different buffer after a swap. See "
+"depart_desc's own docstring for the buffer-swap hazard this closes."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_inline:1
@@ -2417,6 +2896,18 @@ msgid ""
 "etc.)."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_desc_annotation:3
+msgid ""
+"SIG-03 (37-EMISSION-CONTRACT.md section 5.1): identical treatment to "
+"visit_desc_name -- a desc_annotation and a desc_name in the SAME "
+"signature must render with the byte-identical wrapper shape. When every "
+"child is a text-only nodes.Text leaf (the py/option/c/ rst-domain case), "
+"emit the complete bold-monospace form via _emit_signature_leaf_wrapper "
+"and skip further descent. Otherwise stay a no-op and let the children "
+"dispatch normally under self.in_signature_text -- flattening a non-leaf "
+"subtree via node.astext() is the RESEARCH Pitfall 3 hazard."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_desc_annotation:1
 msgid "Depart a desc_annotation node."
 msgstr ""
@@ -2429,6 +2920,14 @@ msgstr ""
 msgid "Visit a desc_addname node (module name prefix)."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_desc_addname:3
+msgid ""
+"SIG-02: deliberately stays a no-op. self.in_signature_text alone gives "
+"every descendant Text node regular-weight monospace (raw(...), no "
+"strong()) via visit_Text's branch -- that IS SIG-02. Do not add a wrapper"
+" here."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_desc_addname:1
 msgid "Depart a desc_addname node."
 msgstr ""
@@ -2437,8 +2936,28 @@ msgstr ""
 msgid "Visit a desc_name node (function/class name)."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_desc_name:3
+msgid ""
+"SIG-01 (37-EMISSION-CONTRACT.md section 5.1): when every child is a text-"
+"only nodes.Text leaf (the py/option/c/rst-domain case), emit the complete"
+" bold-monospace form via _emit_signature_leaf_wrapper and skip further "
+"descent. Otherwise (measured: the C++ domain nests a desc_sig_name inside"
+" desc_name) stay a no-op and let the nested desc_sig_name handle itself "
+"via visit_desc_sig_name's rule 1 -- flattening a non-leaf subtree via "
+"node.astext() would silently drop a resolved cross-reference's hyperlink "
+"while still passing a substring check (RESEARCH Pitfall 3)."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_desc_name:1
 msgid "Depart a desc_name node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_name:3
+msgid ""
+"Only reached for the non-leaf branch (visit_desc_name's leaf branch "
+"raises nodes.SkipNode, so depart is never called for a leaf desc_name -- "
+"its separator bookkeeping is functionally preserved through "
+"_emit_signature_leaf_wrapper's own mark-content fallback instead)."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_parameterlist:1
@@ -2446,7 +2965,31 @@ msgid "Visit a desc_parameterlist node (parameter list container)."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_parameterlist:3
-msgid "Parameters are concatenated with + inside text parentheses."
+msgid "Parameters are concatenated with + inside monospace parentheses."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_parameterlist:5
+msgid ""
+"SIG-05 (37-EMISSION-CONTRACT.md section 6): the five parameter-list "
+"delimiter sites -- this opening paren, the closing paren in "
+"depart_desc_parameterlist, the comma-space separator in "
+"depart_desc_parameter, and the optional-group brackets in "
+"visit_desc_optional/depart_desc_optional -- all emit through the raw(...)"
+" monospace primitive. Every other signature delimiter (operator and "
+"punctuation nodes: desc_sig_operator, desc_sig_punctuation, etc.) already"
+" reaches monospace \"for free\" via the self.in_signature_text flag "
+"(contract section 4.3) rather than through a dedicated handler, so "
+"SIG-05's \"every delimiter is monospace\" truth is satisfied jointly by "
+"these five sites plus that flag -- not by these five sites alone."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_parameterlist:18
+msgid ""
+"These five delimiters are hardcoded ASCII carrying no user-supplied text,"
+" so no escape_typst_string call is added at these sites -- that omission "
+"is deliberate (T-37-01's mitigation), not an oversight: every site that "
+"DOES carry user text already routes through the shared escaping helper "
+"via the monospace branch added in plan 37-06."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_desc_parameterlist:1
@@ -2455,6 +2998,18 @@ msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_parameter:1
 msgid "Visit a desc_parameter node (individual parameter)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_parameter:3
+msgid ""
+"SIG-04 / D-05 (37-EMISSION-CONTRACT.md section 5.2): resets "
+"self._param_name_seen to False for THIS parameter, mirroring "
+"visit_desc_parameterlist's existing per-scope _desc_parameter_has_content"
+" = False reset idiom -- so visit_desc_sig_name's rule 2 italicises only "
+"the FIRST text-only- leaf desc_sig_name child of each parameter. A scalar"
+" (not a stack) is correct here: desc_parameter nodes never nest inside "
+"desc_parameter nodes -- a desc_optional group holds desc_parameter "
+"SIBLINGS, and each resets the flag on its own entry."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_desc_parameter:1
@@ -2485,8 +3040,72 @@ msgstr ""
 msgid "Depart a desc_optional node."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.depart_desc_optional:3
+msgid ""
+"D-11 (37-EMISSION-CONTRACT.md section 6.1): when this optional GROUP "
+"itself has a following sibling, Sphinx's own HTML writer puts the "
+"separator INSIDE the closing bracket -- measured this session -- so this "
+"handler emits the same \", \" separator depart_desc_parameter emits, "
+"through the monospace primitive, immediately BEFORE the closing bracket."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_optional:10
+msgid "Two things are load-bearing here:"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_optional:12
+msgid ""
+"The sibling test is against the desc_optional node ITSELF, mirroring what"
+" depart_desc_parameter already does for a desc_parameter's own following "
+"sibling -- NOT against desc_optional's last child. The group's last "
+"parameter has no following sibling of its own, which is exactly why the "
+"separator Sphinx emits (because the *group* has one) was previously lost."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_optional:19
+msgid ""
+"The nested-optional case (e.g. printf(fmt[, args[, more]])) is UNCHANGED "
+"by this guard, because both of its optional groups are last children -- "
+"this is the fix's non-regression CONTROL, not a case to later \"extend\" "
+"the fix to cover."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_desc_optional:24
+msgid ""
+"Contract section 6.2 corrects CONTEXT.md D-11's second half: the closing "
+"bracket and a following parameter are ALREADY explicitly + joined on the "
+"current tree (depart_desc_optional already sets "
+"_desc_parameter_has_content = True below), so that half is a non-"
+"regression assertion, not a code change."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.visit_field_list:1
 msgid "Visit a field_list node (structured fields like Parameters, Returns)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_field_list:3
+msgid ""
+"Opens the field list's own indent step (FLD-01, D-03, 38-EMISSION-"
+"CONTRACT.md section 3): ``pad(left: SHARED_INDENT_STEP, {`` -- the SAME "
+"shared constant desc_content's body wrapper uses, so under that wrapper's"
+" composition (no depth counter, D-01) a field list nested inside a "
+"description body simply lands one further step in. Emitted AFTER the "
+"existing bug #4 leading-separator guard below, which is unchanged, and "
+"routed through self.add_text (D-12), never self.body.append -- a field "
+"list inside a table cell misroutes without it (38-EMISSION-CONTRACT.md "
+"section 3.1)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_field_list:13
+msgid ""
+"Separator bookkeeping (D-12, decided by the fixture): this handler keeps "
+"the SAME leading-guard shape as visit_desc_content's own decision "
+"(38-05-SUMMARY.md) and visit_block_quote's bug #4 precedent -- "
+"consistency with the established block-visitor pattern over a byte-count-"
+"minimal implementation. Falsified against "
+"tests/test_field_list_in_list_item_render_gate.py (a genuine field list "
+"inside a bullet-list item) and confirmed non-regressing against "
+"tests/test_desc_bodyless_concat_render_gate.py."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_field_list:1
@@ -2494,7 +3113,14 @@ msgid "Depart a field_list node."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_field_list:3
-msgid "Add spacing after field lists."
+msgid ""
+"Closes the indent step opened in visit_field_list: ``})\\n`` (38"
+"-EMISSION-CONTRACT.md section 3), replacing the pre-phase bare "
+"``self.body.append(\"\\n\")``. Routed through self.add_text (D-12) -- the"
+" pre-phase direct append bypassed table-cell routing entirely, so a field"
+" list inside a table cell misroutes today regardless of the wrapper "
+"(section 3.1); this conversion fixes that byte-identically outside a "
+"table."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_field:1
@@ -2558,11 +3184,32 @@ msgid ""
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_field_body:13
+#, python-brace-format
 msgid ""
-"Only an ALL-inline field body needs this. A block field body (real "
-"``paragraph``/list/literal-block children) already emits valid, "
-"``\\n\\n``-separated statements via the normal par() path, so it keeps "
-"the concat context OFF to avoid a stray ``+`` around a ``par(...)``."
+"A SECOND case reuses the same concat context (FLD-02, D-07, 38-EMISSION-"
+"CONTRACT.md section 4.2): a field body whose ONLY child is a single "
+"``nodes.paragraph`` -- the ordinary ``:param:``/ "
+"``:returns:``/``:rtype:`` docstring shape docutils produces (verified by "
+"reading ``sphinx/util/docfields.py``'s ``Field.make_field`` / "
+"``GroupedField.make_field``'s ``can_collapse`` branch: this shape is "
+"ALWAYS exactly one paragraph, never heuristic). Pre-phase this value was "
+"unconditionally wrapped in Typst's block-level ``par(...)``, which starts"
+" a new visual line regardless of any separator -- that is FLD-02's whole "
+"defect. ``_field_body_unwrapped_paragraph`` marks this case so "
+"``visit_paragraph``/``depart_paragraph`` can skip the ``par({``/``})`` "
+"wrapper for exactly this one paragraph, letting its children dispatch "
+"unmodified through the SAME "
+"``_in_field_body``/``_field_body_has_content`` machinery the collapsed-"
+"inline case already exercises -- no second concat mechanism."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_field_body:30
+msgid ""
+"A multi-value body (multiple ``:param:`` entries collapsed by docutils "
+"into ONE ``field_body`` containing a ``bullet_list``) is neither of the "
+"above: its ``all_inline`` check is False and its child count is not "
+"exactly one paragraph, so it falls through to the existing block path "
+"unchanged (FLD-02's non-regression half)."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_field_body:1
@@ -2575,6 +3222,41 @@ msgid ""
 "newline after the field body."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.depart_field_body:6
+msgid ""
+"The D-07/D-08 trap (FLD-02): ``_last_field_body_was_inline`` gates "
+"``depart_field``'s FID-09 inter-field ``\"  \"`` separator, which is only"
+" correct for the genuinely docutils-collapsed-inline body (two fields "
+"legitimately sharing one line, e.g. a confval's "
+"``:type:``/``:default:``). The new single-paragraph-unwrapped case "
+"(above) also sets ``_in_field_body = True`` to reuse the SAME concat "
+"context, but must NOT let the separator fire between consecutive single-"
+"value fields -- doing so would merge ``Returns:``, ``Return type:`` and "
+"``Raises:`` onto one line and produce a ZERO interval where D-08 measured"
+" 20.438pt per field. Excluding ``_field_body_unwrapped_paragraph`` from "
+"this flag is what keeps the separator scoped to the collapsed-inline case"
+" only, with zero change needed to :meth:`depart_field` itself."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_field_body:20
+msgid ""
+"The other half of D-08's own trap: a single-value field body's sole "
+"paragraph no longer gets a \"free\" paragraph boundary from ``par(...)`` "
+"the way it used to (that block-level wrapper is exactly what "
+"visit_paragraph now skips for this case). Consecutive single-value fields"
+" must still occupy separate paragraphs -- so when THIS field body was the"
+" single-paragraph-unwrapped case AND its parent ``field`` has a following"
+" sibling, emit a real ``parbreak()`` here, before popping back to the "
+"parent's saved state (this is the one place that still has access to both"
+" facts at once). Re-derived from the doctree (``node.parent``'s own next-"
+"sibling check), not a second new instance attribute. Wrapped in a LEADING"
+" newline (unlike _emit_forced_break's list-item-only leading guard): the "
+"preceding content here is the paragraph's last bare inline expression "
+"with no trailing separator of its own, so a bare \"parbreak()\" would "
+"juxtapose directly against it -- the same \"expected semicolon or line "
+"break\" fatal class this codebase has hit before."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.visit_rubric:1
 msgid "Visit a rubric node (section subheading)."
 msgstr ""
@@ -2582,6 +3264,44 @@ msgstr ""
 #: of typsphinx.translator.TypstTranslator.visit_rubric:3
 #, python-brace-format
 msgid "Rubrics are rendered as subsection headings using strong({}) wrapper."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_rubric:5
+msgid ""
+"ADM-06: this handler owns its own emission -- it no longer delegates to "
+"visit_strong via a dummy strong() node. The block below started as a "
+"verbatim copy of visit_strong's body (D-01: triplication is the decision,"
+" not an accident to be refactored away), and Phase 39 was named, at the "
+"time that copy was made, as the phase that would make it diverge."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_rubric:12
+msgid ""
+"Phase 39 (D-13) has now made that divergence real for the save slots: "
+"this handler's three save slots are ``_rubric_was_*``, not the "
+"``_strong_was_*`` names visit_strong/depart_strong and "
+"visit_desc_signature/depart_desc_signature still share between themselves"
+" (that pair's own sharing stays deliberate and unedited, D-02). Before "
+"this change, a nested inline ``strong`` firing while THIS rubric's state "
+"was saved under the shared name would silently clobber it -- "
+"`depart_strong`'s own `delattr` calls would delete the keys "
+"`depart_rubric` still needed to restore, leaving `self.in_list_item` "
+"stuck `True` for the rest of the document. That can no longer happen: the"
+" two save sites no longer write the same `self.__dict__` keys."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_rubric:25
+msgid ""
+"This commit (D-11) also closes the double-blank-line wart the docstring "
+"previously described as deliberately preserved: when a rubric carries a "
+"propagated target (anchored via ``_emit_id_anchors`` immediately below), "
+"that emitter's own trailing newline is already the separator this rubric "
+"needs -- both the unconditional newline append and the leading list-item "
+"separator check that used to follow it are now suppressed for an anchored"
+" rubric, so it no longer double- (or triple-, via the re-armed list-item "
+"flag) counts a separator ``_emit_id_anchors`` already supplied. An "
+"unanchored rubric (no propagated target) takes neither branch differently"
+" and keeps today's byte shape exactly."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_rubric:1
@@ -2599,6 +3319,17 @@ msgid ""
 "this fires unconditionally -- verified harmless at true end-of-document "
 "(nothing follows the trailing linebreak()): no compile error, no visible "
 "artifact."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_rubric:13
+msgid ""
+"ADM-06: this handler owns its own emission -- the block below started as "
+"a verbatim copy of depart_strong's body (D-01) rather than a delegation "
+"to a dummy strong() node. Phase 39 (D-13) has now made it diverge: it "
+"restores from its own ``_rubric_was_*`` slots, not the ``_strong_was_*`` "
+"names depart_strong (and depart_desc_signature) still share between "
+"themselves (that pair's own sharing stays deliberate and unedited, D-02) "
+"-- see visit_rubric's docstring for the full rationale."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_title_reference:1
@@ -2620,6 +3351,14 @@ msgid ""
 "'def')."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_desc_sig_keyword:3
+#: typsphinx.translator.TypstTranslator.visit_desc_sig_space:3
+msgid ""
+"Stays a no-op: self.in_signature_text already gives this node's Text "
+"children monospace via visit_Text's branch (contract section 4.3) -- no "
+"dedicated handler is needed."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_desc_sig_keyword:1
 msgid "Depart a desc_sig_keyword node."
 msgstr ""
@@ -2633,17 +3372,84 @@ msgid "Depart a desc_sig_space node."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_desc_sig_name:1
-msgid "Visit a desc_sig_name node (names in signatures)."
+msgid ""
+"Visit a desc_sig_name node (names in signatures) -- the D-05 "
+"discriminator (37-EMISSION-CONTRACT.md section 5.2), three mutually "
+"exclusive rules evaluated in order (each SkipNode-raising branch below "
+"makes the remaining checks unreachable for THIS node, which is what "
+"\"mutually exclusive\" means here):"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_sig_name:7
+msgid ""
+"Rule 1: the node's parent is a desc_annotation or desc_name, and this "
+"node is itself a text-only leaf -> emit strong(raw(...)) and skip. This "
+"is what makes a non-leaf desc_name (measured: the C++ domain nests a "
+"desc_sig_name inside desc_name) bold via its nested child instead of via "
+"desc_name itself. If the node is NOT a leaf, fall through to rule 3."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_sig_name:14
+msgid ""
+"Rule 2: the parent is a desc_parameter, this node is a text-only leaf, "
+"and self._param_name_seen is False -> set the flag, emit emph(raw(...)), "
+"and skip. This is the parameter's OWN name (SIG-04's italic). The leaf "
+"guard is the load-bearing safety property: measured across every "
+"parameter shape in 37-RESEARCH.md's D-05 table plus the C++ domain, the "
+"FIRST desc_sig_name direct child of a desc_parameter is always the "
+"parameter's own name and always a leaf, while a LATER one belongs to the "
+"type annotation and may be a non-leaf (wrapping a resolved "
+"nodes.reference) -- if a first child ever arrived non-leaf, rule 3 must "
+"catch it rather than this rule flattening it and silently dropping a "
+"hyperlink."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_sig_name:27
+msgid ""
+"Rule 3 (otherwise): no-op. Children dispatch normally under "
+"self.in_signature_text, so a type annotation wrapping a resolved cross-"
+"reference keeps emitting its UNMODIFIED visit_reference link(...) call "
+"with the monospace primitive inside -- the flag fires BENEATH "
+"visit_reference, it never replaces or flattens it."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_sig_name:33
+msgid ""
+"Deliberately does NOT discriminate on addnodes.pending_xref: measured, "
+"the translator never sees one -- Builder.write() resolves references "
+"before write_doc runs, so an unresolved xref is stripped to plain content"
+" (a bare Text child) and a resolved one becomes nodes.reference. A "
+"pending_xref check here would silently never fire -- this is the exact "
+"wrong turn 37-CONTEXT.md's own D-05 text invites; 37-04-SUMMARY.md's "
+"unresolved-C-domain-type measurement (``PyTypeObject *type``, no "
+"intersphinx) independently confirms the mechanical rule-2 output this "
+"discriminator produces for a type that never resolves."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_desc_sig_name:1
 msgid "Depart a desc_sig_name node."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.depart_desc_sig_name:3
+msgid ""
+"Only reached for rule 3 (visit_desc_sig_name's rule 1/rule 2 leaf "
+"branches raise nodes.SkipNode, so depart is never called for those)."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.visit_desc_sig_punctuation:1
 msgid ""
 "Visit a desc_sig_punctuation node (punctuation in signatures like ':', "
 "'=')."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_desc_sig_punctuation:3
+msgid ""
+"Stays a no-op: self.in_signature_text already gives this node's Text "
+"children monospace via visit_Text's branch (contract section 4.3) -- no "
+"dedicated handler is needed. Not given the flatten-and-skip shortcut "
+"either: a keyword-only separator operator was measured to wrap an "
+"abbreviation node, so flattening here would add a subtree-dropping hazard"
+" for no gain."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_desc_sig_punctuation:1
@@ -2654,24 +3460,91 @@ msgstr ""
 msgid "Visit a desc_sig_operator node (operators in signatures)."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_desc_sig_operator:3
+msgid ""
+"Stays a no-op: self.in_signature_text already gives this node's Text "
+"children monospace via visit_Text's branch (contract section 4.3) -- no "
+"dedicated handler is needed. Not given the flatten-and-skip shortcut "
+"either: the keyword-only separator operator was measured to wrap an "
+"abbreviation node, and flattening it buys nothing while adding a subtree-"
+"dropping hazard."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_desc_sig_operator:1
 msgid "Depart a desc_sig_operator node."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_literal_strong:1
-msgid "Visit a literal_strong node (bold literal text in field lists)."
+msgid "Visit a literal_strong node: a field-body parameter name."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_literal_strong:3
+msgid ""
+"Emits ``strong(raw(\"<escaped>\"))`` -- bold monospace (FLD-03, 38"
+"-EMISSION-CONTRACT.md section 5.2 row 1), deliberately DIFFERENT from the"
+" signature family's own name recipe (D-05): the reference's own recipe "
+"for a field-body parameter name, distinct from the plain-bold "
+"proportional field label. Delegates to "
+":meth:`_emit_field_body_monospace_leaf`, which raises ``nodes.SkipNode`` "
+"-- ``depart_literal_strong`` is therefore never called (mirrors "
+"``visit_literal`` / ``depart_literal``)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_literal_strong:13
+msgid ""
+"No longer delegates through a dummy ``nodes.strong()`` node to "
+":meth:`visit_strong` (D-09) -- this is deliberate: D-05 makes this node's"
+" target emission (bold MONOSPACE) diverge from ``strong``'s own emission "
+"(bold PROPORTIONAL), so the delegation was no longer a viable base to "
+"build on."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_literal_strong:1
 msgid "Depart a literal_strong node."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.depart_literal_strong:3
+msgid ""
+"Unreachable: ``visit_literal_strong`` raises ``nodes.SkipNode``, so "
+"docutils' dispatcher never calls this depart. Kept as a stub -- exactly "
+"as ``depart_literal`` already is -- because the docutils dispatcher "
+"contract still wants a paired depart method present."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.visit_literal_emphasis:1
-msgid "Visit a literal_emphasis node (emphasized literal text in field lists)."
+msgid "Visit a literal_emphasis node: a field-body parameter type."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_literal_emphasis:3
+msgid ""
+"Emits ``emph(raw(\"<escaped>\"))`` -- italic monospace (FLD-03, 38"
+"-EMISSION-CONTRACT.md section 5.2 row 2), deliberately DIFFERENT from the"
+" signature family's own type recipe (D-05): the reference's own recipe "
+"for a field-body parameter type, distinct from the plain-bold "
+"proportional field label. Delegates to "
+":meth:`_emit_field_body_monospace_leaf`, which raises ``nodes.SkipNode`` "
+"-- ``depart_literal_emphasis`` is therefore never called (mirrors "
+"``visit_literal`` / ``depart_literal``)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_literal_emphasis:13
+msgid ""
+"No longer delegates through a dummy ``nodes.emphasis()`` node to "
+":meth:`visit_emphasis` (D-09) -- the last two dummy-node delegation sites"
+" in the translator, removed for the same reason "
+"``visit_literal_strong``'s docstring gives."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_literal_emphasis:1
 msgid "Depart a literal_emphasis node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_literal_emphasis:3
+msgid ""
+"Unreachable: ``visit_literal_emphasis`` raises ``nodes.SkipNode``, so "
+"docutils' dispatcher never calls this depart. Kept as a stub -- exactly "
+"as ``depart_literal`` already is -- because the docutils dispatcher "
+"contract still wants a paired depart method present."
 msgstr ""
 
 #: ../../source/api/index.rst:33
@@ -3290,5 +4163,124 @@ msgstr ""
 #~ "generate <eq:label> format Design 3.3: "
 #~ "Support both mitex and Typst native "
 #~ "math"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Exception: Inside list items, paragraphs "
+#~ "are not wrapped in par() to avoid"
+#~ " syntax like \"- par(text(...))\" which "
+#~ "is invalid. A 2nd+ paragraph in a"
+#~ " list item instead gets a real "
+#~ "Typst parbreak() (FID-02) -- a bare "
+#~ "source '\\n' between code-mode "
+#~ "statements is cosmetic only and produces"
+#~ " no visual break, so consecutive "
+#~ "list-item paragraphs otherwise concatenate "
+#~ "onto one running line."
+#~ msgstr ""
+
+#~ msgid "Visit a seealso admonition (converts to #info(title: \"See Also\")[])."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "gentle-clues 1.3.1 has no dedicated "
+#~ "`hint` clue; `tip` is the verified "
+#~ "closest semantic analog (see RESEARCH.md "
+#~ "D-06 mapping)."
+#~ msgstr ""
+
+#~ msgid "Visit an attention admonition (converts to #warning[])."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "gentle-clues 1.3.1 has no dedicated "
+#~ "`attention` clue; `warning` is the "
+#~ "verified analog, consistent with the "
+#~ "existing `caution`/ `important` → `warning`"
+#~ " precedent (see RESEARCH.md D-06 mapping)."
+#~ msgstr ""
+
+#~ msgid "Visit a generic ``.. admonition::`` (converts to #clue[])."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Maps to the base gentle-clues "
+#~ "`clue` function (unstyled — no "
+#~ "predefined icon/accent-color), since the "
+#~ "generic directive always supplies its "
+#~ "own directive-derived title (see "
+#~ "RESEARCH.md D-06 mapping). The title "
+#~ "flows through the existing admonition-"
+#~ "aware `visit_title`/`depart_title` buffer-swap "
+#~ "automatically; no `custom_title` is passed "
+#~ "here."
+#~ msgstr ""
+
+#~ msgid "Visit a topic node (BLK-02/D-01/D-02/D-05)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A `.. topic::` renders as a titled"
+#~ " `clue` box, reusing the same "
+#~ "admonition helper as `.. admonition::` "
+#~ "(D-01) -- the widened visit_title/depart_title"
+#~ " buffer-swap (D-02) is what makes "
+#~ "the title actually get consumed by "
+#~ "_depart_admonition."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Emits a real Typst parbreak() "
+#~ "unconditionally (FID-06) -- back-to-back"
+#~ " body-less desc siblings (e.g. "
+#~ "confvals with only :type:/:default: fields,"
+#~ " no body paragraph) previously concatenated"
+#~ " onto one running line because a "
+#~ "bare cosmetic \"\\n\\n\" produces no "
+#~ "visual break in Typst code mode. "
+#~ "Applying parbreak() unconditionally (even when"
+#~ " the desc's last content already ends"
+#~ " in a par()) is verified harmless "
+#~ "-- no double-gap artifact -- so"
+#~ " no body-less-detection guard is "
+#~ "needed."
+#~ msgstr ""
+
+#~ msgid "Signatures are rendered in bold using strong({}) wrapper."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Emits a literal ' -> ' arrow "
+#~ "before the return type (DESC-01). "
+#~ "Resolved return-type xref children "
+#~ "already stream through the unmodified "
+#~ "visit_reference refid branch -- no extra"
+#~ " code needed for that case."
+#~ msgstr ""
+
+#~ msgid "Parameters are concatenated with + inside text parentheses."
+#~ msgstr ""
+
+#~ msgid "Add spacing after field lists."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Only an ALL-inline field body "
+#~ "needs this. A block field body "
+#~ "(real ``paragraph``/list/literal-block children) "
+#~ "already emits valid, ``\\n\\n``-separated "
+#~ "statements via the normal par() path,"
+#~ " so it keeps the concat context "
+#~ "OFF to avoid a stray ``+`` around"
+#~ " a ``par(...)``."
+#~ msgstr ""
+
+#~ msgid "Visit a desc_sig_name node (names in signatures)."
+#~ msgstr ""
+
+#~ msgid "Visit a literal_strong node (bold literal text in field lists)."
+#~ msgstr ""
+
+#~ msgid "Visit a literal_emphasis node (emphasized literal text in field lists)."
 #~ msgstr ""
 
