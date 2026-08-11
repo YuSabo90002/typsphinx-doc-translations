@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 1980-01-01 00:00+0000\n"
+"POT-Creation-Date: 2026-08-11 05:40+0000\n"
 "PO-Revision-Date: 2025-11-01 22:05+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -52,15 +52,27 @@ msgstr "Typstドキュメント"
 msgid "Define which documents to build:"
 msgstr "ビルドするドキュメントを定義します："
 
-#: ../../source/user_guide/configuration.rst:34
+#: ../../source/user_guide/configuration.rst:28
+msgid ""
+"Setting ``typst_documents`` is optional. When it is absent, typsphinx "
+"derives a single entry from ``root_doc``, ``project``, and ``author``, "
+"with the target stem produced by the same ``make_filename_from_project`` "
+"helper Sphinx's own LaTeX builder uses. An explicitly-set value always "
+"wins, including an explicit empty list, because Sphinx resolves a raw "
+"user-set config value before falling back to a callable default. The "
+"derived entry makes the root document a master, so its emitted ``.typ`` "
+"receives the full template wrapper."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:43
 msgid "Each tuple contains:"
 msgstr "各タプルには以下が含まれます："
 
-#: ../../source/user_guide/configuration.rst:36
+#: ../../source/user_guide/configuration.rst:45
 msgid "**Source file** (without ``.rst`` extension)"
 msgstr "**ソースファイル** （``.rst`` 拡張子なし）"
 
-#: ../../source/user_guide/configuration.rst:37
+#: ../../source/user_guide/configuration.rst:46
 msgid ""
 "**Output filename stem** -- governs both the emitted ``.typ`` file and, "
 "under the ``typstpdf`` builder, the compiled ``.pdf``. A literal trailing"
@@ -70,39 +82,66 @@ msgid ""
 " and the file is written under its basename next to the source document."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:44
-msgid "**Document title**"
-msgstr "**ドキュメントタイトル**"
+#: ../../source/user_guide/configuration.rst:53
+msgid ""
+"**Document title** -- the entry's own value is used when present, "
+"including an empty string, which renders as an empty title: an empty "
+"string is a *value*, not a signal to fall back. When the element is "
+"absent or ``None``, typsphinx falls back to ``project``. A non-``str`` "
+"value emits a build warning and then falls back to ``project`` as well."
+msgstr ""
 
-#: ../../source/user_guide/configuration.rst:45
-msgid "**Author**"
-msgstr "**著者**"
+#: ../../source/user_guide/configuration.rst:58
+msgid ""
+"**Author** -- resolved the same way as the title: a present value wins "
+"(including ``\"\"``); an absent, ``None``, or non-``str`` value falls "
+"back to ``author``, with a build warning for the non-``str`` case. "
+"Whether this resolved value reaches the template's ``authors`` parameter "
+"is settled by whether the active parameter mapping sends ``\"author\"`` "
+"to the template parameter named ``authors``, which is what the default "
+"mapping does. `Author Information`_ below states the full mapping rule, "
+"including the two cases this summary does not cover: a mapping that sends"
+" ``\"author\"`` to a different parameter, and a mapping that sends a "
+"different key to ``authors``. That mapping-stage outcome is itself "
+"subordinate to whether ``typst_template_function``'s dict-form ``params``"
+" is declared at all -- a user who has named both the template function "
+"and its arguments has already made a more specific decision than either, "
+"and when ``params`` is present it is the *complete* parameter set, "
+"discarding whatever the mapping stage produced."
+msgstr ""
 
-#: ../../source/user_guide/configuration.rst:46
-msgid "**Document class** (usually \"typst\")"
-msgstr "**ドキュメントクラス** （通常は \"typst\"）"
+#: ../../source/user_guide/configuration.rst:73
+msgid ""
+"**Document class** (usually \"typst\") -- **accepted and ignored**: "
+"typsphinx reads nothing from this position today, and a five-element "
+"tuple is valid and behaves identically to a four-element one. Real five-"
+"element tuples already exist in this repository -- "
+"``docs/source/conf.py`` and both ``examples/charged-ieee`` configs "
+"(``approach1`` and ``approach2``) all set one -- so this is not merely a "
+"hypothetical shape."
+msgstr ""
 
-#: ../../source/user_guide/configuration.rst:49
+#: ../../source/user_guide/configuration.rst:82
 msgid "Template Configuration"
 msgstr "テンプレート設定"
 
-#: ../../source/user_guide/configuration.rst:52
+#: ../../source/user_guide/configuration.rst:85
 msgid "Template Function"
 msgstr "テンプレート関数"
 
-#: ../../source/user_guide/configuration.rst:54
+#: ../../source/user_guide/configuration.rst:87
 msgid "Specify the Typst template function:"
 msgstr "Typstテンプレート関数を指定します："
 
-#: ../../source/user_guide/configuration.rst:71
+#: ../../source/user_guide/configuration.rst:104
 msgid "Custom Template File"
 msgstr "カスタムテンプレートファイル"
 
-#: ../../source/user_guide/configuration.rst:73
+#: ../../source/user_guide/configuration.rst:106
 msgid "Use a custom Typst template file:"
 msgstr "カスタムTypstテンプレートファイルを使用します："
 
-#: ../../source/user_guide/configuration.rst:79
+#: ../../source/user_guide/configuration.rst:112
 msgid ""
 "The template file should define a ``project`` function (or the function "
 "specified in ``typst_template_function``)."
@@ -110,49 +149,49 @@ msgstr ""
 "テンプレートファイルは、``project`` 関数（または ``typst_template_function`` "
 "で指定された関数）を定義する必要があります。"
 
-#: ../../source/user_guide/configuration.rst:83
+#: ../../source/user_guide/configuration.rst:116
 msgid "Typst Package"
 msgstr "Typstパッケージ"
 
-#: ../../source/user_guide/configuration.rst:85
+#: ../../source/user_guide/configuration.rst:118
 msgid "Use external Typst packages from Typst Universe:"
 msgstr "Typst Universeから外部Typstパッケージを使用します："
 
-#: ../../source/user_guide/configuration.rst:92
+#: ../../source/user_guide/configuration.rst:125
 msgid "Template Assets"
 msgstr "テンプレートアセット"
 
-#: ../../source/user_guide/configuration.rst:94
+#: ../../source/user_guide/configuration.rst:127
 msgid "Control how template assets (fonts, images, logos) are copied:"
 msgstr "テンプレートアセット（フォント、画像、ロゴ）のコピー方法を制御します："
 
-#: ../../source/user_guide/configuration.rst:112
+#: ../../source/user_guide/configuration.rst:145
 msgid "**Default**: ``None`` (automatic directory copy)"
 msgstr "**デフォルト**: ``None`` （ディレクトリの自動コピー）"
 
-#: ../../source/user_guide/configuration.rst:114
+#: ../../source/user_guide/configuration.rst:147
 msgid "**Type**: ``list[str] | None``"
 msgstr "**型**: ``list[str] | None``"
 
-#: ../../source/user_guide/configuration.rst:116
+#: ../../source/user_guide/configuration.rst:149
 msgid "When ``typst_template_assets`` is:"
 msgstr "``typst_template_assets`` の設定："
 
-#: ../../source/user_guide/configuration.rst:118
+#: ../../source/user_guide/configuration.rst:151
 msgid "``None`` (default): Automatically copy entire template directory"
 msgstr "``None`` （デフォルト）: テンプレートディレクトリ全体を自動的にコピー"
 
-#: ../../source/user_guide/configuration.rst:119
+#: ../../source/user_guide/configuration.rst:152
 msgid ""
 "List of paths: Copy only specified files/directories (supports glob "
 "patterns)"
 msgstr "パスのリスト: 指定されたファイル/ディレクトリのみをコピー（globパターンをサポート）"
 
-#: ../../source/user_guide/configuration.rst:120
+#: ../../source/user_guide/configuration.rst:153
 msgid "Empty list ``[]``: Disable automatic asset copying"
 msgstr "空のリスト ``[]``: アセットの自動コピーを無効化"
 
-#: ../../source/user_guide/configuration.rst:124
+#: ../../source/user_guide/configuration.rst:157
 msgid ""
 "This setting only applies to local custom templates (``typst_template``)."
 " Typst Universe packages (``typst_package``) handle assets automatically."
@@ -160,57 +199,150 @@ msgstr ""
 "この設定は、ローカルのカスタムテンプレート（``typst_template``）にのみ適用されます。Typst "
 "Universeパッケージ（``typst_package``）は、アセットを自動的に処理します。"
 
-#: ../../source/user_guide/configuration.rst:127
+#: ../../source/user_guide/configuration.rst:160
 msgid "See :doc:`templates` for detailed examples."
 msgstr "詳細な例については :doc:`templates` を参照してください。"
 
-#: ../../source/user_guide/configuration.rst:130
+#: ../../source/user_guide/configuration.rst:163
 msgid "Math Rendering"
 msgstr "数式のレンダリング"
 
-#: ../../source/user_guide/configuration.rst:133
+#: ../../source/user_guide/configuration.rst:166
 msgid "mitex Support"
 msgstr "mitexサポート"
 
-#: ../../source/user_guide/configuration.rst:135
+#: ../../source/user_guide/configuration.rst:168
 msgid "Enable LaTeX math rendering with mitex:"
 msgstr "mitexを使用してLaTeX数式レンダリングを有効化します："
 
-#: ../../source/user_guide/configuration.rst:141
+#: ../../source/user_guide/configuration.rst:174
 msgid ""
 "When enabled, LaTeX math expressions are converted to Typst using the "
 "mitex package. When disabled, math is passed directly as Typst math "
 "syntax."
 msgstr "有効にすると、LaTeX数式はmitexパッケージを使用してTypstに変換されます。無効にすると、数式はTypstの数式構文として直接渡されます。"
 
-#: ../../source/user_guide/configuration.rst:145
+#: ../../source/user_guide/configuration.rst:178
 msgid "Author Information"
 msgstr "著者情報"
 
-#: ../../source/user_guide/configuration.rst:148
-msgid "Detailed Format"
+#: ../../source/user_guide/configuration.rst:181
+#, fuzzy
+msgid "Detailed Author Structure"
 msgstr "詳細な形式"
 
-#: ../../source/user_guide/configuration.rst:150
-msgid "Include detailed author information:"
-msgstr "詳細な著者情報を含めます："
+#: ../../source/user_guide/configuration.rst:183
+msgid ""
+"Rich per-author structure -- department, organization, location, email --"
+" is expressed through ``typst_template_function``'s dict-form ``params`` "
+"route, the same route used for any other custom parameter:"
+msgstr ""
 
-#: ../../source/user_guide/configuration.rst:168
+#: ../../source/user_guide/configuration.rst:211
+msgid ""
+"**Precedence.** One question decides the parameter set your template "
+"function receives: **is a** ``params`` **key present in** "
+"``typst_template_function``'s dictionary form?"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:215
+#, python-brace-format
+msgid ""
+"If it is, ``params`` is the **complete, exclusive** parameter set, on "
+"every route (``typst_template``, ``typst_package``, and the bundled "
+"default alike): the auto-derived ``title``/``authors``/``date``, the "
+"``typst_elements`` allowlist merge, and the three ``toctree_*`` keys are "
+"all discarded wholesale, not merged key-by-key. An explicitly empty "
+"``params: {}`` passes **nothing at all** -- the predicate is the presence"
+" of the ``params`` key, not the truthiness of the dict it holds, so a "
+"zero-named-parameter custom template (``#let project(body) = {...}``) is "
+"a legitimate configuration."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:225
+msgid ""
+"A user who has named both the template function and its arguments has "
+"already made a more specific decision than either -- that sentence "
+"described the *intent* here before this rule was implemented; it is now "
+"literally what the code does, with no residual merge behind it."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:230
+msgid ""
+"If ``params`` is **not** present, the parameter mapping decides what "
+"reaches ``authors`` instead: **does the active parameter mapping send "
+"some Sphinx metadata key to the template parameter named** ``authors``? "
+"The default mapping sends ``author`` to ``authors``, so on an ordinary "
+"build the entry's own author element (the fourth position in `Typst "
+"Documents`_ above) -- or the ``author`` fallback it resolves to -- "
+"reaches the template, converted to a Typst array (:doc:`templates`'s "
+"Standard Parameters section states the array shape and the comma-split "
+"rule). It is the *target* key that decides, not whether ``\"author\"`` "
+"appears in the mapping at all:"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:241
+#, python-brace-format
+msgid ""
+"A mapping that sends ``\"author\"`` somewhere other than ``authors`` -- "
+"for example ``typst_template_mapping = {\"author\": \"doc_authors\"}``, "
+"for a custom template whose function names its author parameter "
+"differently -- leaves ``authors`` unset by the mapping stage; the non-"
+"package back-fill then supplies an empty array instead."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:246
+#, python-brace-format
+msgid ""
+"A mapping that sends some other key to ``authors`` -- for example "
+"``typst_template_mapping = {\"project\": \"authors\"}`` -- writes "
+"``authors`` from that key instead, in the same array shape an author "
+"value would take."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:251
+msgid ""
+"A ``typst_package`` build with ``typst_template_mapping`` not set at all "
+"reaches this same case by a side door rather than by a rule of its own: "
+"typsphinx passes only what was explicitly mapped, and nothing was, so the"
+" mapping is empty and can target nothing -- and the "
+"``title``/``authors``/ ``date`` back-fill that would otherwise supply a "
+"default is itself withheld on the package route (see :doc:`templates`'s "
+"Configuration-Based Templates section)."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:261
+#, python-brace-format
+msgid ""
+"A **partial** migration to the ``params`` route is a silent trap. "
+"Declaring ``params`` with only one key -- for example ``params: "
+"{\"authors\": [...]}`` -- to add rich author structure while expecting "
+"``title`` and ``date`` to keep arriving from the auto-derived set does "
+"**not** work: declaring ``params`` at all replaces the entire set. The "
+"build does not error -- it renders with the template's own defaults, "
+"typically an empty title and no author, because every parameter "
+"``params`` does not name is simply absent and Typst applies the "
+"function's own default for an absent named argument. If you want one "
+"extra parameter beyond the auto-derived set, declare the **full** set you"
+" need inside ``params``; there is no partial-override mechanism."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:275
 msgid "Paper Size and Format"
 msgstr "用紙サイズとフォーマット"
 
-#: ../../source/user_guide/configuration.rst:174
+#: ../../source/user_guide/configuration.rst:281
 msgid ""
 "``papersize`` and ``fontsize`` set the paper size and the base font size."
 " ``typst_elements`` supports three keys in total; the third, ``lang``, is"
 " documented in `Document Language`_ below."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:179
+#: ../../source/user_guide/configuration.rst:286
 msgid "Document Language"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:181
+#: ../../source/user_guide/configuration.rst:288
 msgid ""
 "The ``lang`` key controls the language Typst uses when generating its own"
 " labels -- most notably the figure and table supplement text (for example"
@@ -221,32 +353,31 @@ msgid ""
 "\"Table 1\" and \"Figure 1\"."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:190
+#: ../../source/user_guide/configuration.rst:297
 msgid "Automatic derivation"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:192
+#: ../../source/user_guide/configuration.rst:299
 msgid ""
-"When your project uses the bundled default template, ``lang`` is derived "
-"automatically from Sphinx's own ``language`` setting -- no explicit "
-"configuration is needed. The derivation rule is simple: take the part of "
-"the value before the first underscore, hyphen, or at-sign, and lowercase "
-"it. For example:"
+"On every non-package template route, ``lang`` is derived automatically "
+"from Sphinx's own ``language`` setting -- no explicit configuration is "
+"needed. The derivation rule is simple: take the part of the value before "
+"the first underscore, hyphen, or at-sign, and lowercase it. For example:"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:198
+#: ../../source/user_guide/configuration.rst:304
 msgid "``ja`` becomes ``ja``"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:199
+#: ../../source/user_guide/configuration.rst:305
 msgid "``zh_CN`` becomes ``zh``"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:200
+#: ../../source/user_guide/configuration.rst:306
 msgid "``pt_BR`` becomes ``pt``"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:202
+#: ../../source/user_guide/configuration.rst:308
 msgid ""
 "If a ``language`` value cannot be reduced to a two- or three-letter code,"
 " typsphinx emits a build warning naming the value and leaves the "
@@ -254,47 +385,55 @@ msgid ""
 "still succeeds."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:208
-msgid "Scope: default template only"
+#: ../../source/user_guide/configuration.rst:314
+msgid "Scope: every non-package route"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:210
+#: ../../source/user_guide/configuration.rst:316
 msgid ""
-"Automatic derivation applies **only** when the bundled default template "
-"is what actually gets used. It does **not** apply when ``typst_template``"
-" is configured, when ``typst_package`` is configured, or when a file "
-"named ``base.typ`` sits next to your ``conf.py`` in the source directory "
-"(which silently shadows the bundled template). The reason: a template "
-"that does not declare a ``lang`` parameter would receive an argument it "
-"never asked for, and Typst aborts the compile on an undeclared argument."
+"Automatic derivation applies on every route **except** ``typst_package``:"
+" the bundled default template, an explicit ``typst_template``, and a "
+"``<srcdir>/base.typ`` shadow of the bundled template all receive the "
+"auto-derived ``lang`` argument unconditionally. It is withheld only when "
+"``typst_package`` is configured, because typsphinx never introspects a "
+"third-party Typst Universe function's signature and would otherwise hand "
+"it an argument it never declared."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:218
+#: ../../source/user_guide/configuration.rst:324
 msgid ""
-"If you use a custom template or package and want the same behavior, opt "
-"in explicitly: declare a ``lang`` parameter in your own ``project()`` (or"
-" equivalent entry function) and then set it through ``typst_elements``, "
-"as shown below."
+"This means declaring a ``lang`` parameter in a custom template is not an "
+"opt-in -- on every non-package route it is **mandatory**: an existing "
+"custom template that omits it fails to compile with a Typst ``unexpected "
+"argument: lang`` abort the next time it is built. See :doc:`templates`'s "
+"nine-parameter contract for the full parameter list."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:224
+#: ../../source/user_guide/configuration.rst:330
+msgid ""
+"If you use ``typst_package`` and want the same behavior, opt in "
+"explicitly: declare a ``lang`` parameter in your own wrapping template "
+"and then set it through ``typst_elements``, as shown below."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:335
 msgid "Precedence and known limitation"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:226
+#: ../../source/user_guide/configuration.rst:337
 msgid ""
 "An explicit ``typst_elements`` ``lang`` entry always wins over the value "
 "derived from ``language``, on every template path, and an explicit value "
 "is passed through to Typst exactly as written with no validation."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:235
+#: ../../source/user_guide/configuration.rst:346
 msgid ""
 "Here the derived value would be ``ja``, but the explicit entry wins, so "
 "Typst typesets in German and renders 「Tabelle 1」."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:238
+#: ../../source/user_guide/configuration.rst:349
 msgid ""
 "**Known limitation:** region subtags are not supported, so a ``zh_TW`` "
 "project resolves to ``zh`` and renders simplified-Chinese supplement text"
@@ -302,27 +441,27 @@ msgid ""
 "Chinese, set the value explicitly through your own template."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:244
+#: ../../source/user_guide/configuration.rst:355
 msgid "Complete Example"
 msgstr "完全な例"
 
-#: ../../source/user_guide/configuration.rst:246
+#: ../../source/user_guide/configuration.rst:357
 msgid "Here's a complete ``conf.py`` example:"
 msgstr "以下は完全な ``conf.py`` の例です："
 
-#: ../../source/user_guide/configuration.rst:291
+#: ../../source/user_guide/configuration.rst:406
 msgid "See Also"
 msgstr "関連項目"
 
-#: ../../source/user_guide/configuration.rst:293
+#: ../../source/user_guide/configuration.rst:408
 msgid ":doc:`builders` - Understanding the typst and typstpdf builders"
 msgstr ":doc:`builders` - typstおよびtypstpdfビルダーの理解"
 
-#: ../../source/user_guide/configuration.rst:294
+#: ../../source/user_guide/configuration.rst:409
 msgid ":doc:`templates` - Customizing Typst templates"
 msgstr ":doc:`templates` - Typstテンプレートのカスタマイズ"
 
-#: ../../source/user_guide/configuration.rst:295
+#: ../../source/user_guide/configuration.rst:410
 msgid ":doc:`/examples/advanced` - Advanced configuration examples"
 msgstr ":doc:`/examples/advanced` - 高度な設定例"
 
@@ -348,5 +487,59 @@ msgstr ":doc:`/examples/advanced` - 高度な設定例"
 #~ "These are the only two supported "
 #~ "``typst_elements`` keys for paper size "
 #~ "and base font size."
+#~ msgstr ""
+
+#~ msgid "**Document title**"
+#~ msgstr "**ドキュメントタイトル**"
+
+#~ msgid "**Author**"
+#~ msgstr "**著者**"
+
+#~ msgid "**Document class** (usually \"typst\")"
+#~ msgstr "**ドキュメントクラス** （通常は \"typst\"）"
+
+#~ msgid "Include detailed author information:"
+#~ msgstr "詳細な著者情報を含めます："
+
+#~ msgid ""
+#~ "When your project uses the bundled "
+#~ "default template, ``lang`` is derived "
+#~ "automatically from Sphinx's own ``language``"
+#~ " setting -- no explicit configuration "
+#~ "is needed. The derivation rule is "
+#~ "simple: take the part of the value"
+#~ " before the first underscore, hyphen, "
+#~ "or at-sign, and lowercase it. For"
+#~ " example:"
+#~ msgstr ""
+
+#~ msgid "Scope: default template only"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Automatic derivation applies **only** when "
+#~ "the bundled default template is what "
+#~ "actually gets used. It does **not** "
+#~ "apply when ``typst_template`` is configured,"
+#~ " when ``typst_package`` is configured, or"
+#~ " when a file named ``base.typ`` sits"
+#~ " next to your ``conf.py`` in the "
+#~ "source directory (which silently shadows "
+#~ "the bundled template). The reason: a "
+#~ "template that does not declare a "
+#~ "``lang`` parameter would receive an "
+#~ "argument it never asked for, and "
+#~ "Typst aborts the compile on an "
+#~ "undeclared argument."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If you use a custom template or"
+#~ " package and want the same behavior,"
+#~ " opt in explicitly: declare a "
+#~ "``lang`` parameter in your own "
+#~ "``project()`` (or equivalent entry function)"
+#~ " and then set it through "
+#~ "``typst_elements``, as shown below."
 #~ msgstr ""
 

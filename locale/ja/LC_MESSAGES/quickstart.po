@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 21:21+0900\n"
+"POT-Creation-Date: 2026-08-11 05:40+0000\n"
 "PO-Revision-Date: 2025-11-01 21:45+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../source/quickstart.rst:2
 msgid "Quick Start"
@@ -46,9 +46,7 @@ msgstr "``conf.py`` の ``extensions`` リストに ``typsphinx`` を追加："
 msgid ""
 "Thanks to entry points, adding to ``extensions`` is optional. The "
 "builders are automatically discovered."
-msgstr ""
-"エントリーポイントのおかげで、``extensions`` への追加はオプションです。"
-"ビルダーは自動的に検出されます。"
+msgstr "エントリーポイントのおかげで、``extensions`` への追加はオプションです。ビルダーは自動的に検出されます。"
 
 #: ../../source/quickstart.rst:30
 msgid "**Build Typst output**:"
@@ -63,42 +61,64 @@ msgid "Here's a minimal example to generate your first PDF:"
 msgstr "初めてのPDFを生成する最小限の例です："
 
 #: ../../source/quickstart.rst:45
+msgid ""
+"Set your project name in ``conf.py`` (this determines the output "
+"filename):"
+msgstr ""
+
+#: ../../source/quickstart.rst:52
 msgid "Create a simple ``index.rst``:"
 msgstr "シンプルな ``index.rst`` を作成："
 
-#: ../../source/quickstart.rst:61
+#: ../../source/quickstart.rst:68
 msgid "Build the PDF:"
 msgstr "PDFをビルド："
 
-#: ../../source/quickstart.rst:67
-msgid "Find your PDF in ``build/pdf/index.pdf``!"
-msgstr "PDFは ``build/pdf/index.pdf`` にあります！"
+#: ../../source/quickstart.rst:74
+msgid ""
+"Find your PDF in ``build/pdf/myproject.pdf``! The filename comes from "
+"``project`` run through Sphinx's own project-filename helper -- the same "
+"rule ``-b latex`` uses -- so a ``project`` different from ``\"My "
+"Project\"`` produces a different filename; ``myproject`` is not a "
+"constant."
+msgstr ""
 
-#: ../../source/quickstart.rst:70
+#: ../../source/quickstart.rst:80
 msgid "Configuration Options"
 msgstr "設定オプション"
 
-#: ../../source/quickstart.rst:72
+#: ../../source/quickstart.rst:82
 msgid "You can customize the output by adding options to ``conf.py``:"
 msgstr "``conf.py`` にオプションを追加して出力をカスタマイズできます："
 
-#: ../../source/quickstart.rst:93
+#: ../../source/quickstart.rst:102
+msgid ""
+"Setting ``typst_documents`` explicitly is optional -- omitting it derives"
+" a single master entry from ``root_doc``, ``project``, and ``author``, as"
+" shown in `Your First PDF`_ above. See :doc:`user_guide/configuration` "
+"for the full reference."
+msgstr ""
+
+#: ../../source/quickstart.rst:108
 msgid "What's Next?"
 msgstr "次のステップ"
 
-#: ../../source/quickstart.rst:95
+#: ../../source/quickstart.rst:110
 msgid "Learn about :doc:`user_guide/configuration` options"
 msgstr ":doc:`user_guide/configuration` オプションについて学ぶ"
 
-#: ../../source/quickstart.rst:96
+#: ../../source/quickstart.rst:111
 msgid "Explore :doc:`user_guide/builders` (typst vs typstpdf)"
 msgstr ":doc:`user_guide/builders` を探索（typst vs typstpdf）"
 
-#: ../../source/quickstart.rst:97
+#: ../../source/quickstart.rst:112
 msgid "Customize with :doc:`user_guide/templates`"
 msgstr ":doc:`user_guide/templates` でカスタマイズ"
 
-#: ../../source/quickstart.rst:98
+#: ../../source/quickstart.rst:113
 msgid "See :doc:`examples/index` for more examples"
 msgstr "より多くの例については :doc:`examples/index` を参照"
+
+#~ msgid "Find your PDF in ``build/pdf/index.pdf``!"
+#~ msgstr "PDFは ``build/pdf/index.pdf`` にあります！"
 
