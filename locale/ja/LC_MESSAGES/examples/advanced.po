@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-11 05:40+0000\n"
+"POT-Creation-Date: 2026-08-15 03:10+0000\n"
 "PO-Revision-Date: 2025-11-01 22:25+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -40,9 +40,9 @@ msgstr "IEEEスタイルの論文にはcharged-ieeeパッケージを使用し�
 
 #: ../../source/examples/advanced.rst:14 ../../source/examples/advanced.rst:113
 #: ../../source/examples/advanced.rst:149
-#: ../../source/examples/advanced.rst:207
-#: ../../source/examples/advanced.rst:244
-#: ../../source/examples/advanced.rst:402
+#: ../../source/examples/advanced.rst:212
+#: ../../source/examples/advanced.rst:249
+#: ../../source/examples/advanced.rst:407
 msgid "**conf.py**:"
 msgstr "**conf.py**:"
 
@@ -96,22 +96,28 @@ msgid "Build multiple related documents:"
 msgstr "複数の関連ドキュメントをビルド:"
 
 #: ../../source/examples/advanced.rst:160
-msgid "Each document is built separately with its own output file."
-msgstr "各ドキュメントは独自の出力ファイルで個別にビルドされます。"
+msgid ""
+"Each entry gets its own wrapper file at the entry's target -- "
+"``main.typ``, ``api-reference.typ`` and ``tutorial.typ`` -- and each is "
+"compiled separately. The wrappers are not the whole story: every document"
+" in the project also gets a content file named after its docname, whether"
+" or not it appears above. See :doc:`/user_guide/output_layout` for the "
+"full wrapper/content contract and which file to compile."
+msgstr ""
 
-#: ../../source/examples/advanced.rst:163
+#: ../../source/examples/advanced.rst:168
 msgid "Custom Styling"
 msgstr "カスタムスタイリング"
 
-#: ../../source/examples/advanced.rst:165
+#: ../../source/examples/advanced.rst:170
 msgid "Apply custom fonts and colors:"
 msgstr "カスタムフォントと色を適用:"
 
-#: ../../source/examples/advanced.rst:167
+#: ../../source/examples/advanced.rst:172
 msgid "**_templates/styled.typ**:"
 msgstr "**_templates/styled.typ**:"
 
-#: ../../source/examples/advanced.rst:221
+#: ../../source/examples/advanced.rst:226
 msgid ""
 "Declaring ``params`` makes it the **complete** parameter set (see "
 ":doc:`/user_guide/configuration`'s Author Information section for the "
@@ -120,7 +126,7 @@ msgid ""
 "the styled title page above would render empty."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:229
+#: ../../source/examples/advanced.rst:234
 msgid ""
 "``primary-color`` is declared as a **hex string**, not a raw Typst color "
 "literal such as ``blue`` or a ``rgb(...)`` call. Every value that reaches"
@@ -132,82 +138,82 @@ msgid ""
 "(primary-color)``, which Typst's ``rgb()`` constructor accepts directly."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:240
+#: ../../source/examples/advanced.rst:245
 msgid "Conditional Content"
 msgstr "条件付きコンテンツ"
 
-#: ../../source/examples/advanced.rst:242
+#: ../../source/examples/advanced.rst:247
 msgid "Use different templates for different documents:"
 msgstr "異なるドキュメントに異なるテンプレートを使用:"
 
-#: ../../source/examples/advanced.rst:257
+#: ../../source/examples/advanced.rst:262
 msgid ""
 "For document-specific templates, you can use Sphinx's ``per-file`` "
 "configuration or conditional logic in your template."
 msgstr "ドキュメント固有のテンプレートには、Sphinxの ``per-file`` 設定またはテンプレート内の条件ロジックを使用できます。"
 
-#: ../../source/examples/advanced.rst:261
+#: ../../source/examples/advanced.rst:266
 msgid "Bibliographies"
 msgstr "参考文献"
 
-#: ../../source/examples/advanced.rst:263
+#: ../../source/examples/advanced.rst:268
 msgid "Include bibliographies with BibTeX:"
 msgstr "BibTeXで参考文献を含める:"
 
-#: ../../source/examples/advanced.rst:265
-#: ../../source/examples/advanced.rst:314
+#: ../../source/examples/advanced.rst:270
+#: ../../source/examples/advanced.rst:319
 msgid "**index.rst**:"
 msgstr "**index.rst**:"
 
-#: ../../source/examples/advanced.rst:280
+#: ../../source/examples/advanced.rst:285
 msgid "**Custom template with bibliography**:"
 msgstr "**参考文献付きカスタムテンプレート**:"
 
-#: ../../source/examples/advanced.rst:310
+#: ../../source/examples/advanced.rst:315
 msgid "Advanced Math"
 msgstr "高度な数式"
 
-#: ../../source/examples/advanced.rst:312
+#: ../../source/examples/advanced.rst:317
 msgid "Complex mathematical expressions:"
 msgstr "複雑な数式:"
 
-#: ../../source/examples/advanced.rst:349
+#: ../../source/examples/advanced.rst:354
 msgid "CI/CD Integration"
 msgstr "CI/CD統合"
 
-#: ../../source/examples/advanced.rst:351
+#: ../../source/examples/advanced.rst:356
 msgid "GitHub Actions workflow for documentation:"
 msgstr "ドキュメント用のGitHub Actionsワークフロー:"
 
-#: ../../source/examples/advanced.rst:353
+#: ../../source/examples/advanced.rst:358
 msgid "**.github/workflows/docs.yml**:"
 msgstr "**.github/workflows/docs.yml**:"
 
-#: ../../source/examples/advanced.rst:398
+#: ../../source/examples/advanced.rst:403
 msgid "Performance Optimization"
 msgstr "パフォーマンス最適化"
 
-#: ../../source/examples/advanced.rst:400
+#: ../../source/examples/advanced.rst:405
 msgid "For large documentation projects:"
 msgstr "大規模なドキュメントプロジェクトの場合:"
 
-#: ../../source/examples/advanced.rst:417
+#: ../../source/examples/advanced.rst:422
 msgid "See Also"
 msgstr "関連項目"
 
-#: ../../source/examples/advanced.rst:419
+#: ../../source/examples/advanced.rst:424
 msgid ":doc:`/user_guide/configuration` - All configuration options"
 msgstr ":doc:`/user_guide/configuration` - すべての設定オプション"
 
-#: ../../source/examples/advanced.rst:420
+#: ../../source/examples/advanced.rst:425
 msgid ":doc:`/user_guide/templates` - Template system details"
 msgstr ":doc:`/user_guide/templates` - テンプレートシステムの詳細"
 
-#: ../../source/examples/advanced.rst:421
+#: ../../source/examples/advanced.rst:426
 msgid "`Typst Documentation <https://typst.app/docs>`_ - Official Typst reference"
 msgstr "`Typst Documentation <https://typst.app/docs>`_ - 公式Typstリファレンス"
 
-#: ../../source/examples/advanced.rst:422
+#: ../../source/examples/advanced.rst:427
 msgid "`Typst Universe <https://typst.app/universe>`_ - Package repository"
 msgstr "`Typst Universe <https://typst.app/universe>`_ - パッケージリポジトリ"
 
@@ -216,4 +222,7 @@ msgstr "`Typst Universe <https://typst.app/universe>`_ - パッケージリポ�
 
 #~ msgid "Create a CV/resume with modern-cv:"
 #~ msgstr "modern-cvで履歴書を作成:"
+
+#~ msgid "Each document is built separately with its own output file."
+#~ msgstr "各ドキュメントは独自の出力ファイルで個別にビルドされます。"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-11 05:40+0000\n"
+"POT-Creation-Date: 2026-08-15 03:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -56,6 +56,8 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.extract_toctree_options
 #: typsphinx.template_engine.TemplateEngine.render
 #: typsphinx.translator.TypstTranslator.visit_toctree
+#: typsphinx.writer.compute_content_include_path
+#: typsphinx.writer.compute_template_import_path_for_dir
 msgid "Parameters"
 msgstr ""
 
@@ -102,6 +104,8 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.render
 #: typsphinx.template_engine.TemplateEngine.resolve_template
 #: typsphinx.translator.TypstTranslator.visit_toctree
+#: typsphinx.writer.compute_content_include_path
+#: typsphinx.writer.compute_template_import_path_for_dir
 msgid "Return type"
 msgstr ""
 
@@ -112,9 +116,8 @@ msgstr ""
 #: typsphinx.builder.TypstBuilder.post_process_images:26
 #: typsphinx.builder.TypstBuilder.prepare_writing:9
 #: typsphinx.builder.TypstBuilder.write:16
-#: typsphinx.builder.TypstBuilder.write_doc:15
+#: typsphinx.builder.TypstBuilder.write_doc:13
 #: typsphinx.builder.TypstPDFBuilder.finish:23
-#: typsphinx.builder.TypstPDFBuilder.write_doc:11
 #: typsphinx.pdf.check_typst_available:8
 #: typsphinx.translator.TypstTranslator.add_text:6
 #: typsphinx.translator.TypstTranslator.depart_Text:6
@@ -278,7 +281,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_math_block:21
 #: typsphinx.translator.TypstTranslator.visit_note:3
 #: typsphinx.translator.TypstTranslator.visit_paragraph:40
-#: typsphinx.translator.TypstTranslator.visit_pending_xref:6
+#: typsphinx.translator.TypstTranslator.visit_pending_xref:17
 #: typsphinx.translator.TypstTranslator.visit_raw:10
 #: typsphinx.translator.TypstTranslator.visit_reference:8
 #: typsphinx.translator.TypstTranslator.visit_row:6
@@ -300,13 +303,13 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_tip:3
 #: typsphinx.translator.TypstTranslator.visit_title:22
 #: typsphinx.translator.TypstTranslator.visit_title_reference:5
-#: typsphinx.translator.TypstTranslator.visit_toctree:26
+#: typsphinx.translator.TypstTranslator.visit_toctree:37
 #: typsphinx.translator.TypstTranslator.visit_todo_node:23
 #: typsphinx.translator.TypstTranslator.visit_topic:14
 #: typsphinx.translator.TypstTranslator.visit_transition:8
 #: typsphinx.translator.TypstTranslator.visit_versionmodified:3
 #: typsphinx.translator.TypstTranslator.visit_warning:3
-#: typsphinx.writer.TypstWriter.translate:9
+#: typsphinx.writer.TypstWriter.translate:13
 msgid ":sphinx_autodoc_typehints_type:`\\:py\\:obj\\:\\`None\\``"
 msgstr ""
 
@@ -331,6 +334,8 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.get_template_content
 #: typsphinx.template_engine.TemplateEngine.render
 #: typsphinx.template_engine.TemplateEngine.resolve_template
+#: typsphinx.writer.compute_content_include_path
+#: typsphinx.writer.compute_template_import_path_for_dir
 msgid "Returns"
 msgstr ""
 
@@ -345,14 +350,15 @@ msgstr ""
 #: of typsphinx.builder.TypstBuilder.get_target_uri:3
 msgid ""
 "Deliberately stays docname-based and does NOT follow the typst_documents "
-"target-name rename that ``_resolve_output_stem`` applies to the on-disk "
-"filename (Phase 22 / Issue #117). Its only consumer is "
-"``translator.py:_resolve_xref_docname``, which uses this method as a "
-"round-trip identity to recover a cross-referenced document's DOCNAME from"
-" a refuri that Sphinx itself computed via ``Builder.get_relative_uri`` --"
-" i.e. ``relative_uri(get_target_uri(from_), get_target_uri(to))``, so "
-"both endpoints pass through this same function. Every emitted Typst label"
-" is namespaced by SOURCE DOCNAME via ``translator.py:_namespace_label``, "
+"target-name rename that ``_resolve_target_stem`` applies to the on-disk "
+"filename via ``_wrapper_output_relpath`` (Phase 22 / Issue #117). Its "
+"only consumer is ``translator.py:_resolve_xref_docname``, which uses this"
+" method as a round-trip identity to recover a cross-referenced document's"
+" DOCNAME from a refuri that Sphinx itself computed via "
+"``Builder.get_relative_uri`` -- i.e. "
+"``relative_uri(get_target_uri(from_), get_target_uri(to))``, so both "
+"endpoints pass through this same function. Every emitted Typst label is "
+"namespaced by SOURCE DOCNAME via ``translator.py:_namespace_label``, "
 "never by output filename. Making this method target-name-aware would "
 "desynchronize the recovered docname from the label namespace and break "
 "every cross-document link into or out of a renamed master with a Typst "
@@ -360,17 +366,16 @@ msgid ""
 " decision -- do not \"fix\" it in sympathy with the write-path rename."
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.get_target_uri:22
-#: typsphinx.builder.TypstBuilder.write_doc:11
-#: typsphinx.builder.TypstPDFBuilder.write_doc:7
+#: of typsphinx.builder.TypstBuilder.get_target_uri:23
+#: typsphinx.builder.TypstBuilder.write_doc:9
 msgid "Name of the document"
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.get_target_uri:24
+#: of typsphinx.builder.TypstBuilder.get_target_uri:25
 msgid "Type of the target (not used for Typst builder)"
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.get_target_uri:26
+#: of typsphinx.builder.TypstBuilder.get_target_uri:27
 #: typsphinx.pdf.get_typst_version:3
 #: typsphinx.template_engine.TemplateEngine.generate_package_import:3
 #: typsphinx.template_engine.TemplateEngine.get_default_template_path:3
@@ -379,10 +384,16 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.render:12
 #: typsphinx.translator.TypstTranslator.astext:3
 #: typsphinx.translator.escape_typst_string:23
+#: typsphinx.translator.make_include_edge_key:27
+#: typsphinx.translator.render_include_edge_state:23
+#: typsphinx.translator.render_include_guard:32
+#: typsphinx.writer.TypstWriter.render_wrapper:40
+#: typsphinx.writer.compute_content_include_path:23
+#: typsphinx.writer.compute_template_import_path_for_dir:21
 msgid ":sphinx_autodoc_typehints_type:`\\:py\\:class\\:\\`str\\``"
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.get_target_uri:27
+#: of typsphinx.builder.TypstBuilder.get_target_uri:28
 msgid "Target URI string"
 msgstr ""
 
@@ -469,19 +480,13 @@ msgid "Write a document."
 msgstr ""
 
 #: of typsphinx.builder.TypstBuilder.write_doc:3
-msgid "This method is called for each document that needs to be written."
+msgid ""
+"This method is called for each document that needs to be written. "
+"Delegates to ``_write_typst_files()``, the single write path shared with "
+"``TypstPDFBuilder`` (which inherits this method unchanged)."
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.write_doc:5
-msgid "Requirement 13.1: 各 reStructuredText ファイルに対応する独立した .typ ファイルを生成する"
-msgstr ""
-
-#: of typsphinx.builder.TypstBuilder.write_doc:8
-msgid "Requirement 13.12: ソースディレクトリ構造を保持して出力する"
-msgstr ""
-
-#: of typsphinx.builder.TypstBuilder.write_doc:13
-#: typsphinx.builder.TypstPDFBuilder.write_doc:9
+#: of typsphinx.builder.TypstBuilder.write_doc:11
 msgid "Document tree to be written"
 msgstr ""
 
@@ -543,16 +548,6 @@ msgstr ""
 msgid ""
 "Requirement 9.3: TypstPDFBuilder extends TypstBuilder Requirement 9.4: "
 "Generate PDF from Typst markup"
-msgstr ""
-
-#: of typsphinx.builder.TypstPDFBuilder.write_doc:1
-msgid "Write a document as both .typ and .pdf."
-msgstr ""
-
-#: of typsphinx.builder.TypstPDFBuilder.write_doc:3
-msgid ""
-"Override to generate .typ file (not .pdf) during the write phase. The "
-".pdf will be generated in finish() by compiling the .typ file."
 msgstr ""
 
 #: of typsphinx.builder.TypstPDFBuilder.finish:1
@@ -756,6 +751,74 @@ msgid ""
 "document trees to Typst markup."
 msgstr ""
 
+#: of typsphinx.writer.compute_content_include_path:1
+msgid ""
+"Compute a wrapper's ``#include()`` argument for its own entry's content "
+"file (B-1/COMP-03 fix)."
+msgstr ""
+
+#: of typsphinx.writer.compute_content_include_path:4
+msgid ""
+"This is a genuine two-endpoint ``posixpath.relpath`` computation, NOT a "
+"depth-only ``\"../\"`` counter like ``_compute_template_import_path`` -- "
+"Typst's ``#include()`` resolves relative to the INCLUDING file's own "
+"directory (measured empirically; see 47-RESEARCH.md \"Common Pitfalls\" "
+"#3), so both the wrapper's resolved directory and the content file's own "
+"resolved path must be independently known. Reusing the depth-only shape "
+"for this job -- assuming the content file is always at the outdir root, "
+"and that the wrapper's directory equals its docname's directory -- is the"
+" literal root cause of B-1 and must not be reintroduced here."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:22
+#: typsphinx.writer.compute_content_include_path:16
+#: typsphinx.writer.compute_template_import_path_for_dir:17
+msgid ""
+"The wrapper's own resolved output directory, relative to the outdir root "
+"(``\"\"`` for the outdir root itself)."
+msgstr ""
+
+#: of typsphinx.writer.compute_content_include_path:20
+msgid ""
+"The content file's own path, relative to the outdir root (e.g. "
+"``\"guide/index.typ\"``)."
+msgstr ""
+
+#: of typsphinx.writer.compute_content_include_path:24
+msgid "The relative path to hand to Typst's ``#include()``."
+msgstr ""
+
+#: of typsphinx.writer.compute_content_include_path:27
+#: typsphinx.writer.compute_template_import_path_for_dir:26
+msgid "Examples"
+msgstr ""
+
+#: of typsphinx.writer.compute_template_import_path_for_dir:1
+msgid ""
+"Compute a wrapper's import path for the shared ``_template.typ`` file, "
+"from the WRAPPER's own resolved output directory."
+msgstr ""
+
+#: of typsphinx.writer.compute_template_import_path_for_dir:4
+msgid ""
+"``_write_template_file()`` (``typsphinx/builder.py``) always writes "
+"``_template.typ`` at the outdir root, unconditionally, regardless of "
+"where any given wrapper is written -- so this is a pure function of the "
+"wrapper's own nesting depth. Unlike ``compute_content_include_path``, a "
+"depth-only ``\"../\"`` counter IS correct here, because the imported "
+"file's location (the outdir root) is a fixed, known constant rather than "
+"another entry's independently resolved path -- but the depth must come "
+"from the WRAPPER's resolved directory, not from the master's docname, or "
+"a wrapper written outside its docname's own directory would import a file"
+" that was never written at the depth the docname implied."
+msgstr ""
+
+#: of typsphinx.writer.compute_template_import_path_for_dir:22
+msgid ""
+"The complete relative import path, including the ``.typ`` suffix, e.g. "
+"``\"_template.typ\"`` or ``\"../_template.typ\"``."
+msgstr ""
+
 #: of typsphinx.writer.TypstWriter:1
 msgid "Writer class for Typst output format."
 msgstr ""
@@ -769,19 +832,70 @@ msgid "Formats this writer supports."
 msgstr ""
 
 #: of typsphinx.writer.TypstWriter.translate:1
-msgid "Translate the document tree to Typst markup."
+msgid "Translate the document tree to the CONTENT file's Typst markup."
 msgstr ""
 
 #: of typsphinx.writer.TypstWriter.translate:3
 msgid ""
-"This method creates a TypstTranslator and visits the document tree, then "
-"wraps the output with a template using TemplateEngine."
+"Every docname's content file is written unconditionally (COMP-01/ "
+"OUT-03), carrying no template application -- template application now "
+"belongs exclusively to ``render_wrapper()``, which the builder calls "
+"separately, once per ``typst_documents`` entry naming this docname. D-06 "
+"makes the four ``@preview`` imports plus codly init unconditional here: "
+"this is exact status-quo preservation for what used to be an \"included "
+"document\", and it is only a NEW preamble for a docname that used to be a"
+" master's single undivided file."
 msgstr ""
 
-#: of typsphinx.writer.TypstWriter.translate:6
+#: of typsphinx.writer.TypstWriter.render_wrapper:1
 msgid ""
-"For master documents (defined in typst_documents), the full template is "
-"applied. For included documents, only the body content is output."
+"Render a wrapper ``.typ`` document for one ``typst_documents`` entry: the"
+" full template application plus this master's own include-edge state "
+"publication (Phase 49, COMP-05/COMP-06) and a single ``#include()`` of "
+"that entry's own content file."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:6
+msgid ""
+"This is the surviving half of what ``translate()`` used to do for a "
+"\"master document\" -- template application never changes shape, only its"
+" trigger (per-entry, not per-docname) and its body (a state publication "
+"plus an ``#include()``, not the translated doctree)."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:13
+msgid ""
+"The specific ``typst_documents`` tuple this wrapper is being generated "
+"for (docname, target, title, author[, format])."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:17
+msgid ""
+"The master document's OWN doctree -- consulted only for "
+"``extract_toctree_options()`` (toctree display options such as "
+"maxdepth/numbered/caption reach the template)."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:26
+msgid ""
+"The entry's content file's own path, relative to the outdir root (e.g. "
+"``\"guide/index.typ\"``)."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:29
+msgid ""
+"This master's own derived edge keys, in discovery order "
+"(``TypstBuilder._build_include_edge_map()``'s return value for this "
+"master's docname). Defaults to an empty tuple so every EXISTING direct "
+"caller (several unit tests construct a ``TypstWriter`` and call this "
+"method without deriving a mapping first) keeps working unchanged -- an "
+"empty published array makes every compile-time guard in every content "
+"file false, which is the correct, safe default when no edge mapping was "
+"ever derived."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:41
+msgid "The complete wrapper ``.typ`` document text."
 msgstr ""
 
 #: of typsphinx.translator:1
@@ -832,6 +946,210 @@ msgstr ""
 
 #: of typsphinx.translator.escape_typst_string:24
 msgid "Text safe to embed between double quotes in a Typst string literal."
+msgstr ""
+
+#: of typsphinx.translator.make_include_edge_key:1
+msgid ""
+"Derive the ONE edge-key spelling for a toctree parent/child pair "
+"(D-04/D-05)."
+msgstr ""
+
+#: of typsphinx.translator.make_include_edge_key:4
+msgid ""
+"This is the SINGLE derivation point for this phase's edge-key format, "
+"called by BOTH the builder's graph computation "
+"(``TypstBuilder._build_include_edge_map()``, via "
+"``derive_master_edge_keys()``) and the translator's own guard emission "
+"(``visit_toctree``). A second, independently-spelled edge-key expression "
+"anywhere in the codebase is exactly the drift class this single-function "
+"rule exists to reject -- and a mismatch between the two call sites would "
+"NOT fail the build: the guard would simply never fire, silently dropping "
+"the child's content with no diagnostic at any layer (T-49-02)."
+msgstr ""
+
+#: of typsphinx.translator.make_include_edge_key:16
+msgid "The docname whose toctree names ``child_docname``."
+msgstr ""
+
+#: of typsphinx.translator.make_include_edge_key:18
+msgid "The docname being claimed."
+msgstr ""
+
+#: of typsphinx.translator.make_include_edge_key:20
+msgid ""
+"The 0-based index of THIS emission site among the emission sites in "
+"``parent_docname`` naming ``child_docname`` (D-04's occurrence rule). "
+"Defaults to 0, the only value the graph side "
+"(``derive_master_edge_keys()``) can ever emit -- a child is claimed at "
+"its FIRST non-traversed appearance in its parent's ordered list, which is"
+" always occurrence 0."
+msgstr ""
+
+#: of typsphinx.translator.make_include_edge_key:28
+msgid ""
+"The edge key, e.g. ``\"index#0>child\"``. Both docnames route through "
+"``escape_typst_string()`` (T-49-01), so a docname containing a double "
+"quote or a backslash still produces a key that is byte-identical whether "
+"derived on the graph side or the emission side."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:1
+msgid ""
+"Walk one master's own include graph and return its published edge keys, "
+"in document-order discovery order (COMP-05)."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:4
+msgid ""
+"A fresh RECURSIVE walk with an ordered ``traversed`` list threaded "
+"through the recursion -- seeded with ``[master_docname]`` before the walk"
+" begins, and appended to BEFORE recursing into each newly-claimed child "
+"-- mirroring Sphinx's own ``inline_all_toctrees()`` "
+"(``sphinx/util/nodes.py:499-517``) and its two callers, both of which "
+"seed ``traversed`` with the compiling document's own docname. The "
+"composition rule this produces is document-order FIRST-ENCOUNTER-WINS: "
+"whichever parent's own ordered list reaches a shared child FIRST (in THIS"
+" master's own traversal) claims it; a later parent's own entry for the "
+"same child is dark (no edge emitted). This is NOT prefer-the-deeper-path,"
+" and it does NOT consult or port Sphinx's own ``document is referenced in"
+" multiple toctrees: [...], selecting: X <- Y`` message -- that message "
+"comes from a DIFFERENT function (``_check_toc_parents()``, "
+"``sphinx/environment/__init__.py:942-959``), takes a plain lexicographic "
+"``max(parents)`` tiebreak, and governs NONE of this DFS."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:21
+msgid ""
+"The FORBIDDEN shape, by name and by defect: an explicit work-stack seeded"
+" with the master, fed by iterating each parent's children with forward "
+"``append`` calls, and drained LAST-IN-FIRST-OUT (removing and processing "
+"the most-recently-appended element each iteration, the way a call stack "
+"unwinds) processes the LAST-listed child of any given parent FIRST, "
+"silently REVERSING sibling order with NO compile error -- this is a "
+"DIFFERENT, already Phase-48-deleted helper's own traversal shape (that "
+"helper solved a DIFFERENT problem, a flat cross-master docname union for "
+"XREF-safety), and COMP-05/SC#3 forbids reusing it here. This function's "
+"genuine recursion preserves document order; a naive forward-push LIFO "
+"stack does not."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:33
+msgid ""
+"Occurrence is always 0 on this side: a child is claimed by its parent at "
+"that child's FIRST non-traversed appearance in the parent's ordered list,"
+" which -- because ``traversed`` membership can only GROW, never shrink, "
+"during one master's walk -- is ALWAYS the occurrence-0 appearance. A "
+"duplicate toctree entry for the same child (occurrence >= 1) is therefore"
+" structurally dark: no second, independent emission site exists on this "
+"side to ever claim it."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:42
+msgid ""
+"A mapping from docname to its ordered include-file list "
+"(``env.toctree_includes``, or an equivalent mapping in a unit test). A "
+"docname absent from this mapping is treated as having no children, "
+"matching how the mirrored Sphinx walk behaves for a document with no "
+"toctree."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:48
+msgid "The master document's own docname -- the DFS seed."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:50
+msgid ""
+":sphinx_autodoc_typehints_type:`\\:py\\:data\\:\\`\\~typing.Tuple\\`\\\\ "
+"\\\\\\[\\:py\\:class\\:\\`str\\`\\, "
+"\\:py\\:data\\:\\`...\\<Ellipsis\\>\\`\\]`"
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:51
+msgid "The master's edge keys, in discovery order, as an ordered tuple."
+msgstr ""
+
+#: of typsphinx.translator.render_include_edge_state:1
+msgid "Render a wrapper's ``state`` publication line for ``edge_keys``."
+msgstr ""
+
+#: of typsphinx.translator.render_include_edge_state:3
+msgid ""
+"The array-literal rendering rule (measured against a real "
+"``typst.compile()`` in ``49-EVIDENCE.md`` Probes 1-4): ``()`` for zero "
+"keys, and for one or more keys a parenthesized comma-separated list of "
+"double-quoted keys with an UNCONDITIONAL trailing comma after the LAST "
+"element. This uniform rule removes the ``len(keys) == 1`` special case "
+"RESEARCH Pitfall 1 warns is otherwise required: omitting the trailing "
+"comma on a SINGLE-element literal is not a syntax error at all -- Typst "
+"silently reparses ``(\"key\")`` as a parenthesized STRING expression "
+"instead of a one-element array (``49-EVIDENCE.md`` Probe 5), and the "
+"published state's Typst type degrades from ``array`` to ``str`` with ZERO"
+" compile-time diagnostic at any layer. Every guard's ``in`` membership "
+"test then silently degrades to substring containment against that one "
+"string. The uniform trailing-comma rule this function implements has no "
+"single-element special case, so this hazard cannot arise by construction."
+msgstr ""
+
+#: of typsphinx.translator.render_include_edge_state:20
+msgid ""
+"The master's own edge keys, in discovery order (the return value of "
+"``derive_master_edge_keys()``)."
+msgstr ""
+
+#: of typsphinx.translator.render_include_edge_state:24
+msgid ""
+"The complete publication line, e.g. ``'#state(\"typsphinx:include-"
+"edges\", ()).update((\"index#0>child\",))'``."
+msgstr ""
+
+#: of typsphinx.translator.render_include_guard:1
+msgid "Render one content file's per-emission-site compile-time guard line."
+msgstr ""
+
+#: of typsphinx.translator.render_include_guard:3
+msgid ""
+"The condition and its opening ``{`` MUST stay on ONE unbroken physical "
+"line -- ``49-EVIDENCE.md`` Probe 7 measured a newline inserted between "
+"them against a real ``typst.compile()`` and got the verbatim parser error"
+" ``expected block``; Probe 7's passing variant keeps them on one line, "
+"which is what this function's returned template does unconditionally."
+msgstr ""
+
+#: of typsphinx.translator.render_include_guard:10
+#, python-brace-format
+msgid ""
+"This site is always reached from CODE mode: content-file bodies are "
+"unconditionally wrapped in a top-level ``#{ ... }`` code block "
+"(``writer.py``'s ``translate()``), so no markup-mode ``#`` prefix "
+"computation is needed here, unlike the reference and citation sites Phase"
+" 48 touched. A future change that violates that invariant (moving this "
+"guard's emission site into markup-mode body text) should fail loudly "
+"rather than silently emit a bare ``if``/``state`` scope keyword with no "
+"leading ``#``."
+msgstr ""
+
+#: of typsphinx.translator.render_include_guard:20
+msgid ""
+"The edge key this guard tests membership of (already escaped -- "
+"``make_include_edge_key()`` routes both docnames through "
+"``escape_typst_string()`` before this function ever sees the key)."
+msgstr ""
+
+#: of typsphinx.translator.render_include_guard:25
+msgid ""
+"The relative path to the child's own content file, WITHOUT the ``.typ`` "
+"suffix (``_compute_relative_include_ path()``'s own return shape). Routed"
+" through ``escape_typst_string()`` here (T-49-01's guard-side half of the"
+" escaping rule) so a docname-derived path containing a quote or backslash"
+" still produces a valid literal."
+msgstr ""
+
+#: of typsphinx.translator.render_include_guard:33
+#, python-brace-format
+msgid ""
+"The complete guard line, e.g. ``'if \"index#0>child\" in "
+"state(\"typsphinx:include-edges\", ()).get() { include(\"child.typ\") "
+"}'``."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator:1
@@ -2095,8 +2413,21 @@ msgstr ""
 msgid "Visit a pending_xref node (Sphinx cross-reference)."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_pending_xref:3
+msgid ""
+"D-04 (Phase 48, ``48-RED-EVIDENCE.md``): Sphinx's ``ReferencesResolver`` "
+"post-transform (``default_priority=10``, supported for every builder) "
+"replaces every ``pending_xref`` node in the document unconditionally "
+"before the writer runs -- so no such node survives to this handler "
+"through the normal pipeline, for any resolution outcome (resolved, "
+"unresolved, or unknown role all fall back to ``node.replace_self(...)``)."
+" This handler is applied anyway, as defence in depth: a future Sphinx "
+"version or an unusual extension interaction is not ruled out by the four "
+"source shapes measured this session."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_pending_xref:4
-#: typsphinx.translator.TypstTranslator.visit_pending_xref:4
+#: typsphinx.translator.TypstTranslator.visit_pending_xref:15
 msgid "The pending_xref node"
 msgstr ""
 
@@ -2111,15 +2442,19 @@ msgstr ""
 #: of typsphinx.translator.TypstTranslator.visit_toctree:3
 msgid ""
 "Requirement 13: Multi-document integration and toctree processing - "
-"Generate #include() for each entry - D-07: apply `set heading(offset: "
-"heading.offset + 1)` -- a"
+"Generate a compile-time state guard for each include-file entry"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_toctree:5
+msgid "(Phase 49, COMP-05/COMP-06 -- see below)"
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_toctree:6
 msgid ""
-"context-relative increment, not an absolute assignment -- to lower "
-"heading levels. `set` is an absolute assignment on Typst's style chain, "
-"so a nested toctree scope would otherwise *replace* its parent's offset "
+"D-07: apply `set heading(offset: heading.offset + 1)` -- a context-"
+"relative increment, not an absolute assignment -- to lower heading "
+"levels. `set` is an absolute assignment on Typst's style chain, so a "
+"nested toctree scope would otherwise *replace* its parent's offset "
 "instead of adding to it, and nested toctrees would not compose. An "
 "included document's `.typ` is also a single shared file that different "
 "masters may include at different depths, so no single absolute value "
@@ -2127,41 +2462,60 @@ msgid ""
 "at layout time removes the need for one to exist."
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:15
+#: of typsphinx.translator.TypstTranslator.visit_toctree:16
 msgid ""
 "Issue #5: Fix relative paths for nested toctrees - Calculate relative "
 "paths from current document"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:17
+#: of typsphinx.translator.TypstTranslator.visit_toctree:18
 msgid ""
 "Issue #7: Simplify toctree output with single content block - Generate "
-"single #[...] block containing all includes - D-07: apply `heading.offset"
-" + 1` once per toctree, inside a"
+"single #[...] block containing all guards - D-07: apply `heading.offset +"
+" 1` once per toctree, inside a"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:20
+#: of typsphinx.translator.TypstTranslator.visit_toctree:21
 #, python-brace-format
 msgid ""
 "`context { ... }` block (required because `heading.offset` is a context-"
 "dependent style query)"
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_toctree:24
+msgid ""
+"Phase 49 (COMP-05/D-03): reads the toctree's INCLUDE-FILE list "
+"(`node[\"includefiles\"]`), never its entry list (`node[\"entries\"]`). "
+"Sphinx's own `parse_content` appends a `self`/external-URL entry only to "
+"`entries`, never to `includefiles` "
+"(`sphinx/directives/other.py:146-149`), so those entries produce no guard"
+" here at all -- closing the `TypstError: file not found (searched at "
+".../self.typ)` compile fatal as a structural consequence of reading the "
+"right list, not a separate patch."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.depart_toctree:4
-#: typsphinx.translator.TypstTranslator.visit_toctree:24
+#: typsphinx.translator.TypstTranslator.visit_toctree:35
 msgid "The toctree node"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:29
+#: of typsphinx.translator.TypstTranslator.visit_toctree:40
 msgid "Notes"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:30
+#: of typsphinx.translator.TypstTranslator.visit_toctree:41
 msgid ""
 "This method generates Typst #include() directives for each toctree entry "
 "within a single content block #[...] to apply heading offset without "
 "displaying the block delimiters in the output. This simplifies the "
 "generated Typst code and improves readability."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_toctree:46
+msgid ""
+"Phase 49: each `#include()` directive is now wrapped in its own one-line "
+"compile-time guard (`render_include_guard()`), still emitted within that "
+"same single content block, rather than as an unconditional call."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_toctree:1
@@ -4491,5 +4845,105 @@ msgstr ""
 #~ "``\"search\"`` (including the ``<srcdir>/base.typ``"
 #~ " shadow case), and ``False`` whenever "
 #~ "``typst_package`` is configured."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Deliberately stays docname-based and "
+#~ "does NOT follow the typst_documents "
+#~ "target-name rename that ``_resolve_output_stem``"
+#~ " applies to the on-disk filename "
+#~ "(Phase 22 / Issue #117). Its only"
+#~ " consumer is ``translator.py:_resolve_xref_docname``,"
+#~ " which uses this method as a "
+#~ "round-trip identity to recover a "
+#~ "cross-referenced document's DOCNAME from a"
+#~ " refuri that Sphinx itself computed "
+#~ "via ``Builder.get_relative_uri`` -- i.e. "
+#~ "``relative_uri(get_target_uri(from_), get_target_uri(to))``, "
+#~ "so both endpoints pass through this "
+#~ "same function. Every emitted Typst label"
+#~ " is namespaced by SOURCE DOCNAME via"
+#~ " ``translator.py:_namespace_label``, never by "
+#~ "output filename. Making this method "
+#~ "target-name-aware would desynchronize the"
+#~ " recovered docname from the label "
+#~ "namespace and break every cross-document"
+#~ " link into or out of a renamed"
+#~ " master with a Typst \"label ... "
+#~ "does not exist\" compile fatal. This "
+#~ "is a deliberate Phase 22 decision "
+#~ "-- do not \"fix\" it in sympathy"
+#~ " with the write-path rename."
+#~ msgstr ""
+
+#~ msgid "This method is called for each document that needs to be written."
+#~ msgstr ""
+
+#~ msgid "Requirement 13.1: 各 reStructuredText ファイルに対応する独立した .typ ファイルを生成する"
+#~ msgstr ""
+
+#~ msgid "Requirement 13.12: ソースディレクトリ構造を保持して出力する"
+#~ msgstr ""
+
+#~ msgid "Write a document as both .typ and .pdf."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Override to generate .typ file (not "
+#~ ".pdf) during the write phase. The "
+#~ ".pdf will be generated in finish() "
+#~ "by compiling the .typ file."
+#~ msgstr ""
+
+#~ msgid "Translate the document tree to Typst markup."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This method creates a TypstTranslator "
+#~ "and visits the document tree, then "
+#~ "wraps the output with a template "
+#~ "using TemplateEngine."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "For master documents (defined in "
+#~ "typst_documents), the full template is "
+#~ "applied. For included documents, only "
+#~ "the body content is output."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Requirement 13: Multi-document integration "
+#~ "and toctree processing - Generate "
+#~ "#include() for each entry - D-07: "
+#~ "apply `set heading(offset: heading.offset +"
+#~ " 1)` -- a"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "context-relative increment, not an "
+#~ "absolute assignment -- to lower heading"
+#~ " levels. `set` is an absolute "
+#~ "assignment on Typst's style chain, so"
+#~ " a nested toctree scope would "
+#~ "otherwise *replace* its parent's offset "
+#~ "instead of adding to it, and "
+#~ "nested toctrees would not compose. An"
+#~ " included document's `.typ` is also a"
+#~ " single shared file that different "
+#~ "masters may include at different depths,"
+#~ " so no single absolute value could"
+#~ " be correct at every include site;"
+#~ " a relative expression evaluated at "
+#~ "layout time removes the need for "
+#~ "one to exist."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Issue #7: Simplify toctree output with"
+#~ " single content block - Generate "
+#~ "single #[...] block containing all "
+#~ "includes - D-07: apply `heading.offset +"
+#~ " 1` once per toctree, inside a"
 #~ msgstr ""
 
