@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-15 03:10+0000\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -60,7 +60,6 @@ msgid "The default template provides a clean, professional layout:"
 msgstr ""
 
 #: ../../source/user_guide/templates.rst:28
-#: ../../source/user_guide/templates.rst:129
 msgid "Features:"
 msgstr ""
 
@@ -146,13 +145,19 @@ msgid ""
 msgstr ""
 
 #: ../../source/user_guide/templates.rst:84
-msgid "**Automatic Asset Copying (Default)**"
+msgid "**Automatic Bundle Copying**"
 msgstr ""
 
 #: ../../source/user_guide/templates.rst:86
 msgid ""
-"By default, all files in your template directory are automatically copied"
-" (except ``.typ`` files):"
+"Your template's whole bundle directory (the directory containing the "
+"resolved template file) is copied wholesale to the output directory -- no"
+" configuration needed. Each used registry key's bundle is copied into its"
+" own directory named after that key, so two different keys whose bundles "
+"each contain a file of the same name do not overwrite one another. The "
+"bundle is the template file's own parent directory, whatever that "
+"directory contains -- a template with no other files beside it copies "
+"just the template file itself:"
 msgstr ""
 
 #: ../../source/user_guide/templates.rst:94
@@ -163,66 +168,41 @@ msgstr ""
 msgid "Reference assets in your template using relative paths:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:115
-msgid "**Explicit Asset Specification**"
-msgstr ""
-
 #: ../../source/user_guide/templates.rst:117
-msgid "For more control, explicitly specify which assets to copy:"
-msgstr ""
-
-#: ../../source/user_guide/templates.rst:131
-msgid "Individual files: ``\"_templates/logo.png\"``"
-msgstr ""
-
-#: ../../source/user_guide/templates.rst:132
-msgid "Directories: ``\"_templates/fonts/\"``"
-msgstr ""
-
-#: ../../source/user_guide/templates.rst:133
-msgid "Glob patterns: ``\"_templates/icons/*.svg\"``"
-msgstr ""
-
-#: ../../source/user_guide/templates.rst:135
-msgid "**Disabling Automatic Copying**"
-msgstr ""
-
-#: ../../source/user_guide/templates.rst:137
-msgid "To disable automatic asset copying (for performance):"
-msgstr ""
-
-#: ../../source/user_guide/templates.rst:147
 msgid ""
-"Typst Universe packages (``typst_package``) handle assets automatically. "
-"Asset copying only applies to custom local templates "
-"(``typst_template``)."
+"Bundle copying applies to every used registry key with no exceptions -- "
+"including the built-in ``\"typst\"`` key, which is copied by the same "
+"rule as any custom key. A definition using a Typst Universe package "
+"(``typst_package``) instead has no local bundle to copy: the wrapper "
+"imports the package directly and Typst fetches its own assets, so there "
+"is nothing for typsphinx to copy."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:151
+#: ../../source/user_guide/templates.rst:125
 msgid "Basic Structure"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:153
-msgid "Create a file ``_templates/custom.typ``:"
+#: ../../source/user_guide/templates.rst:127
+msgid "Create a file ``_typst/custom.typ``:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:192
+#: ../../source/user_guide/templates.rst:166
 msgid "Configuration"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:194
+#: ../../source/user_guide/templates.rst:168
 msgid "Reference your custom template in ``conf.py``:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:201
+#: ../../source/user_guide/templates.rst:175
 msgid "Template Parameters"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:204
+#: ../../source/user_guide/templates.rst:178
 msgid "Standard Parameters"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:206
+#: ../../source/user_guide/templates.rst:180
 msgid ""
 "When ``typst_template_function[\"params\"]`` is **not** declared (see "
 "`Custom Parameters`_ below for what changes once it is), your template "
@@ -230,15 +210,15 @@ msgid ""
 "``body``, each under its own emission condition:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:211
+#: ../../source/user_guide/templates.rst:185
 msgid ""
 "``title`` -- the document title (from ``typst_documents``, or Sphinx's "
 "``project``). Arrives unconditionally on every non-package route -- the "
 "bundled default, an explicit ``typst_template``, and a "
-"``<srcdir>/base.typ`` shadow alike."
+"``<srcdir>/_typst/base.typ`` shadow alike."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:214
+#: ../../source/user_guide/templates.rst:188
 msgid ""
 "``authors`` -- always a Typst **array**, never a bare string. A string "
 "source (Sphinx's ``author``, or the entry's own author element) is split "
@@ -247,21 +227,21 @@ msgid ""
 "unconditionally, on the same routes as ``title``."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:218
+#: ../../source/user_guide/templates.rst:192
 msgid ""
 "``date`` -- the document date (Sphinx's ``release``). Arrives "
 "unconditionally, on the same routes as ``title``."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:220
+#: ../../source/user_guide/templates.rst:194
 msgid "``papersize`` -- only when ``papersize`` is set in ``typst_elements``."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:221
+#: ../../source/user_guide/templates.rst:195
 msgid "``fontsize`` -- only when ``fontsize`` is set in ``typst_elements``."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:222
+#: ../../source/user_guide/templates.rst:196
 msgid ""
 "``lang`` -- on every non-package route, auto-derived from Sphinx's own "
 "``language`` setting; an explicit ``typst_elements[\"lang\"]`` value "
@@ -269,14 +249,14 @@ msgid ""
 "derivation rule (Document Language section)."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:226
+#: ../../source/user_guide/templates.rst:200
 msgid ""
 "``toctree_maxdepth``, ``toctree_numbered``, ``toctree_caption`` -- only "
 "when the master document's own toctree is present. A master with no "
 "toctree receives none of these three."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:230
+#: ../../source/user_guide/templates.rst:204
 msgid ""
 "A master document with **no toctree and no** ``typst_elements`` therefore"
 " receives only the unconditional subset: ``title``, ``authors``, "
@@ -290,7 +270,7 @@ msgid ""
 "always receive."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:241
+#: ../../source/user_guide/templates.rst:215
 msgid ""
 "Adding a template parameter is a **breaking change** for a correctly-"
 "written custom template. Typst rejects a named argument a function never "
@@ -300,7 +280,7 @@ msgid ""
 "routine one."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:247
+#: ../../source/user_guide/templates.rst:221
 msgid ""
 "On the ``typst_package`` route with no ``params`` declared, the picture "
 "is different again: ``title``/``authors``/``date`` are **not** back-"
@@ -309,19 +289,19 @@ msgid ""
 "`Configuration-Based Templates`_ above."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:253
+#: ../../source/user_guide/templates.rst:227
 msgid "Custom Parameters"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:255
+#: ../../source/user_guide/templates.rst:229
 msgid "Add custom parameters using ``typst_template_function``:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:268
+#: ../../source/user_guide/templates.rst:242
 msgid "Access in template:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:286
+#: ../../source/user_guide/templates.rst:260
 msgid ""
 "Once ``params`` is declared -- even naming a single key -- it is the "
 "**complete** parameter set: none of ``title``/``authors``/``date``, "
@@ -334,39 +314,39 @@ msgid ""
 " full exclusivity rule."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:295
+#: ../../source/user_guide/templates.rst:269
 msgid "Wrapping External Packages"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:297
+#: ../../source/user_guide/templates.rst:271
 msgid "You can wrap Typst Universe packages in custom templates:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:331
+#: ../../source/user_guide/templates.rst:305
 msgid "This approach gives you:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:333
+#: ../../source/user_guide/templates.rst:307
 msgid "Parameter transformation"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:334
+#: ../../source/user_guide/templates.rst:308
 msgid "Custom preprocessing"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:335
+#: ../../source/user_guide/templates.rst:309
 msgid "Multiple package integration"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:338
+#: ../../source/user_guide/templates.rst:312
 msgid "Examples"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:341
+#: ../../source/user_guide/templates.rst:315
 msgid "Minimal Template"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:343
+#: ../../source/user_guide/templates.rst:317
 msgid ""
 "This template declares only ``title`` -- one parameter short of the "
 "unconditional subset -- so it needs a ``params`` dict naming exactly that"
@@ -375,68 +355,68 @@ msgid ""
 "as undeclared arguments and abort the compile."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:372
+#: ../../source/user_guide/templates.rst:346
 msgid "Academic Paper Template"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:374
+#: ../../source/user_guide/templates.rst:348
 msgid ""
 "This template declares four parameters -- ``title``, ``authors``, "
 "``abstract`` and ``keywords`` -- none of which is the auto-derived "
 "default set on its own, so it needs a ``params`` dict naming all four."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:438
+#: ../../source/user_guide/templates.rst:412
 msgid "Best Practices"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:440
+#: ../../source/user_guide/templates.rst:414
 msgid ""
 "**Start simple**: Use the default template or configuration-based "
 "approach first"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:441
+#: ../../source/user_guide/templates.rst:415
 msgid "**Reuse packages**: Leverage Typst Universe packages when possible"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:442
+#: ../../source/user_guide/templates.rst:416
 msgid "**Test incrementally**: Build frequently to catch errors early"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:443
+#: ../../source/user_guide/templates.rst:417
 msgid "**Document parameters**: Comment your template parameters clearly"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:444
+#: ../../source/user_guide/templates.rst:418
 msgid "**Keep it maintainable**: Don't over-complicate templates"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:447
+#: ../../source/user_guide/templates.rst:421
 msgid "Debugging Templates"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:449
+#: ../../source/user_guide/templates.rst:423
 msgid "If you encounter errors:"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:451
+#: ../../source/user_guide/templates.rst:425
 msgid "**Check syntax**: Typst errors are reported in build output"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:452
+#: ../../source/user_guide/templates.rst:426
 msgid "**Test standalone**: Compile your template with test data"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:453
+#: ../../source/user_guide/templates.rst:427
 msgid "**Use typst builder**: Generate ``.typ`` files to inspect output"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:454
+#: ../../source/user_guide/templates.rst:428
 msgid "**Simplify**: Remove customizations until it works"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:465
+#: ../../source/user_guide/templates.rst:439
 msgid ""
 "The docname-named content file (``index.typ`` in this example) holds the "
 "body only and carries no template application at all, so a template "
@@ -444,27 +424,27 @@ msgid ""
 "the full wrapper/content contract."
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:471
+#: ../../source/user_guide/templates.rst:445
 msgid "See Also"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:473
+#: ../../source/user_guide/templates.rst:447
 msgid ":doc:`output_layout` - The wrapper/content output contract"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:474
+#: ../../source/user_guide/templates.rst:448
 msgid ":doc:`configuration` - Template configuration options"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:475
+#: ../../source/user_guide/templates.rst:449
 msgid ":doc:`/examples/advanced` - Advanced template examples"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:476
+#: ../../source/user_guide/templates.rst:450
 msgid "`Typst Documentation <https://typst.app/docs>`_ - Official Typst docs"
 msgstr ""
 
-#: ../../source/user_guide/templates.rst:477
+#: ../../source/user_guide/templates.rst:451
 msgid "`Typst Universe <https://typst.app/universe>`_ - Template packages"
 msgstr ""
 
@@ -481,5 +461,54 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "``body``: The main document content"
+#~ msgstr ""
+
+#~ msgid "**Automatic Asset Copying (Default)**"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "By default, all files in your "
+#~ "template directory are automatically copied"
+#~ " (except ``.typ`` files):"
+#~ msgstr ""
+
+#~ msgid "**Explicit Asset Specification**"
+#~ msgstr ""
+
+#~ msgid "For more control, explicitly specify which assets to copy:"
+#~ msgstr ""
+
+#~ msgid "Individual files: ``\"_templates/logo.png\"``"
+#~ msgstr ""
+
+#~ msgid "Directories: ``\"_templates/fonts/\"``"
+#~ msgstr ""
+
+#~ msgid "Glob patterns: ``\"_templates/icons/*.svg\"``"
+#~ msgstr ""
+
+#~ msgid "**Disabling Automatic Copying**"
+#~ msgstr ""
+
+#~ msgid "To disable automatic asset copying (for performance):"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Typst Universe packages (``typst_package``) "
+#~ "handle assets automatically. Asset copying "
+#~ "only applies to custom local templates"
+#~ " (``typst_template``)."
+#~ msgstr ""
+
+#~ msgid "Create a file ``_templates/custom.typ``:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``title`` -- the document title (from"
+#~ " ``typst_documents``, or Sphinx's ``project``)."
+#~ " Arrives unconditionally on every non-"
+#~ "package route -- the bundled default,"
+#~ " an explicit ``typst_template``, and a "
+#~ "``<srcdir>/base.typ`` shadow alike."
 #~ msgstr ""
 

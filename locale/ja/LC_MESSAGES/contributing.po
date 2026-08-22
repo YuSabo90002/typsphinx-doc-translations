@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-26 08:21+0000\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -40,7 +40,7 @@ msgid "Prerequisites"
 msgstr ""
 
 #: ../../source/contributing.rst:14
-msgid "Python 3.9 or later"
+msgid "Python 3.12 or later"
 msgstr ""
 
 #: ../../source/contributing.rst:15
@@ -443,4 +443,7 @@ msgstr ""
 #: ../../source/contributing.rst:346
 msgid "Thank you for contributing to typsphinx!"
 msgstr ""
+
+#~ msgid "Python 3.9 or later"
+#~ msgstr ""
 

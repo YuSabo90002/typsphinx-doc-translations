@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-15 03:10+0000\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -63,10 +63,254 @@ msgid "Additional Typst Universe template integration"
 msgstr ""
 
 #: ../../../CHANGELOG.md:17
-msgid "[0.8.0] - 2026-08-15"
+msgid "[0.9.0] - 2026-08-17"
 msgstr ""
 
 #: ../../../CHANGELOG.md:19
+msgid ""
+"This release lets every `typst_documents` entry choose its own template, "
+"Typst Universe package, and template-function arguments through the "
+"validated `typst_document_templates` registry, instead of one globally-"
+"configured template being applied to every master document. **This minor "
+"release breaks two independent things** — read the `### Changed` and `###"
+" Removed` sections below, and see the \"Migrating from 0.8.x to 0.9.0\" "
+"guide in the published documentation for the exact rewrite each breaking "
+"change needs. What does **not** break: the registry itself is additive — "
+"a `conf.py` that declares no `typst_document_templates` and no fifth "
+"`typst_documents` element keeps producing the same PDF, because the "
+"built-in `\"typst\"` key resolves to exactly the same global "
+"configuration (`typst_template` / `typst_package` / "
+"`typst_template_function` / `typst_template_mapping`) it always did."
+msgstr ""
+
+#: ../../../CHANGELOG.md:30 ../../../CHANGELOG.md:153 ../../../CHANGELOG.md:228
+#: ../../../CHANGELOG.md:305 ../../../CHANGELOG.md:386
+#: ../../../CHANGELOG.md:440 ../../../CHANGELOG.md:576
+#: ../../../CHANGELOG.md:633 ../../../CHANGELOG.md:683
+#: ../../../CHANGELOG.md:700 ../../../CHANGELOG.md:720
+#: ../../../CHANGELOG.md:830 ../../../CHANGELOG.md:914
+#: ../../../CHANGELOG.md:976
+msgid "Added"
+msgstr ""
+
+#: ../../../CHANGELOG.md:32
+msgid ""
+"**A `conf.py` can now declare per-document templates through the "
+"`typst_document_templates` registry (TPL-01, TPL-02, TPL-03, TPL-04, "
+"TPL-05, CONF-14, CONF-15, CONF-16, CONF-17, CONF-18).** Each entry "
+"carries `template` (a local `.typ` path) **xor** `package` (a Typst "
+"Universe spec), plus an optional `template_function`; a `typst_documents`"
+" entry's fifth element now names the registry key to use, several entries"
+" can share one key, and a four-element entry behaves identically to one "
+"whose fifth element is `\"typst\"`. The built-in `\"typst\"` key is "
+"resolved by the same rule as any declared key rather than being special-"
+"cased: it falls back to today's global `typst_template` / `typst_package`"
+" / `typst_template_function` / `typst_template_mapping` configuration, or"
+" the bundled default template when none of those is set — so a `conf.py` "
+"that declares no registry keeps working unchanged."
+msgstr ""
+
+#: ../../../CHANGELOG.md:43 ../../../CHANGELOG.md:170 ../../../CHANGELOG.md:239
+#: ../../../CHANGELOG.md:314 ../../../CHANGELOG.md:397
+#: ../../../CHANGELOG.md:449 ../../../CHANGELOG.md:584
+#: ../../../CHANGELOG.md:665 ../../../CHANGELOG.md:692
+#: ../../../CHANGELOG.md:713 ../../../CHANGELOG.md:786
+msgid "Changed"
+msgstr ""
+
+#: ../../../CHANGELOG.md:45
+msgid ""
+"**Breaking: the `<srcdir>/base.typ` shadow-template route moved to "
+"`<srcdir>/_typst/base.typ` (OUT-04).** The reason, in one clause: the "
+"resolved template's parent directory is now copied wholesale to the "
+"output as that registry key's bundle, so it must be a real bundle "
+"directory and not the whole source tree. If your project still has a "
+"`<srcdir>/base.typ`, move it to `<srcdir>/_typst/base.typ`. If you do "
+"nothing, the build silently typesets with the bundled default template "
+"instead of your file — there is **no build-time warning** for this "
+"relocation, so this changelog entry is the only place it is announced."
+msgstr ""
+
+#: ../../../CHANGELOG.md:54
+msgid ""
+"**Breaking: template layout is now validated before anything is written "
+"(WR-01, CR-01).** The reason, in one clause: the resolved template's "
+"parent directory is copied wholesale to the output as that registry key's"
+" bundle, so a template inside a directory Sphinx already treats as its "
+"own would republish that directory into public build output. Three "
+"configurations now stop the build: (a) a used registry key whose resolved"
+" template bundle directory is, contains, or is contained by any entry of "
+"Sphinx's `templates_path`; (b) a resolved template whose parent directory"
+" is the source directory itself or an ancestor of it — now caught before "
+"any file is written rather than at the end of the build; (c) a declared "
+"registry key differing from the built-in key only by case. Move the Typst"
+" template into a directory that is not on `templates_path` — this project"
+" uses `_typst/` — and update `typst_template` / "
+"`typst_document_templates` to match; Sphinx's own `templates_path` "
+"directory keeps its own meaning and can stay in place, which is what this"
+" repository's own documentation build does. If you do nothing, the build "
+"fails with a message naming the offending registry key, its resolved "
+"bundle directory, and the colliding entry — this is a hard failure by "
+"design: the rejected alternative, warning and skipping that key's bundle "
+"copy, leaves the wrapper importing a template file that was never "
+"written, so the emitted `.typ` tree cannot compile while the build "
+"reports success."
+msgstr ""
+
+#: ../../../CHANGELOG.md:72
+msgid ""
+"**Breaking: every used template's bundle is now copied to its own "
+"directory under the output tree, and an explicit asset list no longer "
+"decides what reaches it (OUT-04, OUT-05, OUT-06, OUT-07, BLD-05, "
+"BLD-06).** v0.8.x wrote one shared template file, `_template.typ`, at the"
+" output root; v0.9.0 copies each used registry key's whole template "
+"bundle — the resolved template's parent directory — wholesale to "
+"`<outdir>/_template/<key>/<file>`, with the built-in `\"typst\"` key "
+"copied by the identical rule. If your template references an asset by a "
+"relative path (an `#image(\"logo.png\")`, a partial `#import`), that "
+"asset must now live inside the template's own bundle directory — anywhere"
+" else, it will not reach the output."
+msgstr ""
+
+#: ../../../CHANGELOG.md:81 ../../../CHANGELOG.md:194 ../../../CHANGELOG.md:260
+#: ../../../CHANGELOG.md:336 ../../../CHANGELOG.md:361
+#: ../../../CHANGELOG.md:417 ../../../CHANGELOG.md:466
+#: ../../../CHANGELOG.md:517 ../../../CHANGELOG.md:590
+#: ../../../CHANGELOG.md:618 ../../../CHANGELOG.md:675
+#: ../../../CHANGELOG.md:707 ../../../CHANGELOG.md:733
+#: ../../../CHANGELOG.md:745 ../../../CHANGELOG.md:764
+#: ../../../CHANGELOG.md:774 ../../../CHANGELOG.md:931
+#: ../../../CHANGELOG.md:959 ../../../CHANGELOG.md:1149
+msgid "Fixed"
+msgstr ""
+
+#: ../../../CHANGELOG.md:83
+msgid ""
+"**A cross-reference to an absent target no longer links to a same-spelled"
+" decoy (XREF-05).** Two docnames that sanitized to the same Typst label "
+"used to let a reference whose real target document was absent from the "
+"compiling master resolve to the other, wrong document instead of "
+"degrading to plain text as an absent target always should. Note in "
+"passing: the fix makes label sanitization injective by re-escaping a "
+"literal occurrence of the sanitizer's own `_u<hex>_` escape token, so the"
+" emitted label name changes for an identifier that literally spells that "
+"token — the only such name in this repository is one test fixture's "
+"docname. PDF appearance is otherwise unchanged; only the label name in "
+"the emitted `.typ` output and the corresponding link destination name in "
+"the PDF move. Not a breaking change."
+msgstr ""
+
+#: ../../../CHANGELOG.md:93
+msgid ""
+"**A document name containing `#` or `>` can no longer collide two "
+"include-edge keys (BLD-07).** Two structurally different include edges "
+"whose docnames contained one of those characters could previously derive "
+"the identical key, letting a state guard that should have stayed dark "
+"fire and duplicate or substitute a document's content in the compiled "
+"output. Document names without either character produce byte-identical "
+"keys, so nothing changes for an ordinary project."
+msgstr ""
+
+#: ../../../CHANGELOG.md:99
+msgid ""
+"**An include chain deeper than this project's own bound now stops the "
+"build with a named error instead of a raw Python traceback (BLD-08).** An"
+" include chain deeper than the module's bound (500 — two orders of "
+"magnitude beyond any real documentation tree) now raises a "
+"`sphinx.errors.ExtensionError` naming the depth reached and the offending"
+" chain, instead of escaping as an uncaught interpreter `RecursionError`."
+msgstr ""
+
+#: ../../../CHANGELOG.md:105
+msgid ""
+"**A driveless-absolute Windows image URI is classified like its sibling "
+"(BLD-09).** An absolute image URI written by a third-party extension in "
+"the driveless Windows shape (or the UNC shape) now reaches the relocate-"
+"and-warn path on Python 3.13, where it was previously left untouched — "
+"which mattered because an untouched rooted URI reached the image copy "
+"step, whose platform-native destination join discards the output "
+"directory for a rooted path."
+msgstr ""
+
+#: ../../../CHANGELOG.md:111
+msgid ""
+"**Two escaping images sharing a basename no longer collapse onto one file"
+" (IMG-03).** Two absolute image URIs in different directories that share "
+"a filename and both fall outside the doctree directory used to collide "
+"onto one relocated file, so one image silently replaced the other. The "
+"user-visible consequence: the relocated file's emitted name now carries a"
+" short digest prefix ahead of the original filename, so the two images "
+"keep separate files."
+msgstr ""
+
+#: ../../../CHANGELOG.md:117
+msgid ""
+"**On Windows, the template-path refusal messages introduced above no "
+"longer double every backslash in a reported path.** The "
+"`typst_document_templates` collision refusals — a template bundle "
+"colliding with Sphinx's own `templates_path`, a template resolving to an "
+"ancestor of the source directory, or two registry keys resolving to the "
+"same bundle destination — used to quote the offending path with Python's "
+"`repr()`, which escapes each backslash; on Windows the message a user "
+"read carried two literal backslashes where the platform's own single "
+"separator belongs. The path is now quoted without escaping, so the "
+"reported path matches what actually appears on disk."
+msgstr ""
+
+#: ../../../CHANGELOG.md:126 ../../../CHANGELOG.md:281
+#: ../../../CHANGELOG.md:404 ../../../CHANGELOG.md:459
+#: ../../../CHANGELOG.md:508
+msgid "Removed"
+msgstr ""
+
+#: ../../../CHANGELOG.md:128
+msgid ""
+"**Breaking:** the `typst_template_assets` config value is removed "
+"(CONF-19) — every used template's bundle directory is now copied "
+"wholesale to the output, so an explicit asset list is no longer needed to"
+" select what reaches it; see the `### Changed` bundle-relocation entry "
+"above for what replaces it. Delete `typst_template_assets` from your "
+"`conf.py`; if you leave it set, a `config-inited` warning names the value"
+" and explains the wholesale copy, rather than the list being silently "
+"ignored — unlike v0.7.1's `typst_authors` removal, this one ships with a "
+"warning shim."
+msgstr ""
+
+#: ../../../CHANGELOG.md:136 ../../../CHANGELOG.md:209
+#: ../../../CHANGELOG.md:289 ../../../CHANGELOG.md:346
+#: ../../../CHANGELOG.md:369 ../../../CHANGELOG.md:423
+#: ../../../CHANGELOG.md:489 ../../../CHANGELOG.md:559
+#: ../../../CHANGELOG.md:599
+msgid "Verified"
+msgstr ""
+
+#: ../../../CHANGELOG.md:138 ../../../CHANGELOG.md:211
+#: ../../../CHANGELOG.md:291
+msgid "No new **runtime** dependencies across the full milestone diff."
+msgstr ""
+
+#: ../../../CHANGELOG.md:139 ../../../CHANGELOG.md:212
+#: ../../../CHANGELOG.md:292 ../../../CHANGELOG.md:349
+#: ../../../CHANGELOG.md:372
+msgid ""
+"The four bundled `@preview` package version strings unchanged across all "
+"four sync surfaces (`writer.py` / `template_engine.py` / "
+"`templates/base.typ` / `examples/**/*.typ`)."
+msgstr ""
+
+#: ../../../CHANGELOG.md:141 ../../../CHANGELOG.md:214
+#: ../../../CHANGELOG.md:294 ../../../CHANGELOG.md:351
+#: ../../../CHANGELOG.md:374
+msgid ""
+"The full-corpus (Sphinx v9.1.0 `doc/`) `-b typstpdf` re-run remains "
+"fatal-free."
+msgstr ""
+
+#: ../../../CHANGELOG.md:143
+msgid "[0.8.0] - 2026-08-15"
+msgstr ""
+
+#: ../../../CHANGELOG.md:145
 msgid ""
 "This release makes multi-master composition work: a `typst_documents` "
 "configuration declaring more than one master now produces a complete PDF "
@@ -80,16 +324,7 @@ msgid ""
 "needs."
 msgstr ""
 
-#: ../../../CHANGELOG.md:27 ../../../CHANGELOG.md:102 ../../../CHANGELOG.md:179
-#: ../../../CHANGELOG.md:260 ../../../CHANGELOG.md:314
-#: ../../../CHANGELOG.md:450 ../../../CHANGELOG.md:507
-#: ../../../CHANGELOG.md:557 ../../../CHANGELOG.md:574
-#: ../../../CHANGELOG.md:594 ../../../CHANGELOG.md:704
-#: ../../../CHANGELOG.md:788 ../../../CHANGELOG.md:850
-msgid "Added"
-msgstr ""
-
-#: ../../../CHANGELOG.md:29
+#: ../../../CHANGELOG.md:155
 msgid ""
 "**Multi-master composition — every master now gets its own complete PDF "
 "(COMP-05, COMP-06, COMP-07, COMP-09, COMP-10, COMP-12)** — the builder "
@@ -101,7 +336,7 @@ msgid ""
 "content file now resolve correctly instead of one silently winning."
 msgstr ""
 
-#: ../../../CHANGELOG.md:36
+#: ../../../CHANGELOG.md:162
 msgid ""
 "**Compile-time cross-reference degradation (XREF-03, XREF-04)** — a "
 "reference whose target label is absent from the compiling master now "
@@ -110,7 +345,7 @@ msgid ""
 "supply sides cannot diverge."
 msgstr ""
 
-#: ../../../CHANGELOG.md:40
+#: ../../../CHANGELOG.md:166
 msgid ""
 "**The published documentation now describes the two-layer output "
 "(DOC-14)** — which file to compile, what a standalone content-file "
@@ -118,15 +353,7 @@ msgid ""
 "output-layout page."
 msgstr ""
 
-#: ../../../CHANGELOG.md:44 ../../../CHANGELOG.md:113 ../../../CHANGELOG.md:188
-#: ../../../CHANGELOG.md:271 ../../../CHANGELOG.md:323
-#: ../../../CHANGELOG.md:458 ../../../CHANGELOG.md:539
-#: ../../../CHANGELOG.md:566 ../../../CHANGELOG.md:587
-#: ../../../CHANGELOG.md:660
-msgid "Changed"
-msgstr ""
-
-#: ../../../CHANGELOG.md:46
+#: ../../../CHANGELOG.md:172
 msgid ""
 "**Breaking:** the output shape — one `typst_documents` entry now writes "
 "TWO files instead of one (COMP-01, COMP-02, COMP-11, OUT-03). With "
@@ -142,7 +369,7 @@ msgid ""
 "error or warning."
 msgstr ""
 
-#: ../../../CHANGELOG.md:56
+#: ../../../CHANGELOG.md:182
 msgid ""
 "**Breaking:** the target-as-path reversal (OUT-01, OUT-02) — a target "
 "containing a path separator was rejected in v0.7.x and written under its "
@@ -153,7 +380,7 @@ msgid ""
 " safe basename fallback."
 msgstr ""
 
-#: ../../../CHANGELOG.md:62
+#: ../../../CHANGELOG.md:188
 msgid ""
 "**Breaking:** the collision hard error (BLD-02, BLD-03, BLD-04) — a "
 "configuration whose wrapper target resolves onto a content file's own "
@@ -164,19 +391,7 @@ msgid ""
 "insensitive filesystems."
 msgstr ""
 
-#: ../../../CHANGELOG.md:68 ../../../CHANGELOG.md:134 ../../../CHANGELOG.md:210
-#: ../../../CHANGELOG.md:235 ../../../CHANGELOG.md:291
-#: ../../../CHANGELOG.md:340 ../../../CHANGELOG.md:391
-#: ../../../CHANGELOG.md:464 ../../../CHANGELOG.md:492
-#: ../../../CHANGELOG.md:549 ../../../CHANGELOG.md:581
-#: ../../../CHANGELOG.md:607 ../../../CHANGELOG.md:619
-#: ../../../CHANGELOG.md:638 ../../../CHANGELOG.md:648
-#: ../../../CHANGELOG.md:805 ../../../CHANGELOG.md:833
-#: ../../../CHANGELOG.md:1023
-msgid "Fixed"
-msgstr ""
-
-#: ../../../CHANGELOG.md:70
+#: ../../../CHANGELOG.md:196
 msgid ""
 "**A master that is also another master's toctree child now builds, and an"
 " included master no longer re-expands its template (COMP-03, COMP-04)** —"
@@ -186,14 +401,14 @@ msgid ""
 "into the middle of the parent's body."
 msgstr ""
 
-#: ../../../CHANGELOG.md:75
+#: ../../../CHANGELOG.md:201
 msgid ""
 "**Prose around a toctree keeps its position (COMP-08)** — prose written "
 "before and after a `.. toctree::` now keeps its position relative to the "
 "included content instead of being reordered."
 msgstr ""
 
-#: ../../../CHANGELOG.md:78
+#: ../../../CHANGELOG.md:204
 msgid ""
 "**Two image-path defects fixed (IMG-01, IMG-02)** — a converted image "
 "rehomed to `images/<basename>` no longer collides with a real source "
@@ -202,37 +417,11 @@ msgid ""
 "directory."
 msgstr ""
 
-#: ../../../CHANGELOG.md:83 ../../../CHANGELOG.md:163 ../../../CHANGELOG.md:220
-#: ../../../CHANGELOG.md:243 ../../../CHANGELOG.md:297
-#: ../../../CHANGELOG.md:363 ../../../CHANGELOG.md:433
-#: ../../../CHANGELOG.md:473
-msgid "Verified"
-msgstr ""
-
-#: ../../../CHANGELOG.md:85 ../../../CHANGELOG.md:165
-msgid "No new **runtime** dependencies across the full milestone diff."
-msgstr ""
-
-#: ../../../CHANGELOG.md:86 ../../../CHANGELOG.md:166 ../../../CHANGELOG.md:223
-#: ../../../CHANGELOG.md:246
-msgid ""
-"The four bundled `@preview` package version strings unchanged across all "
-"four sync surfaces (`writer.py` / `template_engine.py` / "
-"`templates/base.typ` / `examples/**/*.typ`)."
-msgstr ""
-
-#: ../../../CHANGELOG.md:88 ../../../CHANGELOG.md:168 ../../../CHANGELOG.md:225
-#: ../../../CHANGELOG.md:248
-msgid ""
-"The full-corpus (Sphinx v9.1.0 `doc/`) `-b typstpdf` re-run remains "
-"fatal-free."
-msgstr ""
-
-#: ../../../CHANGELOG.md:90
+#: ../../../CHANGELOG.md:216
 msgid "[0.7.1] - 2026-08-11"
 msgstr ""
 
-#: ../../../CHANGELOG.md:92
+#: ../../../CHANGELOG.md:218
 msgid ""
 "This release closes the gap between what typsphinx's documentation "
 "promises and what a `conf.py` actually gets: `typst_documents` now "
@@ -248,7 +437,7 @@ msgid ""
 "rewrite each breaking change needs."
 msgstr ""
 
-#: ../../../CHANGELOG.md:104
+#: ../../../CHANGELOG.md:230
 msgid ""
 "**`typst_documents` now has a default, so following the Quick Start "
 "produces a PDF (CONF-08, DOC-11)** — with `typst_documents` unset, "
@@ -263,7 +452,7 @@ msgid ""
 " old file from your own Typst source, update the include path."
 msgstr ""
 
-#: ../../../CHANGELOG.md:115
+#: ../../../CHANGELOG.md:241
 msgid ""
 "**An explicit `typst_documents` entry's title and author now reach the "
 "rendered PDF (CONF-09)** — the `[2]` title and `[3]` author elements of "
@@ -273,7 +462,7 @@ msgid ""
 "`project`/`author` will see its rendered title and author change."
 msgstr ""
 
-#: ../../../CHANGELOG.md:120
+#: ../../../CHANGELOG.md:246
 msgid ""
 "**Breaking:** a declared `typst_template_function` `params` dict is now "
 "the complete parameter set (CONF-11) — when `typst_template_function` is "
@@ -285,7 +474,7 @@ msgid ""
 " title, no author) instead of the previous merged result."
 msgstr ""
 
-#: ../../../CHANGELOG.md:126
+#: ../../../CHANGELOG.md:252
 msgid ""
 "**Breaking:** the auto-derived `lang` now reaches every non-package "
 "template route, and the published parameter contract matches what "
@@ -298,7 +487,7 @@ msgid ""
 "actually passes."
 msgstr ""
 
-#: ../../../CHANGELOG.md:136
+#: ../../../CHANGELOG.md:262
 msgid ""
 "**Nested tables and figures no longer corrupt the enclosing structure, "
 "and an empty-titled caption still anchors its ids (TBL-04, TBL-05, "
@@ -313,7 +502,7 @@ msgid ""
 "and nested toctrees compose."
 msgstr ""
 
-#: ../../../CHANGELOG.md:144
+#: ../../../CHANGELOG.md:270
 msgid ""
 "**Absolute image URIs from Sphinx's image converter or downloader no "
 "longer abort the Typst compile (Issue #130, PR #131, @christianwehe)** — "
@@ -324,7 +513,7 @@ msgid ""
 "found\"; both cases now copy and resolve correctly."
 msgstr ""
 
-#: ../../../CHANGELOG.md:149
+#: ../../../CHANGELOG.md:275
 msgid ""
 "**A malformed docname fails with an actionable typsphinx error, and the "
 "published changelog page is current (BLD-01, DOC-12)** — a non-`str` "
@@ -334,12 +523,7 @@ msgid ""
 "0.4.0 for two years, now carries every release through this one."
 msgstr ""
 
-#: ../../../CHANGELOG.md:155 ../../../CHANGELOG.md:278
-#: ../../../CHANGELOG.md:333 ../../../CHANGELOG.md:382
-msgid "Removed"
-msgstr ""
-
-#: ../../../CHANGELOG.md:157
+#: ../../../CHANGELOG.md:283
 msgid ""
 "**Breaking:** the `typst_authors` config value is removed (CONF-10) — "
 "0.7.0's documentation announced its removal in a future major release; "
@@ -350,11 +534,11 @@ msgid ""
 "rewrite; there is no deprecation shim."
 msgstr ""
 
-#: ../../../CHANGELOG.md:170
+#: ../../../CHANGELOG.md:296
 msgid "[0.7.0] - 2026-08-04"
 msgstr ""
 
-#: ../../../CHANGELOG.md:172
+#: ../../../CHANGELOG.md:298
 msgid ""
 "API reference pages become readable in this release: autodoc/API output "
 "moves from a flat wall of proportional bold text to something that reads "
@@ -366,7 +550,7 @@ msgid ""
 "citation no longer fails the Typst compile outright."
 msgstr ""
 
-#: ../../../CHANGELOG.md:181
+#: ../../../CHANGELOG.md:307
 msgid ""
 "**Citations — full round trip (CIT-01, CIT-02, CIT-03, CIT-04, CIT-05, "
 "CIT-06)** — `.. [Label]` definitions render as labelled hanging-indent "
@@ -377,7 +561,7 @@ msgid ""
 "removed from `examples/charged-ieee/` in Phase 22.2 is restored."
 msgstr ""
 
-#: ../../../CHANGELOG.md:190
+#: ../../../CHANGELOG.md:316
 msgid ""
 "**Signatures render as real typography (SIG-01, SIG-02, SIG-03, SIG-04, "
 "SIG-05, SIG-06, SIG-07, SIG-08, SIG-09)** — object names, module/class "
@@ -390,7 +574,7 @@ msgid ""
 "break."
 msgstr ""
 
-#: ../../../CHANGELOG.md:196
+#: ../../../CHANGELOG.md:322
 msgid ""
 "**Description bodies and field lists indent by nesting depth (IND-01, "
 "IND-02, IND-03, IND-04, IND-05, FLD-01, FLD-02, FLD-03)** — a description"
@@ -403,7 +587,7 @@ msgid ""
 "monospace treatment distinct from the plain-bold field label."
 msgstr ""
 
-#: ../../../CHANGELOG.md:203
+#: ../../../CHANGELOG.md:329
 msgid ""
 "**Admonition taxonomy re-bucketed and rubric now indents with its body "
 "(ADM-01, ADM-02, ADM-03, ADM-04, ADM-05, ADM-06)** — `seealso` joins the "
@@ -414,7 +598,7 @@ msgid ""
 "indents with that body instead of sitting flush against the page margin."
 msgstr ""
 
-#: ../../../CHANGELOG.md:212
+#: ../../../CHANGELOG.md:338
 msgid ""
 "**Block math inside a list item no longer emits a redundant blank line "
 "(MATH-02)** — the extra blank line between the math expression and the "
@@ -422,7 +606,7 @@ msgid ""
 "is gone."
 msgstr ""
 
-#: ../../../CHANGELOG.md:215
+#: ../../../CHANGELOG.md:341
 msgid ""
 "**A captioned table immediately preceded by a standalone target no longer"
 " drops the target's label (TBL-03)** — both the table's own name-derived "
@@ -430,15 +614,15 @@ msgid ""
 "to either resolves instead of aborting the compile on a dangling label."
 msgstr ""
 
-#: ../../../CHANGELOG.md:222 ../../../CHANGELOG.md:245
+#: ../../../CHANGELOG.md:348 ../../../CHANGELOG.md:371
 msgid "Zero new runtime dependencies across the full milestone diff."
 msgstr ""
 
-#: ../../../CHANGELOG.md:227
+#: ../../../CHANGELOG.md:353
 msgid "[0.6.5] - 2026-07-29"
 msgstr ""
 
-#: ../../../CHANGELOG.md:229
+#: ../../../CHANGELOG.md:355
 msgid ""
 "Fixes a compile-blocking defect where a document mixing prose and math "
 "could abort the Typst compile: inline and display math no longer emit "
@@ -449,7 +633,7 @@ msgid ""
 " the bundled `@preview` version-sync surface is untouched."
 msgstr ""
 
-#: ../../../CHANGELOG.md:237
+#: ../../../CHANGELOG.md:363
 msgid ""
 "**Inline math immediately after text no longer aborts the `typstpdf` "
 "compile (MATH-01)** — in bullet-list items, definition-list terms, and "
@@ -460,11 +644,11 @@ msgid ""
 "the native path."
 msgstr ""
 
-#: ../../../CHANGELOG.md:250
+#: ../../../CHANGELOG.md:376
 msgid "[0.6.4] - 2026-07-28"
 msgstr ""
 
-#: ../../../CHANGELOG.md:252
+#: ../../../CHANGELOG.md:378
 msgid ""
 "Moves documentation hosting from GitHub Pages to Read the Docs: every "
 "published URL now resolves against a Read the Docs project, a Japanese "
@@ -477,7 +661,7 @@ msgid ""
 "untouched, and no line under `typsphinx/` changed in this milestone."
 msgstr ""
 
-#: ../../../CHANGELOG.md:262
+#: ../../../CHANGELOG.md:388
 msgid ""
 "**Japanese documentation site at `/ja/latest/` (I18N-01, I18N-03)** — "
 "built from a separate `typsphinx-doc-translations` repository (a git "
@@ -487,7 +671,7 @@ msgid ""
 "with its CJK glyphs correctly rendered."
 msgstr ""
 
-#: ../../../CHANGELOG.md:267
+#: ../../../CHANGELOG.md:393
 msgid ""
 "**Repository-wide link-check CI (CI-05)** — an advisory `links.yml` "
 "workflow now checks every published link across the whole repository (not"
@@ -495,7 +679,7 @@ msgid ""
 "the README/`pyproject.toml` links that motivated this)."
 msgstr ""
 
-#: ../../../CHANGELOG.md:273
+#: ../../../CHANGELOG.md:399
 msgid ""
 "**Documentation hosting moved from GitHub Pages to Read the Docs "
 "(RTD-01..RTD-04)** — built from a `.readthedocs.yaml` in the repository, "
@@ -505,7 +689,7 @@ msgid ""
 "pipeline."
 msgstr ""
 
-#: ../../../CHANGELOG.md:280
+#: ../../../CHANGELOG.md:406
 msgid ""
 "**Hand-rolled multi-language publishing machinery and orphan "
 "documentation (I18N-02, DOC-08)** — `docs/build_multilang.py`, the custom"
@@ -514,7 +698,7 @@ msgid ""
 "gone. Language switching now works through Read the Docs' own flyout."
 msgstr ""
 
-#: ../../../CHANGELOG.md:284
+#: ../../../CHANGELOG.md:410
 msgid ""
 "**GitHub Pages hosting and the `gh-pages` branch (CI-04)** — the "
 "`peaceiris/actions-gh-pages` deploy step is removed from CI; the tag-time"
@@ -526,7 +710,7 @@ msgid ""
 "custom template code this migration removes."
 msgstr ""
 
-#: ../../../CHANGELOG.md:293
+#: ../../../CHANGELOG.md:419
 msgid ""
 "**Seven dead documentation links in README/PyPI metadata resolved "
 "(DOC-09, DOC-10, Issue #119)** — every published documentation URL "
@@ -535,7 +719,7 @@ msgid ""
 "over real HTTP."
 msgstr ""
 
-#: ../../../CHANGELOG.md:299
+#: ../../../CHANGELOG.md:425
 msgid ""
 "Milestone invariant held: zero new runtime dependencies, no `@preview` "
 "package version bump, the four-surface version-sync guard (`writer.py` / "
@@ -544,11 +728,11 @@ msgid ""
 "diff."
 msgstr ""
 
-#: ../../../CHANGELOG.md:303
+#: ../../../CHANGELOG.md:429
 msgid "[0.6.3] - 2026-07-25"
 msgstr ""
 
-#: ../../../CHANGELOG.md:305
+#: ../../../CHANGELOG.md:431
 msgid ""
 "Closes out the config & docs fidelity milestone: configuration values "
 "documented in `typst_elements` now reliably reach the compiled Typst "
@@ -563,7 +747,7 @@ msgid ""
 "sync surface is untouched."
 msgstr ""
 
-#: ../../../CHANGELOG.md:316
+#: ../../../CHANGELOG.md:442
 #, python-brace-format
 msgid ""
 "**Captioned tables render as numbered, cross-referenceable figures "
@@ -576,7 +760,7 @@ msgid ""
 " a plain `table()` (never speculatively figure-wrapped)."
 msgstr ""
 
-#: ../../../CHANGELOG.md:325
+#: ../../../CHANGELOG.md:451
 msgid ""
 "**BREAKING: An unrecognized `typst_elements` key now fails the build "
 "(CONF-04)** — previously, any `typst_elements` key outside "
@@ -589,7 +773,7 @@ msgid ""
 "silently dropped regardless of the allowlist)."
 msgstr ""
 
-#: ../../../CHANGELOG.md:335
+#: ../../../CHANGELOG.md:461
 msgid ""
 "**BREAKING: `typst_toctree_defaults` config value removed (CONF-05)** — "
 "it was registered but never consumed by any code path. A `conf.py` still "
@@ -598,7 +782,7 @@ msgid ""
 "value never affected one. No deprecation period."
 msgstr ""
 
-#: ../../../CHANGELOG.md:342
+#: ../../../CHANGELOG.md:468
 #, python-brace-format
 msgid ""
 "**Typst's typesetting language now follows Sphinx's `language` config "
@@ -613,7 +797,7 @@ msgid ""
 "and must still declare its own `lang`."
 msgstr ""
 
-#: ../../../CHANGELOG.md:349
+#: ../../../CHANGELOG.md:475
 msgid ""
 "**The bundled `examples/advanced` sample builds again** — it was "
 "unbuildable on two independent axes: its `typst_elements` carried five "
@@ -627,7 +811,7 @@ msgid ""
 "lockstep unnoticed."
 msgstr ""
 
-#: ../../../CHANGELOG.md:356
+#: ../../../CHANGELOG.md:482
 msgid ""
 "**User-facing configuration docs corrected to match the registered config"
 " surface (DOC-07)** — `docs/source/user_guide/configuration.rst`'s "
@@ -639,14 +823,14 @@ msgid ""
 "`:doc:` pointer."
 msgstr ""
 
-#: ../../../CHANGELOG.md:365 ../../../CHANGELOG.md:435
+#: ../../../CHANGELOG.md:491 ../../../CHANGELOG.md:561
 msgid ""
 "Closing full-corpus regression gate: the Sphinx `doc/` v9.1.0 corpus, re-"
 "run through `-b typstpdf`, remains fatal-free, produces a valid `%PDF"
 "`-magic-byte output, and the `unknown_visit` catalogue remains empty."
 msgstr ""
 
-#: ../../../CHANGELOG.md:368
+#: ../../../CHANGELOG.md:494
 msgid ""
 "Milestone invariant held (as amended 2026-07-25): zero new runtime "
 "dependencies, no `@preview` package version bump, the 3-way version-sync "
@@ -655,11 +839,11 @@ msgid ""
 " is the 2-line `lang` parameter added in Phase 27.1."
 msgstr ""
 
-#: ../../../CHANGELOG.md:373
+#: ../../../CHANGELOG.md:499
 msgid "[0.6.2] - 2026-07-23"
 msgstr ""
 
-#: ../../../CHANGELOG.md:375
+#: ../../../CHANGELOG.md:501
 msgid ""
 "Rendering-fidelity round 2: closes out the remaining 13 medium/low "
 "findings from the v0.6.1 audit across six root-cause clusters, fixes the "
@@ -671,7 +855,7 @@ msgid ""
 "sync surface is untouched."
 msgstr ""
 
-#: ../../../CHANGELOG.md:384
+#: ../../../CHANGELOG.md:510
 msgid ""
 "**BREAKING: `typst_output_dir` and `typst_author_params` config values "
 "removed (CONF-01)** — both were registered but never read: `outdir` is "
@@ -683,7 +867,7 @@ msgid ""
 "deprecation period."
 msgstr ""
 
-#: ../../../CHANGELOG.md:393
+#: ../../../CHANGELOG.md:519
 msgid ""
 "**Lost block separation across five constructs (FID-02–FID-06)** — "
 "paragraphs inside list items, sibling signatures, rubric/option headings,"
@@ -692,7 +876,7 @@ msgid ""
 "separation."
 msgstr ""
 
-#: ../../../CHANGELOG.md:396
+#: ../../../CHANGELOG.md:522
 msgid ""
 "**Lost intra-signature token spacing (FID-07–FID-09)** — the `class "
 "`/`exception ` keyword prefix, C/C++ signature/expression tokens (around "
@@ -701,14 +885,14 @@ msgid ""
 "spaced."
 msgstr ""
 
-#: ../../../CHANGELOG.md:399
+#: ../../../CHANGELOG.md:525
 msgid ""
 "**Long inline-literal runs no longer clip at the right margin (FID-10)** "
 "— a long run of inline `:role:` literals now wraps within the text block "
 "instead of overflowing and clipping mid-token."
 msgstr ""
 
-#: ../../../CHANGELOG.md:401
+#: ../../../CHANGELOG.md:527
 msgid ""
 "**Soft/semantic paragraph line breaks now reflow (FID-11)** — a paragraph"
 " written with one clause per source line previously forced a hard break "
@@ -716,7 +900,7 @@ msgid ""
 " builder produces."
 msgstr ""
 
-#: ../../../CHANGELOG.md:404
+#: ../../../CHANGELOG.md:530
 #, python-brace-format
 msgid ""
 "**Codly config wrapper no longer leaks as visible text (FID-12)** — a "
@@ -724,7 +908,7 @@ msgid ""
 "`{ codly(...) }` config wrapper as literal prose."
 msgstr ""
 
-#: ../../../CHANGELOG.md:406
+#: ../../../CHANGELOG.md:532
 msgid ""
 "**Meaning-bearing inline styling restored (FID-13–FID-14)** — external "
 "hyperlinks render with distinguishing link styling again, and Python "
@@ -732,7 +916,7 @@ msgid ""
 "internal hover-title text inline."
 msgstr ""
 
-#: ../../../CHANGELOG.md:409
+#: ../../../CHANGELOG.md:535
 msgid ""
 "**`sphinx-build -b typstpdf` names the output PDF after your configured "
 "target, not the source docname (PDF-01, Issue #117)** — e.g. with "
@@ -741,7 +925,7 @@ msgid ""
 "or release pipeline references the old docname-based filename, update it."
 msgstr ""
 
-#: ../../../CHANGELOG.md:413
+#: ../../../CHANGELOG.md:539
 msgid ""
 "**Nested master documents compile with their includes and images intact "
 "(PDF-02)** — a master at a nested docname (e.g. `api/index`) now resolves"
@@ -750,7 +934,7 @@ msgid ""
 "produced."
 msgstr ""
 
-#: ../../../CHANGELOG.md:416
+#: ../../../CHANGELOG.md:542
 msgid ""
 "**`typst_package` (Typst Universe template) configured alone now builds "
 "and compiles with zero Typst errors (CONF-02, CONF-03)** — fixes a "
@@ -761,7 +945,7 @@ msgid ""
 " changes the compiled output, not merely that it's registered."
 msgstr ""
 
-#: ../../../CHANGELOG.md:422
+#: ../../../CHANGELOG.md:548
 msgid ""
 "**`sphinx-build -b typstpdf` no longer reports success while silently "
 "skipping a configured master (WR-01, WR-02)** — a missing `.typ` file or "
@@ -772,7 +956,7 @@ msgid ""
 "change can no longer turn CI red.)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:427
+#: ../../../CHANGELOG.md:553
 msgid ""
 "**README.md and CLAUDE.md corrected to match measured behavior "
 "(DOC-01–DOC-05)** — removed unverifiable test-count and coverage numbers "
@@ -783,18 +967,18 @@ msgid ""
 "Python-version floor (3.10+ → 3.12+) throughout."
 msgstr ""
 
-#: ../../../CHANGELOG.md:438
+#: ../../../CHANGELOG.md:564
 msgid ""
 "Milestone invariant held: zero new runtime dependencies, no `@preview` "
 "package version bump, the 3-way version-sync surface (`writer.py` / "
 "`template_engine.py` / `templates/base.typ`) untouched."
 msgstr ""
 
-#: ../../../CHANGELOG.md:441
+#: ../../../CHANGELOG.md:567
 msgid "[0.6.1] - 2026-07-20"
 msgstr ""
 
-#: ../../../CHANGELOG.md:443
+#: ../../../CHANGELOG.md:569
 msgid ""
 "Rendering fidelity: move `typstpdf` output from \"compiles fatal-free\" "
 "(achieved in v0.6.0) to \"renders faithfully to the source\". Implements "
@@ -805,27 +989,27 @@ msgid ""
 "surface is untouched."
 msgstr ""
 
-#: ../../../CHANGELOG.md:452
+#: ../../../CHANGELOG.md:578
 msgid ""
 "`todo_node` now renders as a gentle-clues `task()` box, gated on Sphinx's"
 " `todo_include_todos` config so draft work-notes never leak into "
 "published PDFs (TODO-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:455
+#: ../../../CHANGELOG.md:581
 msgid ""
 "`manpage` roles now render as italic literal page text via delegation to "
 "the emphasis handler (MAN-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:460
+#: ../../../CHANGELOG.md:586
 msgid ""
 "Generalized v0.6.0's `visit_image`-local px→pt conversion into one shared"
 " `_convert_length_to_typst` helper, reused at every length-bearing figure"
 " and table site (LEN-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:466
+#: ../../../CHANGELOG.md:592
 msgid ""
 "**Wide-table glyph collision + right-margin clip (FID-01a)** — multi-"
 "column tables whose cell content exceeded the text block previously "
@@ -836,7 +1020,7 @@ msgid ""
 "`wide_table_render_gate` regression fixture"
 msgstr ""
 
-#: ../../../CHANGELOG.md:475
+#: ../../../CHANGELOG.md:601
 msgid ""
 "Full 151/151-docname human-assisted rendering-fidelity audit of the "
 "Sphinx v9.1.0 `doc/` corpus PDF against its `-b html` baseline (AUD-01); "
@@ -844,18 +1028,18 @@ msgid ""
 "findings are tracked as backlog for a future milestone"
 msgstr ""
 
-#: ../../../CHANGELOG.md:479
+#: ../../../CHANGELOG.md:605
 msgid ""
 "Closing corpus regression gate (GATE-03): the full ~684-page corpus re-"
 "run through `-b typstpdf` remains fatal-free with the `unknown_visit` "
 "catalogue empty of `todo_node`/`manpage`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:483
+#: ../../../CHANGELOG.md:609
 msgid "[0.6.0] - 2026-07-13"
 msgstr ""
 
-#: ../../../CHANGELOG.md:485
+#: ../../../CHANGELOG.md:611
 msgid ""
 "Real-world robustness: compile a large real-world documentation set "
 "(Sphinx's own `doc/` tree) through the `typstpdf` builder with no fatal "
@@ -865,11 +1049,11 @@ msgid ""
 "`@preview` version-sync surface is untouched."
 msgstr ""
 
-#: ../../../CHANGELOG.md:494
+#: ../../../CHANGELOG.md:620
 msgid "**Issue #114 — fatal figure/image bugs**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:495
+#: ../../../CHANGELOG.md:621
 msgid ""
 "`.. figure::`/image `:width:`/`:height:` in `px` (or other CSS length "
 "units) now converts to valid Typst — `px`→`pt` numeric conversion (1px = "
@@ -877,7 +1061,7 @@ msgid ""
 "are warned-and-dropped instead of emitted verbatim (FIG-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:499
+#: ../../../CHANGELOG.md:625
 msgid ""
 "`.. figure::`/standalone image with a `:target:` link now emits valid "
 "`#figure(link(...)[#image(...)], caption: [...])` — the caption reaches "
@@ -885,46 +1069,46 @@ msgid ""
 "juxtaposed `text(...)` call (FIG-02)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:503
+#: ../../../CHANGELOG.md:629
 msgid ""
 "Fixed additional latent fatals surfaced by the real-compile gate: labels "
 "attached to code-mode statements, a dangling `:term:` glossary anchor, "
 "and a footnote-buffer-swap paragraph-state clobber"
 msgstr ""
 
-#: ../../../CHANGELOG.md:509
+#: ../../../CHANGELOG.md:635
 msgid ""
 "**High-frequency previously-dropped node handlers** (all with real-"
 "compile acceptance fixtures)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:511
+#: ../../../CHANGELOG.md:637
 msgid ""
 "`refid` same-document cross-references (`:ref:` section anchors, `:term:`"
 " glossary links) render as working links instead of degrading to plain "
 "text (XREF-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:514
+#: ../../../CHANGELOG.md:640
 msgid ""
 "`versionadded`/`versionchanged`/`deprecated`/`versionremoved` render as "
 "an unboxed italic Sphinx-worded label, not a callout box (VER-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:516
+#: ../../../CHANGELOG.md:642
 msgid ""
 "Autodoc signature sub-parts: `desc_returns`, `desc_signature_line`, "
 "`desc_optional`, `desc_inline` (DESC-01…04)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:518
+#: ../../../CHANGELOG.md:644
 msgid ""
 "`footnote`/`footnote_reference` via Typst-native `footnote[...]` using a "
 "document-order doctree pre-pass — first cite defines, repeat cites reuse "
 "by label (FN-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:521
+#: ../../../CHANGELOG.md:647
 msgid ""
 "`transition` → horizontal rule, `.. topic::` → titled aside, `line`/ "
 "`line_block` → verbatim `linebreak()`, `.. glossary::` → definition list,"
@@ -932,24 +1116,24 @@ msgid ""
 "(BLK-01…06)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:525
+#: ../../../CHANGELOG.md:651
 msgid ""
 "**Graceful degradation** — `graphviz` and `inheritance_diagram` render a "
 "visible placeholder block + exactly one warning, with no raw source "
 "leaking (DEG-01/DEG-02)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:528
+#: ../../../CHANGELOG.md:654
 msgid "**Validation gates**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:529
+#: ../../../CHANGELOG.md:655
 msgid ""
 "Standing real-compile acceptance-fixture pattern (`sphinx-build → "
 "typst.compile() → pypdf`) extended by every node-handler group (GATE-01)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:532
+#: ../../../CHANGELOG.md:658
 msgid ""
 "Full-corpus gate: Sphinx's own `doc/` tree compiles end-to-end through "
 "`-b typstpdf` with no fatal `TypstCompilationError` (~14.4 MiB PDF, 0 "
@@ -957,27 +1141,27 @@ msgid ""
 "reduction measured before/after (GATE-02)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:537
+#: ../../../CHANGELOG.md:663
 msgid "[0.5.0] - 2026-07-11"
 msgstr ""
 
-#: ../../../CHANGELOG.md:541
+#: ../../../CHANGELOG.md:667
 msgid "**Forward-Ecosystem Port**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:542
+#: ../../../CHANGELOG.md:668
 msgid ""
 "Sphinx re-pinned to the `>=9.1,<10` line, `docutils` to `>=0.21,<0.23`, "
 "and `typst` to the `>=0.15.0,<0.16` line"
 msgstr ""
 
-#: ../../../CHANGELOG.md:544
+#: ../../../CHANGELOG.md:670
 msgid ""
 "Python floor raised to 3.12-3.13 (3.10 and 3.11 dropped from the support "
 "matrix)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:545
+#: ../../../CHANGELOG.md:671
 msgid ""
 "Bundled `@preview` packages bumped in lockstep: `mitex` (`0.2.4`→`0.2.7`,"
 " the fix for `unknown variable: kai` under typst 0.15), `gentle-clues` "
@@ -985,1860 +1169,1860 @@ msgid ""
 "confirmed to already compile cleanly at `1.3.0`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:551
+#: ../../../CHANGELOG.md:677
 msgid "**Admonition Rendering** (Phase 8.1)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:552
+#: ../../../CHANGELOG.md:678
 msgid ""
 "Fixed a translator markup/code-mode mismatch that caused `.. "
 "note::`-style admonitions to render literal, unevaluated Typst source "
 "instead of typeset prose"
 msgstr ""
 
-#: ../../../CHANGELOG.md:554
+#: ../../../CHANGELOG.md:680
 msgid ""
 "Added coverage for previously-missing admonition types (`hint`, `error`, "
 "`danger`, `attention`, generic `.. admonition::`)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:559
+#: ../../../CHANGELOG.md:685
 msgid "**CI Durability Guardrails**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:560
+#: ../../../CHANGELOG.md:686
 msgid ""
 "Added a `typst compile` smoke test that exercises all bundled `@preview` "
 "packages via real function calls, catching `kai`-class breaks before "
 "release"
 msgstr ""
 
-#: ../../../CHANGELOG.md:562
+#: ../../../CHANGELOG.md:688
 msgid ""
 "Updated `drift.yml` and the Dependabot dependency group to the new major-"
 "version ceilings"
 msgstr ""
 
-#: ../../../CHANGELOG.md:564
+#: ../../../CHANGELOG.md:690
 msgid "[0.4.4] - 2026-07-05"
 msgstr ""
 
-#: ../../../CHANGELOG.md:568
+#: ../../../CHANGELOG.md:694
 msgid "**CI/Release Durability**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:569
+#: ../../../CHANGELOG.md:695
 msgid ""
 "Python support floor raised to 3.10-3.13, with the CI and tox test "
 "matrices reconciled to match"
 msgstr ""
 
-#: ../../../CHANGELOG.md:570
+#: ../../../CHANGELOG.md:696
 msgid ""
 "`softprops/action-gh-release` bumped from `v2` to `v3` in the release "
 "workflow"
 msgstr ""
 
-#: ../../../CHANGELOG.md:571
+#: ../../../CHANGELOG.md:697
 msgid ""
 "`--locked` appended to every `uv sync` call site across the CI, docs, and"
 " release workflows"
 msgstr ""
 
-#: ../../../CHANGELOG.md:572
+#: ../../../CHANGELOG.md:698
 msgid ""
 "GitHub Actions artifact actions (`upload-artifact`/`download-artifact`) "
 "bumped to their Node 24 majors"
 msgstr ""
 
-#: ../../../CHANGELOG.md:576
+#: ../../../CHANGELOG.md:702
 msgid "**Dependency and Release Guardrails**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:577
+#: ../../../CHANGELOG.md:703
 msgid "Added a weekly dependency drift-detection workflow"
 msgstr ""
 
-#: ../../../CHANGELOG.md:578
+#: ../../../CHANGELOG.md:704
 msgid ""
 "Added a `sphinx-typst-stack` Dependabot group and a CI status badge to "
 "the README"
 msgstr ""
 
-#: ../../../CHANGELOG.md:579
+#: ../../../CHANGELOG.md:705
 msgid ""
 "Added Sphinx i18n infrastructure with Japanese translations and multi-"
 "language GitHub Pages support"
 msgstr ""
 
-#: ../../../CHANGELOG.md:583
+#: ../../../CHANGELOG.md:709
 msgid ""
 "Fixed the release workflow's version-verify step to fall back from "
 "`tomllib` to `tomli` on Python versions where `tomllib` is unavailable"
 msgstr ""
 
-#: ../../../CHANGELOG.md:585
+#: ../../../CHANGELOG.md:711
 msgid "[0.4.3] - 2025-11-01"
 msgstr ""
 
-#: ../../../CHANGELOG.md:589
+#: ../../../CHANGELOG.md:715
 msgid "**Project Status & Authorship**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:590
+#: ../../../CHANGELOG.md:716
 msgid "Updated development status to \"Production/Stable\" in PyPI classifiers"
 msgstr ""
 
-#: ../../../CHANGELOG.md:591
+#: ../../../CHANGELOG.md:717
 msgid "Updated author information across all project files"
 msgstr ""
 
-#: ../../../CHANGELOG.md:592
+#: ../../../CHANGELOG.md:718
 msgid "Removed \"Beta Release\" designation from PyPI installation instructions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:596
+#: ../../../CHANGELOG.md:722
 msgid ""
 "**Template Asset Support** "
 "([#75](https://github.com/YuSabo90002/typsphinx/issues/75))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:597
+#: ../../../CHANGELOG.md:723
 msgid ""
 "Automatic copying of template assets (fonts, images, logos) to output "
 "directory"
 msgstr ""
 
-#: ../../../CHANGELOG.md:598
+#: ../../../CHANGELOG.md:724
 msgid "Three operation modes:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:599
+#: ../../../CHANGELOG.md:725
 msgid "Default: Automatically copy entire template directory"
 msgstr ""
 
-#: ../../../CHANGELOG.md:600
+#: ../../../CHANGELOG.md:726
 msgid ""
 "Explicit: Specify assets with `typst_template_assets` list (supports glob"
 " patterns)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:601
+#: ../../../CHANGELOG.md:727
 msgid "Disabled: Empty list `[]` prevents automatic copying"
 msgstr ""
 
-#: ../../../CHANGELOG.md:602
+#: ../../../CHANGELOG.md:728
 msgid "New configuration value: `typst_template_assets`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:603
+#: ../../../CHANGELOG.md:729
 msgid ""
 "Only applies to local templates (`typst_template`), not Typst Universe "
 "packages"
 msgstr ""
 
-#: ../../../CHANGELOG.md:604
+#: ../../../CHANGELOG.md:730
 msgid "Added 8 comprehensive test cases for all scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:605
+#: ../../../CHANGELOG.md:731
 msgid "Updated documentation with usage examples"
 msgstr ""
 
-#: ../../../CHANGELOG.md:609
+#: ../../../CHANGELOG.md:735
 msgid ""
 "**Empty URL Link Handling for Typst 0.14.1+ Compatibility** "
 "([#77](https://github.com/YuSabo90002/typsphinx/issues/77))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:610
+#: ../../../CHANGELOG.md:736
 msgid "Fixed empty URL references causing Typst 0.14.1 compilation errors"
 msgstr ""
 
-#: ../../../CHANGELOG.md:611
+#: ../../../CHANGELOG.md:737
 msgid ""
 "References with empty `refuri` attributes now rendered as plain text "
 "instead of invalid `link(\"\", ...)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:612
+#: ../../../CHANGELOG.md:738
 msgid "Added warning messages for broken references to aid debugging"
 msgstr ""
 
-#: ../../../CHANGELOG.md:613
+#: ../../../CHANGELOG.md:739
 msgid "Updated Typst dependency to `>=0.14.1` for stricter URL validation support"
 msgstr ""
 
-#: ../../../CHANGELOG.md:614
+#: ../../../CHANGELOG.md:740
 msgid "Added comprehensive test coverage for empty URL handling scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:615
+#: ../../../CHANGELOG.md:741
 msgid "Prevents \"URL must not be empty\" errors in CI/CD pipelines"
 msgstr ""
 
-#: ../../../CHANGELOG.md:617
+#: ../../../CHANGELOG.md:743
 msgid "[0.4.2] - 2025-10-29"
 msgstr ""
 
-#: ../../../CHANGELOG.md:621
+#: ../../../CHANGELOG.md:747
 msgid ""
 "**Empty Table Cells Rendering** "
 "([#68](https://github.com/YuSabo90002/typsphinx/issues/68), "
 "[#70](https://github.com/YuSabo90002/typsphinx/pull/70))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:622
+#: ../../../CHANGELOG.md:748
 msgid "Fixed empty table cells causing Typst compilation errors"
 msgstr ""
 
-#: ../../../CHANGELOG.md:623
+#: ../../../CHANGELOG.md:749
 #, python-brace-format
 msgid "All table cells (normal and spanning) now wrapped in content blocks `{}`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:624
+#: ../../../CHANGELOG.md:750
 #, python-brace-format
 msgid "Empty cells output as `{}` instead of bare commas"
 msgstr ""
 
-#: ../../../CHANGELOG.md:625
+#: ../../../CHANGELOG.md:751
 msgid "Prevents \"unexpected comma\" syntax errors in Typst"
 msgstr ""
 
-#: ../../../CHANGELOG.md:626
+#: ../../../CHANGELOG.md:752
 msgid "Added 5 comprehensive test cases for empty cell scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:628
+#: ../../../CHANGELOG.md:754
 msgid ""
 "**Image Relative Paths in Nested Documents** "
 "([#69](https://github.com/YuSabo90002/typsphinx/issues/69), "
 "[#72](https://github.com/YuSabo90002/typsphinx/pull/72))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:629
+#: ../../../CHANGELOG.md:755
 msgid ""
 "Fixed image paths in nested documents failing to resolve during Typst "
 "compilation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:630
+#: ../../../CHANGELOG.md:756
 msgid ""
 "Implemented `_compute_relative_image_path()` method (mirrors Issue #5 "
 "toctree fix)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:631
+#: ../../../CHANGELOG.md:757
 msgid "Image URIs now adjusted based on output file location"
 msgstr ""
 
-#: ../../../CHANGELOG.md:632
+#: ../../../CHANGELOG.md:758
 msgid ""
 "Supports all path patterns: root, nested, deep nested, same directory, "
 "subdirectory, cross-directory"
 msgstr ""
 
-#: ../../../CHANGELOG.md:633
+#: ../../../CHANGELOG.md:759
 msgid "Added 6 comprehensive test cases for image path adjustment"
 msgstr ""
 
-#: ../../../CHANGELOG.md:634
+#: ../../../CHANGELOG.md:760
 msgid "Backward compatible: root document images unchanged"
 msgstr ""
 
-#: ../../../CHANGELOG.md:636
+#: ../../../CHANGELOG.md:762
 msgid "[0.4.1] - 2025-10-26"
 msgstr ""
 
-#: ../../../CHANGELOG.md:640
+#: ../../../CHANGELOG.md:766
 msgid ""
 "**Table Cell Unified Code Mode Compliance** "
 "([#65](https://github.com/YuSabo90002/typsphinx/pull/65))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:641
+#: ../../../CHANGELOG.md:767
 msgid ""
 "Fixed `table.cell()` argument order to match Typst signature (content as "
 "first positional argument)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:642
+#: ../../../CHANGELOG.md:768
 msgid "Removed unnecessary markup mode `[...]` wrapping from table cells"
 msgstr ""
 
-#: ../../../CHANGELOG.md:643
+#: ../../../CHANGELOG.md:769
 msgid ""
 "Table cells now pass content type directly: `table.cell(content, colspan:"
 " 2)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:644
+#: ../../../CHANGELOG.md:770
 msgid ""
 "Improved consistency with Unified Code Mode guideline across all table "
 "elements"
 msgstr ""
 
-#: ../../../CHANGELOG.md:646
+#: ../../../CHANGELOG.md:772
 msgid "[0.4.0] - 2025-10-26"
 msgstr ""
 
-#: ../../../CHANGELOG.md:650
+#: ../../../CHANGELOG.md:776
 msgid ""
 "**Document Wrapper Preservation** "
 "([#61](https://github.com/YuSabo90002/typsphinx/issues/61))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:651
+#: ../../../CHANGELOG.md:777
 #, python-brace-format
 msgid "Fixed `#{...}` wrapper being lost in nested toctree structures"
 msgstr ""
 
-#: ../../../CHANGELOG.md:652
+#: ../../../CHANGELOG.md:778
 msgid "Implemented stream-based rendering to replace body swapping anti-pattern"
 msgstr ""
 
-#: ../../../CHANGELOG.md:653
+#: ../../../CHANGELOG.md:779
 msgid "Document wrapper now preserved throughout nested structures"
 msgstr ""
 
-#: ../../../CHANGELOG.md:655
+#: ../../../CHANGELOG.md:781
 msgid ""
 "**Nested Lists Syntax** "
 "([#62](https://github.com/YuSabo90002/typsphinx/issues/62))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:656
+#: ../../../CHANGELOG.md:782
 msgid ""
 "Fixed nested lists generating invalid Typst syntax "
 "(`strong(...)list(...)`)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:657
+#: ../../../CHANGELOG.md:783
 msgid "List items now use content blocks with newline separators"
 msgstr ""
 
-#: ../../../CHANGELOG.md:658
+#: ../../../CHANGELOG.md:784
 msgid "Proper separation between elements in list items"
 msgstr ""
 
-#: ../../../CHANGELOG.md:662
+#: ../../../CHANGELOG.md:788
 msgid "**Stream-Based Rendering Architecture**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:663
+#: ../../../CHANGELOG.md:789
 msgid "Replaced body swapping with direct appending to `self.body`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:664
+#: ../../../CHANGELOG.md:790
 msgid "State management using flags instead of buffer manipulation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:665
+#: ../../../CHANGELOG.md:791
 msgid "Improved maintainability and predictability"
 msgstr ""
 
-#: ../../../CHANGELOG.md:667
+#: ../../../CHANGELOG.md:793
 msgid "**Content Block Architecture**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:668
+#: ../../../CHANGELOG.md:794
 #, python-brace-format
 msgid ""
 "Changed `strong()` and `emph()` to use content blocks: `strong({...})`, "
 "`emph({...})`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:669
+#: ../../../CHANGELOG.md:795
 #, python-brace-format
 msgid "List items wrapped in `{...}` blocks with newline separators"
 msgstr ""
 
-#: ../../../CHANGELOG.md:670
+#: ../../../CHANGELOG.md:796
 #, python-brace-format
 msgid "Enables proper nesting: `strong({text(\"bold\")})\\nlist({...})`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:672
+#: ../../../CHANGELOG.md:798
 msgid "**Unified Code Mode Compliance**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:673
+#: ../../../CHANGELOG.md:799
 msgid "Updated `link()` format from `link(url)[content]` to `link(url, content)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:674
+#: ../../../CHANGELOG.md:800
 msgid "Removed `#` prefixes from functions in code mode (table, admonitions)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:675
+#: ../../../CHANGELOG.md:801
 msgid "Added `#` prefixes inside markup mode blocks `[...]` for label attachment"
 msgstr ""
 
-#: ../../../CHANGELOG.md:676
+#: ../../../CHANGELOG.md:802
 msgid ""
 "API signatures properly formatted: `text(\"(\") + text(\"param\") + "
 "text(\")\")`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:678
+#: ../../../CHANGELOG.md:804
 msgid "Changed (from v0.3.0)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:680
+#: ../../../CHANGELOG.md:806
 msgid ""
 "**BREAKING: Unified Code Mode Architecture** "
 "([#4](https://github.com/YuSabo90002/typsphinx/issues/4))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:681
+#: ../../../CHANGELOG.md:807
 #, python-brace-format
 msgid ""
 "Entire document now wrapped in `#{...}` code block for consistent "
 "function syntax"
 msgstr ""
 
-#: ../../../CHANGELOG.md:682
+#: ../../../CHANGELOG.md:808
 msgid ""
 "All Typst elements use bare function names without `#` prefix inside code"
 " block"
 msgstr ""
 
-#: ../../../CHANGELOG.md:683
+#: ../../../CHANGELOG.md:809
 msgid "All text wrapped in `text()` function with proper string escaping"
 msgstr ""
 
-#: ../../../CHANGELOG.md:684
+#: ../../../CHANGELOG.md:810
 msgid "All paragraphs wrapped in `par()` function to mark boundaries"
 msgstr ""
 
-#: ../../../CHANGELOG.md:685
+#: ../../../CHANGELOG.md:811
 msgid "Lists use function calls: `list(...)`, `enum(...)`, `terms(...)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:686
+#: ../../../CHANGELOG.md:812
 msgid ""
 "Inline code uses `raw()` with string escaping for `+` operator "
 "compatibility"
 msgstr ""
 
-#: ../../../CHANGELOG.md:687
+#: ../../../CHANGELOG.md:813
 msgid ""
 "Math functions use backtick raw strings: `mi(\\`...\\`)`, "
 "`mitex(\\`...\\`)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:688
+#: ../../../CHANGELOG.md:814
 #, python-brace-format
 msgid "Toctree uses `{...}` scope block for `set` rule isolation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:689
+#: ../../../CHANGELOG.md:815
 msgid "Fixes underscores in text being interpreted as subscript markup"
 msgstr ""
 
-#: ../../../CHANGELOG.md:690
+#: ../../../CHANGELOG.md:816
 msgid "Fixes special characters requiring escaping in content mode"
 msgstr ""
 
-#: ../../../CHANGELOG.md:691
+#: ../../../CHANGELOG.md:817
 msgid "Generated `.typ` files compile cleanly without syntax errors"
 msgstr ""
 
-#: ../../../CHANGELOG.md:692
+#: ../../../CHANGELOG.md:818
 msgid "PDF output remains identical to previous versions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:693
+#: ../../../CHANGELOG.md:819
 msgid "**Migration**: Existing projects will need to regenerate `.typ` files"
 msgstr ""
 
-#: ../../../CHANGELOG.md:695
+#: ../../../CHANGELOG.md:821
 msgid "**Migrate CI to Tox**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:696
+#: ../../../CHANGELOG.md:822
 msgid "GitHub Actions workflows now use tox commands for consistency"
 msgstr ""
 
-#: ../../../CHANGELOG.md:697
+#: ../../../CHANGELOG.md:823
 msgid "Added `docs-html`, `docs-pdf`, and `docs` tox environments"
 msgstr ""
 
-#: ../../../CHANGELOG.md:698
+#: ../../../CHANGELOG.md:824
 msgid "Simplified CI configuration with single source of truth in `tox.ini`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:699
+#: ../../../CHANGELOG.md:825
 msgid "Improved local/CI consistency - same commands work in both environments"
 msgstr ""
 
-#: ../../../CHANGELOG.md:700
+#: ../../../CHANGELOG.md:826
 msgid "Updated test, lint, type-check, and coverage jobs to use tox"
 msgstr ""
 
-#: ../../../CHANGELOG.md:701
+#: ../../../CHANGELOG.md:827
 msgid ""
 "Documentation builds now reproducible locally with `tox -e docs-html` or "
 "`tox -e docs-pdf`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:702
+#: ../../../CHANGELOG.md:828
 msgid "Fixed paths in existing tox environments (sphinxcontrib/ → typsphinx/)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:706
+#: ../../../CHANGELOG.md:832
 msgid ""
 "**Documentation Site with GitHub Pages** "
 "([#36](https://github.com/YuSabo90002/typsphinx/issues/36))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:707
+#: ../../../CHANGELOG.md:833
 msgid ""
 "Comprehensive documentation site hosted on GitHub Pages at "
 "https://yusabo90002.github.io/typsphinx/"
 msgstr ""
 
-#: ../../../CHANGELOG.md:708
+#: ../../../CHANGELOG.md:834
 msgid ""
 "Complete user guide covering installation, quickstart, configuration, "
 "builders, and templates"
 msgstr ""
 
-#: ../../../CHANGELOG.md:709
+#: ../../../CHANGELOG.md:835
 msgid "Extensive examples section with basic and advanced use cases"
 msgstr ""
 
-#: ../../../CHANGELOG.md:710
+#: ../../../CHANGELOG.md:836
 msgid "API reference with autodoc integration"
 msgstr ""
 
-#: ../../../CHANGELOG.md:711
+#: ../../../CHANGELOG.md:837
 msgid "Contributing guide with development workflow"
 msgstr ""
 
-#: ../../../CHANGELOG.md:712
+#: ../../../CHANGELOG.md:838
 msgid "Automated documentation deployment via GitHub Actions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:713
+#: ../../../CHANGELOG.md:839
 msgid "HTML documentation built with Sphinx and Furo theme"
 msgstr ""
 
-#: ../../../CHANGELOG.md:714
+#: ../../../CHANGELOG.md:840
 msgid "PDF documentation generated using typsphinx itself (dogfooding)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:715
+#: ../../../CHANGELOG.md:841
 msgid "PDF artifacts uploaded to GitHub Releases for tagged versions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:716
+#: ../../../CHANGELOG.md:842
 msgid "Documentation badge added to README"
 msgstr ""
 
-#: ../../../CHANGELOG.md:717
+#: ../../../CHANGELOG.md:843
 msgid "13 comprehensive documentation pages created"
 msgstr ""
 
-#: ../../../CHANGELOG.md:719
+#: ../../../CHANGELOG.md:845
 msgid ""
 "**Typst Universe Template Support** "
 "([#13](https://github.com/YuSabo90002/typsphinx/issues/13))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:720
+#: ../../../CHANGELOG.md:846
 msgid "Full support for Typst Universe templates (charged-ieee, modern-cv, etc.)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:721
+#: ../../../CHANGELOG.md:847
 #, python-brace-format
 msgid ""
 "`typst_template_function` now accepts dictionary format: `{\"name\": "
 "\"ieee\", \"params\": {...}}`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:722
+#: ../../../CHANGELOG.md:848
 msgid ""
 "New `typst_authors` configuration for detailed author information "
 "(department, organization, email)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:723
+#: ../../../CHANGELOG.md:849
 msgid "Template-specific parameters can be configured directly in `conf.py`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:724
+#: ../../../CHANGELOG.md:850
 msgid ""
 "Python variable references work naturally in configuration (no special "
 "syntax needed)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:725
+#: ../../../CHANGELOG.md:851
 msgid "Backward compatibility maintained for all existing configurations"
 msgstr ""
 
-#: ../../../CHANGELOG.md:726
+#: ../../../CHANGELOG.md:852
 msgid "Added comprehensive charged-ieee examples demonstrating two approaches:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:727
+#: ../../../CHANGELOG.md:853
 msgid "Approach 1: Configuration-based (recommended, simple)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:728
+#: ../../../CHANGELOG.md:854
 msgid "Approach 2: Custom template with Typst code (flexible)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:729
+#: ../../../CHANGELOG.md:855
 msgid "Added 8 new test cases (4 for dict format, 4 for author details)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:730
+#: ../../../CHANGELOG.md:856
 msgid "All 365 tests passing with full backward compatibility"
 msgstr ""
 
-#: ../../../CHANGELOG.md:732
+#: ../../../CHANGELOG.md:858
 msgid ""
 "**Image File Copying Support** "
 "([#38](https://github.com/YuSabo90002/typsphinx/issues/38))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:733
+#: ../../../CHANGELOG.md:859
 msgid ""
 "Image files referenced in documents are now automatically copied to the "
 "output directory"
 msgstr ""
 
-#: ../../../CHANGELOG.md:734
+#: ../../../CHANGELOG.md:860
 msgid "Preserves directory structure when copying images"
 msgstr ""
 
-#: ../../../CHANGELOG.md:735
+#: ../../../CHANGELOG.md:861
 msgid "Enables successful PDF builds for documents containing images"
 msgstr ""
 
-#: ../../../CHANGELOG.md:736
+#: ../../../CHANGELOG.md:862
 msgid ""
 "Implemented `post_process_images()` and `copy_image_files()` methods in "
 "TypstBuilder"
 msgstr ""
 
-#: ../../../CHANGELOG.md:737
+#: ../../../CHANGELOG.md:863
 msgid "Images are copied before PDF compilation in TypstPDFBuilder"
 msgstr ""
 
-#: ../../../CHANGELOG.md:738
+#: ../../../CHANGELOG.md:864
 msgid "Added 9 comprehensive test cases covering various scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:739
+#: ../../../CHANGELOG.md:865
 msgid "No configuration required - images are copied automatically"
 msgstr ""
 
-#: ../../../CHANGELOG.md:741
+#: ../../../CHANGELOG.md:867
 msgid ""
 "**Table Header Wrapping Support** "
 "([#40](https://github.com/YuSabo90002/typsphinx/issues/40))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:742
+#: ../../../CHANGELOG.md:868
 msgid "Table headers now wrapped in `table.header()` for proper Typst rendering"
 msgstr ""
 
-#: ../../../CHANGELOG.md:743
+#: ../../../CHANGELOG.md:869
 msgid "Enables automatic header repetition on multi-page tables"
 msgstr ""
 
-#: ../../../CHANGELOG.md:744
+#: ../../../CHANGELOG.md:870
 msgid ""
 "Provides accessibility metadata for screen readers and assistive "
 "technologies"
 msgstr ""
 
-#: ../../../CHANGELOG.md:745
+#: ../../../CHANGELOG.md:871
 msgid "Supports multi-row headers (`:header-rows: N` with N > 1)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:746
+#: ../../../CHANGELOG.md:872
 msgid "Maintains backward compatibility for tables without headers"
 msgstr ""
 
-#: ../../../CHANGELOG.md:747
+#: ../../../CHANGELOG.md:873
 msgid "Added `in_thead` state flag to track header section in translator"
 msgstr ""
 
-#: ../../../CHANGELOG.md:748
+#: ../../../CHANGELOG.md:874
 msgid "Modified cell storage to include `is_header` flag"
 msgstr ""
 
-#: ../../../CHANGELOG.md:749
+#: ../../../CHANGELOG.md:875
 msgid ""
 "Updated `depart_table()` to generate `table.header()` wrapper for header "
 "cells"
 msgstr ""
 
-#: ../../../CHANGELOG.md:750
+#: ../../../CHANGELOG.md:876
 msgid "Complies with Typst documentation recommendations for table accessibility"
 msgstr ""
 
-#: ../../../CHANGELOG.md:751
+#: ../../../CHANGELOG.md:877
 msgid "Added 4 comprehensive test cases covering various header scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:753
+#: ../../../CHANGELOG.md:879
 msgid ""
 "**Table Cell Spanning Support** "
 "([#39](https://github.com/YuSabo90002/typsphinx/issues/39))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:754
+#: ../../../CHANGELOG.md:880
 msgid ""
 "Added support for horizontal cell spanning (colspan) via `morecols` "
 "attribute"
 msgstr ""
 
-#: ../../../CHANGELOG.md:755
+#: ../../../CHANGELOG.md:881
 msgid ""
 "Added support for vertical cell spanning (rowspan) via `morerows` "
 "attribute"
 msgstr ""
 
-#: ../../../CHANGELOG.md:756
+#: ../../../CHANGELOG.md:882
 msgid ""
 "Cells with spanning now generate `table.cell(colspan: N, rowspan: M)` "
 "syntax"
 msgstr ""
 
-#: ../../../CHANGELOG.md:757
+#: ../../../CHANGELOG.md:883
 msgid "Supports combined horizontal and vertical spanning in same cell"
 msgstr ""
 
-#: ../../../CHANGELOG.md:758
+#: ../../../CHANGELOG.md:884
 msgid "Works correctly with header cells inside `table.header()`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:759
+#: ../../../CHANGELOG.md:885
 msgid "Maintains backward compatibility for tables without cell spanning"
 msgstr ""
 
-#: ../../../CHANGELOG.md:760
+#: ../../../CHANGELOG.md:886
 msgid ""
 "Created `_format_table_cell()` helper method for consistent cell "
 "formatting"
 msgstr ""
 
-#: ../../../CHANGELOG.md:761
+#: ../../../CHANGELOG.md:887
 msgid "Reads `morecols`/`morerows` attributes in `visit_entry()`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:762
+#: ../../../CHANGELOG.md:888
 msgid "Extended cell storage to include `colspan` and `rowspan` fields"
 msgstr ""
 
-#: ../../../CHANGELOG.md:763
+#: ../../../CHANGELOG.md:889
 msgid "Added 5 comprehensive test cases covering various spanning scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:765
+#: ../../../CHANGELOG.md:891
 msgid "[0.3.0] - 2025-10-23"
 msgstr ""
 
-#: ../../../CHANGELOG.md:767
+#: ../../../CHANGELOG.md:893
 msgid "Changed (Breaking)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:768
+#: ../../../CHANGELOG.md:894
 msgid "**Package Rename**: `sphinxcontrib-typst` → `typsphinx`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:769
+#: ../../../CHANGELOG.md:895
 msgid "Changed to a simpler and more unique name"
 msgstr ""
 
-#: ../../../CHANGELOG.md:770
+#: ../../../CHANGELOG.md:896
 msgid "Reflects the nature of this package as a builder"
 msgstr ""
 
-#: ../../../CHANGELOG.md:771
+#: ../../../CHANGELOG.md:897
 msgid "PyPI package name: `typsphinx`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:772
+#: ../../../CHANGELOG.md:898
 msgid "Python import: `import typsphinx`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:773
+#: ../../../CHANGELOG.md:899
 msgid "Sphinx extension name: `extensions = ['typsphinx']`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:774
+#: ../../../CHANGELOG.md:900
 msgid "Package structure: `sphinxcontrib/typst/` → `typsphinx/`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:775
+#: ../../../CHANGELOG.md:901
 msgid "**Migration steps**:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:776
+#: ../../../CHANGELOG.md:902
 msgid "`pip uninstall sphinxcontrib-typst`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:777
+#: ../../../CHANGELOG.md:903
 msgid "`pip install typsphinx`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:778
+#: ../../../CHANGELOG.md:904
 msgid ""
 "Update `conf.py`: `extensions = ['sphinxcontrib.typst']` → `extensions = "
 "['typsphinx']`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:780
+#: ../../../CHANGELOG.md:906
 msgid "Rationale"
 msgstr ""
 
-#: ../../../CHANGELOG.md:781
+#: ../../../CHANGELOG.md:907
 msgid ""
 "`sphinxcontrib-*` namespace is traditionally for extensions that add "
 "directives or roles"
 msgstr ""
 
-#: ../../../CHANGELOG.md:782
+#: ../../../CHANGELOG.md:908
 msgid ""
 "This package is primarily a builder (Sphinx→Typst conversion) and needs a"
 " more appropriate name"
 msgstr ""
 
-#: ../../../CHANGELOG.md:783
+#: ../../../CHANGELOG.md:909
 msgid "Current low user base makes this the optimal timing for the change"
 msgstr ""
 
-#: ../../../CHANGELOG.md:784
+#: ../../../CHANGELOG.md:910
 msgid ""
 "Unique and memorable name that represents the integration of Typst and "
 "Sphinx"
 msgstr ""
 
-#: ../../../CHANGELOG.md:786
+#: ../../../CHANGELOG.md:912
 msgid "[0.2.2] - 2025-10-23"
 msgstr ""
 
-#: ../../../CHANGELOG.md:789
+#: ../../../CHANGELOG.md:915
 msgid ""
 "**Additional Code Block Options Support** "
 "([#31](https://github.com/YuSabo90002/typsphinx/issues/31))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:790
+#: ../../../CHANGELOG.md:916
 msgid ""
 "Added support for `:lineno-start:` option to specify starting line number"
 " for code blocks"
 msgstr ""
 
-#: ../../../CHANGELOG.md:791
+#: ../../../CHANGELOG.md:917
 msgid ""
 "Added support for `:dedent:` option (handled automatically by Sphinx "
 "during parsing)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:792
+#: ../../../CHANGELOG.md:918
 msgid ""
 "`:lineno-start:` works with codly's `start` parameter to display custom "
 "line numbers"
 msgstr ""
 
-#: ../../../CHANGELOG.md:793
+#: ../../../CHANGELOG.md:919
 msgid ""
 "Both options work correctly in combination with existing options "
 "(`:linenos:`, `:emphasize-lines:`, etc.)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:794
+#: ../../../CHANGELOG.md:920
 msgid "Sphinx now supports 6 out of 8 standard code-block directive options (75%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:795
+#: ../../../CHANGELOG.md:921
 msgid "Added 7 comprehensive test cases covering various scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:797
+#: ../../../CHANGELOG.md:923
 msgid ""
 "**Raw Directive Support** "
 "([#25](https://github.com/YuSabo90002/typsphinx/issues/25))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:798
+#: ../../../CHANGELOG.md:924
 msgid "Added support for docutils `raw` directive (`.. raw:: typst`)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:799
+#: ../../../CHANGELOG.md:925
 msgid "Typst-specific content (`format='typst'`) is passed through to output"
 msgstr ""
 
-#: ../../../CHANGELOG.md:800
+#: ../../../CHANGELOG.md:926
 msgid "Other formats (html, latex, etc.) are skipped and logged"
 msgstr ""
 
-#: ../../../CHANGELOG.md:801
+#: ../../../CHANGELOG.md:927
 msgid "Format name matching is case-insensitive"
 msgstr ""
 
-#: ../../../CHANGELOG.md:802
+#: ../../../CHANGELOG.md:928
 msgid "Implemented `visit_raw()` and `depart_raw()` methods in TypstTranslator"
 msgstr ""
 
-#: ../../../CHANGELOG.md:803
+#: ../../../CHANGELOG.md:929
 msgid "Added 6 comprehensive test cases covering various scenarios"
 msgstr ""
 
-#: ../../../CHANGELOG.md:806
+#: ../../../CHANGELOG.md:932
 msgid ""
 "**Code Block Directive Options Support** "
 "([#20](https://github.com/YuSabo90002/typsphinx/issues/20))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:807
+#: ../../../CHANGELOG.md:933
 msgid ""
 "Fixed `:linenos:` option being ignored - now properly controls line "
 "number display in code blocks"
 msgstr ""
 
-#: ../../../CHANGELOG.md:808
+#: ../../../CHANGELOG.md:934
 msgid ""
 "Fixed `:caption:` and `:name:` options causing \"unknown node type: "
 "container\" warnings"
 msgstr ""
 
-#: ../../../CHANGELOG.md:809
+#: ../../../CHANGELOG.md:935
 msgid ""
 "Code blocks with `:caption:` now wrapped in `#figure()` with proper "
 "caption"
 msgstr ""
 
-#: ../../../CHANGELOG.md:810
+#: ../../../CHANGELOG.md:936
 msgid "Code blocks with `:name:` now generate Typst labels for cross-referencing"
 msgstr ""
 
-#: ../../../CHANGELOG.md:811
+#: ../../../CHANGELOG.md:937
 msgid ""
 "Added `visit_container()` and `depart_container()` methods to handle "
 "Sphinx literal-block-wrapper containers"
 msgstr ""
 
-#: ../../../CHANGELOG.md:812
+#: ../../../CHANGELOG.md:938
 msgid ""
 "Extended `visit_literal_block()` and `depart_literal_block()` to support "
 "caption and label generation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:813
+#: ../../../CHANGELOG.md:939
 msgid ""
 "Modified `visit_caption()` to skip caption text output for captioned code"
 " blocks (prevents duplication)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:814
+#: ../../../CHANGELOG.md:940
 msgid ""
 "Line numbers now disabled by default when `:linenos:` is not specified "
 "(via `#codly(number-format: none)`)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:815
+#: ../../../CHANGELOG.md:941
 msgid ""
 "All four options (`:linenos:`, `:caption:`, `:name:`, `:emphasize-"
 "lines:`) now work correctly together"
 msgstr ""
 
-#: ../../../CHANGELOG.md:816
+#: ../../../CHANGELOG.md:942
 msgid "Added comprehensive test coverage for all code block option combinations"
 msgstr ""
 
-#: ../../../CHANGELOG.md:818
+#: ../../../CHANGELOG.md:944
 msgid ""
 "**PDF Builder codly Import Missing** "
 "([#28](https://github.com/YuSabo90002/typsphinx/issues/28))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:819
+#: ../../../CHANGELOG.md:945
 msgid "Fixed `typstpdf` builder failing with \"unknown variable: codly\" error"
 msgstr ""
 
-#: ../../../CHANGELOG.md:820
+#: ../../../CHANGELOG.md:946
 msgid ""
 "Added codly package imports to document-level essential imports in "
 "`template_engine.py`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:821
+#: ../../../CHANGELOG.md:947
 msgid ""
 "Document files now include `#import \"@preview/codly:1.3.0\": *` and "
 "`#import \"@preview/codly-languages:0.1.1\": *`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:822
+#: ../../../CHANGELOG.md:948
 msgid ""
 "Enables PDF generation for documents with code blocks (prerequisite for "
 "Issue #20)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:823
+#: ../../../CHANGELOG.md:949
 msgid ""
 "No breaking changes - only adds imports alongside existing mitex/gentle-"
 "clues imports"
 msgstr ""
 
-#: ../../../CHANGELOG.md:825 ../../../CHANGELOG.md:1043
+#: ../../../CHANGELOG.md:951 ../../../CHANGELOG.md:1169
 msgid "Documentation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:826
+#: ../../../CHANGELOG.md:952
 msgid ""
 "**README Math Example Fix** "
 "([#33](https://github.com/YuSabo90002/typsphinx/pull/33))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:827
+#: ../../../CHANGELOG.md:953
 msgid "Fixed incorrect double-escaped backslashes in math directive example"
 msgstr ""
 
-#: ../../../CHANGELOG.md:828
+#: ../../../CHANGELOG.md:954
 msgid "Changed `\\\\int` to `\\int` for correct reStructuredText syntax"
 msgstr ""
 
-#: ../../../CHANGELOG.md:829
+#: ../../../CHANGELOG.md:955
 msgid "Helps users write proper reStructuredText files"
 msgstr ""
 
-#: ../../../CHANGELOG.md:831
+#: ../../../CHANGELOG.md:957
 msgid "[0.2.1] - 2025-10-18"
 msgstr ""
 
-#: ../../../CHANGELOG.md:834
+#: ../../../CHANGELOG.md:960
 msgid ""
 "**Table Content Duplication** "
 "([#19](https://github.com/YuSabo90002/typsphinx/issues/19))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:835
+#: ../../../CHANGELOG.md:961
 msgid ""
 "Fixed duplicate table content in Typst output where cell content appeared"
 " both as plain text and inside `#table()` structure"
 msgstr ""
 
-#: ../../../CHANGELOG.md:836
+#: ../../../CHANGELOG.md:962
 msgid ""
 "Affects all reStructuredText table formats: list-table, grid table, "
 "simple table, csv-table"
 msgstr ""
 
-#: ../../../CHANGELOG.md:837
+#: ../../../CHANGELOG.md:963
 msgid ""
 "Modified `add_text()` method to route text to `table_cell_content` when "
 "inside table cells"
 msgstr ""
 
-#: ../../../CHANGELOG.md:838
+#: ../../../CHANGELOG.md:964
 msgid ""
 "Modified `depart_table()` to use `self.body.append()` directly for table "
 "structure output"
 msgstr ""
 
-#: ../../../CHANGELOG.md:839
+#: ../../../CHANGELOG.md:965
 msgid "Added comprehensive test coverage for all table formats"
 msgstr ""
 
-#: ../../../CHANGELOG.md:841
+#: ../../../CHANGELOG.md:967
 msgid ""
 "**RST Comments Rendered as Plain Text** "
 "([#21](https://github.com/YuSabo90002/typsphinx/issues/21))"
 msgstr ""
 
-#: ../../../CHANGELOG.md:842
+#: ../../../CHANGELOG.md:968
 msgid "Fixed reStructuredText comments appearing as plain text in Typst output"
 msgstr ""
 
-#: ../../../CHANGELOG.md:843
+#: ../../../CHANGELOG.md:969
 msgid ""
 "Comments (lines starting with `..`) are now properly skipped during "
 "conversion"
 msgstr ""
 
-#: ../../../CHANGELOG.md:844
+#: ../../../CHANGELOG.md:970
 msgid "Resolved \"unknown node type: comment\" warning messages"
 msgstr ""
 
-#: ../../../CHANGELOG.md:845
+#: ../../../CHANGELOG.md:971
 msgid "Added `visit_comment()` and `depart_comment()` methods to TypstTranslator"
 msgstr ""
 
-#: ../../../CHANGELOG.md:846
+#: ../../../CHANGELOG.md:972
 msgid ""
 "Comments are completely omitted from output as intended for source-level "
 "documentation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:848
+#: ../../../CHANGELOG.md:974
 msgid "[0.1.0b1] - 2025-10-13"
 msgstr ""
 
-#: ../../../CHANGELOG.md:852
+#: ../../../CHANGELOG.md:978
 msgid "Core Features"
 msgstr ""
 
-#: ../../../CHANGELOG.md:853
+#: ../../../CHANGELOG.md:979
 msgid "**Sphinx Builder Integration** (Requirement 1)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:854
+#: ../../../CHANGELOG.md:980
 msgid "TypstBuilder registered as standard Sphinx builder"
 msgstr ""
 
-#: ../../../CHANGELOG.md:855
+#: ../../../CHANGELOG.md:981
 msgid ""
 "Entry point automatic discovery: `sphinx.builders` → `typst = "
 "\"sphinxcontrib.typst\"`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:856
+#: ../../../CHANGELOG.md:982
 msgid "Command: `sphinx-build -b typst` and `sphinx-build -b typstpdf`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:858
+#: ../../../CHANGELOG.md:984
 msgid "**Doctree to Typst Conversion** (Requirement 2)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:859
+#: ../../../CHANGELOG.md:985
 msgid "TypstWriter and TypstTranslator for node conversion"
 msgstr ""
 
-#: ../../../CHANGELOG.md:860
+#: ../../../CHANGELOG.md:986
 msgid "Support for 70+ standard docutils nodes + 14+ Sphinx addnodes"
 msgstr ""
 
-#: ../../../CHANGELOG.md:861
+#: ../../../CHANGELOG.md:987
 msgid "Document structure: sections, paragraphs, lists, tables"
 msgstr ""
 
-#: ../../../CHANGELOG.md:862
+#: ../../../CHANGELOG.md:988
 msgid "Inline elements: emphasis, strong, literal, subscript, superscript"
 msgstr ""
 
-#: ../../../CHANGELOG.md:863
+#: ../../../CHANGELOG.md:989
 msgid "Admonitions via gentle-clues (`@preview/gentle-clues:1.2.0`):"
 msgstr ""
 
-#: ../../../CHANGELOG.md:864
+#: ../../../CHANGELOG.md:990
 msgid "`note` → `#info[]`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:865
+#: ../../../CHANGELOG.md:991
 msgid "`warning`/`caution` → `#warning[]`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:866
+#: ../../../CHANGELOG.md:992
 msgid "`tip` → `#tip[]`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:867
+#: ../../../CHANGELOG.md:993
 msgid "`important` → `#warning(title: \"Important\")[]`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:868
+#: ../../../CHANGELOG.md:994
 msgid "`seealso` → `#info(title: \"See Also\")[]`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:870
+#: ../../../CHANGELOG.md:996
 msgid "**Cross-References and Links** (Requirement 3)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:871
+#: ../../../CHANGELOG.md:997
 msgid "`nodes.reference` → `#link(url)[text]`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:872
+#: ../../../CHANGELOG.md:998
 msgid "`nodes.target` → `<label>`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:873
+#: ../../../CHANGELOG.md:999
 msgid "`addnodes.pending_xref` → `#link(<label>)[text]` or `#ref(<label>)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:874
+#: ../../../CHANGELOG.md:1000
 msgid "Document and figure cross-references with `numref`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:875
+#: ../../../CHANGELOG.md:1001
 msgid "Inline references (`nodes.inline` with `xref` class)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:877
+#: ../../../CHANGELOG.md:1003
 msgid "**Mathematical Expressions** (Requirements 4 & 5)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:878
+#: ../../../CHANGELOG.md:1004
 msgid "**LaTeX math via mitex** (`@preview/mitex:0.2.4`):"
 msgstr ""
 
-#: ../../../CHANGELOG.md:879
+#: ../../../CHANGELOG.md:1005
 msgid "Block math: `#mitex(\\`...\\`)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:880
+#: ../../../CHANGELOG.md:1006
 msgid "Inline math: `#mi(\\`...\\`)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:881
+#: ../../../CHANGELOG.md:1007
 msgid "Supports LaTeX commands, environments, user-defined macros"
 msgstr ""
 
-#: ../../../CHANGELOG.md:882
+#: ../../../CHANGELOG.md:1008
 msgid "**Native Typst math**:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:883
+#: ../../../CHANGELOG.md:1009
 msgid "Block: `$ ... $` with labeled equations"
 msgstr ""
 
-#: ../../../CHANGELOG.md:884
+#: ../../../CHANGELOG.md:1010
 msgid "Inline: `$...$`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:885
+#: ../../../CHANGELOG.md:1011
 msgid "Typst-specific functions: `cal()`, `bb()`, `subset.eq`, etc."
 msgstr ""
 
-#: ../../../CHANGELOG.md:886
+#: ../../../CHANGELOG.md:1012
 msgid ""
 "**Fallback mode**: Basic LaTeX→Typst conversion when `typst_use_mitex = "
 "False`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:888
+#: ../../../CHANGELOG.md:1014
 msgid "**Images and Figures** (Requirement 6)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:889
+#: ../../../CHANGELOG.md:1015
 msgid "`nodes.image` → `#image(\"path\")`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:890
+#: ../../../CHANGELOG.md:1016
 msgid "`nodes.figure` → `#figure()` with captions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:891
+#: ../../../CHANGELOG.md:1017
 msgid "`nodes.table` → `#table()` with headers and rows"
 msgstr ""
 
-#: ../../../CHANGELOG.md:892
+#: ../../../CHANGELOG.md:1018
 msgid "Figure/table labels and cross-references"
 msgstr ""
 
-#: ../../../CHANGELOG.md:894
+#: ../../../CHANGELOG.md:1020
 msgid "**Code Highlighting** (Requirement 7)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:895
+#: ../../../CHANGELOG.md:1021
 msgid ""
 "**Codly integration** (`@preview/codly:1.3.0` + `@preview/codly-"
 "languages:0.1.1`):"
 msgstr ""
 
-#: ../../../CHANGELOG.md:896
+#: ../../../CHANGELOG.md:1022
 msgid "Automatic line numbering for all code blocks"
 msgstr ""
 
-#: ../../../CHANGELOG.md:897
+#: ../../../CHANGELOG.md:1023
 msgid "Syntax highlighting for 50+ languages"
 msgstr ""
 
-#: ../../../CHANGELOG.md:898
+#: ../../../CHANGELOG.md:1024
 msgid "Highlight specific lines via `#codly-range(highlight: (...))`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:899
+#: ../../../CHANGELOG.md:1025
 msgid "Language-specific icons and colors"
 msgstr ""
 
-#: ../../../CHANGELOG.md:901
+#: ../../../CHANGELOG.md:1027
 msgid "**Template System** (Requirement 8)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:902
+#: ../../../CHANGELOG.md:1028
 msgid "TemplateEngine for Typst template management"
 msgstr ""
 
-#: ../../../CHANGELOG.md:903
+#: ../../../CHANGELOG.md:1029
 msgid "Default template with project metadata integration"
 msgstr ""
 
-#: ../../../CHANGELOG.md:904
+#: ../../../CHANGELOG.md:1030
 msgid "Custom template support via `typst_template` config"
 msgstr ""
 
-#: ../../../CHANGELOG.md:905
+#: ../../../CHANGELOG.md:1031
 msgid "Template parameter mapping: `typst_template_mapping`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:906
+#: ../../../CHANGELOG.md:1032
 msgid "Sphinx metadata → template parameters (title, authors, date, etc.)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:907
+#: ../../../CHANGELOG.md:1033
 msgid "Support for Typst Universe packages"
 msgstr ""
 
-#: ../../../CHANGELOG.md:909
+#: ../../../CHANGELOG.md:1035
 msgid "**Self-Contained PDF Generation** (Requirement 9)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:910
+#: ../../../CHANGELOG.md:1036
 msgid "TypstPDFBuilder using typst-py (PyPI: `typst>=0.11.1`)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:911
+#: ../../../CHANGELOG.md:1037
 msgid "No external Typst CLI required"
 msgstr ""
 
-#: ../../../CHANGELOG.md:912
+#: ../../../CHANGELOG.md:1038
 msgid "Command: `sphinx-build -b typstpdf`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:913
+#: ../../../CHANGELOG.md:1039
 msgid "Automatic .typ → .pdf conversion"
 msgstr ""
 
-#: ../../../CHANGELOG.md:914
+#: ../../../CHANGELOG.md:1040
 msgid "Platform support: Linux, macOS, Windows"
 msgstr ""
 
-#: ../../../CHANGELOG.md:916
+#: ../../../CHANGELOG.md:1042
 msgid "**Error Handling and Logging** (Requirement 10)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:917
+#: ../../../CHANGELOG.md:1043
 msgid "Sphinx logger integration with warning/error levels"
 msgstr ""
 
-#: ../../../CHANGELOG.md:918
+#: ../../../CHANGELOG.md:1044
 msgid "Unknown node fallback with warnings"
 msgstr ""
 
-#: ../../../CHANGELOG.md:919
+#: ../../../CHANGELOG.md:1045
 msgid "Template/resource error handling"
 msgstr ""
 
-#: ../../../CHANGELOG.md:920
+#: ../../../CHANGELOG.md:1046
 msgid "PDF compilation error reporting (`TypstCompilationError`)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:922
+#: ../../../CHANGELOG.md:1048
 msgid "**Multi-Document Integration** (Requirement 13)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:923
+#: ../../../CHANGELOG.md:1049
 msgid "Each .rst → independent .typ file"
 msgstr ""
 
-#: ../../../CHANGELOG.md:924
+#: ../../../CHANGELOG.md:1050
 msgid "`toctree` → `#include()` directives"
 msgstr ""
 
-#: ../../../CHANGELOG.md:925
+#: ../../../CHANGELOG.md:1051
 msgid "Heading level adjustment: `#set heading(offset: 1)`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:926
+#: ../../../CHANGELOG.md:1052
 msgid "`#outline()` managed in templates (not in document body)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:927
+#: ../../../CHANGELOG.md:1053
 msgid "Toctree options → template parameters:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:928
+#: ../../../CHANGELOG.md:1054
 msgid "`:maxdepth:` → `toctree_maxdepth`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:929
+#: ../../../CHANGELOG.md:1055
 msgid "`:numbered:` → `toctree_numbered`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:930
+#: ../../../CHANGELOG.md:1056
 msgid "`:caption:` → `toctree_caption`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:932
+#: ../../../CHANGELOG.md:1058
 msgid "Configuration Options"
 msgstr ""
 
-#: ../../../CHANGELOG.md:933
+#: ../../../CHANGELOG.md:1059
 msgid "`typst_use_mitex`: Enable/disable mitex for LaTeX math (default: `True`)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:934
+#: ../../../CHANGELOG.md:1060
 msgid "`typst_template`: Custom template path"
 msgstr ""
 
-#: ../../../CHANGELOG.md:935
+#: ../../../CHANGELOG.md:1061
 msgid "`typst_elements`: Template parameters (paper size, fonts, etc.)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:936
+#: ../../../CHANGELOG.md:1062
 msgid "`typst_template_mapping`: Sphinx metadata to template parameter mapping"
 msgstr ""
 
-#: ../../../CHANGELOG.md:937
+#: ../../../CHANGELOG.md:1063
 msgid "`typst_toctree_defaults`: Default toctree options"
 msgstr ""
 
-#: ../../../CHANGELOG.md:938
+#: ../../../CHANGELOG.md:1064
 msgid "`typst_package`: External Typst Universe package"
 msgstr ""
 
-#: ../../../CHANGELOG.md:939
+#: ../../../CHANGELOG.md:1065
 msgid "`typst_package_imports`: Package imports"
 msgstr ""
 
-#: ../../../CHANGELOG.md:940
+#: ../../../CHANGELOG.md:1066
 msgid "`typst_template_function`: Template function name"
 msgstr ""
 
-#: ../../../CHANGELOG.md:941
+#: ../../../CHANGELOG.md:1067
 msgid "`typst_output_dir`: Output directory structure"
 msgstr ""
 
-#: ../../../CHANGELOG.md:942
+#: ../../../CHANGELOG.md:1068
 msgid "`typst_debug`: Debug mode"
 msgstr ""
 
-#: ../../../CHANGELOG.md:944
+#: ../../../CHANGELOG.md:1070
 msgid "Documentation and Examples"
 msgstr ""
 
-#: ../../../CHANGELOG.md:945
+#: ../../../CHANGELOG.md:1071
 msgid "Installation guide: `docs/installation.rst`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:946
+#: ../../../CHANGELOG.md:1072
 msgid "Usage guide: `docs/usage.rst` (600+ lines)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:947
+#: ../../../CHANGELOG.md:1073
 msgid ""
 "Configuration reference: `docs/configuration.rst` (400+ lines, 11 config "
 "values)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:948
+#: ../../../CHANGELOG.md:1074
 msgid "Basic example: `examples/basic/`"
 msgstr ""
 
-#: ../../../CHANGELOG.md:949
+#: ../../../CHANGELOG.md:1075
 msgid "Advanced example: `examples/advanced/` (toctree, LaTeX math, code, tables)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:951
+#: ../../../CHANGELOG.md:1077
 msgid "Testing and Quality Assurance"
 msgstr ""
 
-#: ../../../CHANGELOG.md:952
+#: ../../../CHANGELOG.md:1078
 #, python-format
 msgid "**286 tests** with **93% code coverage**:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:953
+#: ../../../CHANGELOG.md:1079
 msgid "Unit tests: builder, translator, template engine, PDF generation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:954
+#: ../../../CHANGELOG.md:1080
 msgid "Integration tests: basic, multi-document, advanced features"
 msgstr ""
 
-#: ../../../CHANGELOG.md:955
+#: ../../../CHANGELOG.md:1081
 msgid "Documentation tests: installation, configuration, usage"
 msgstr ""
 
-#: ../../../CHANGELOG.md:956
+#: ../../../CHANGELOG.md:1082
 msgid "Example tests: basic and advanced examples"
 msgstr ""
 
-#: ../../../CHANGELOG.md:957
+#: ../../../CHANGELOG.md:1083
 msgid "**Multi-version testing** via tox:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:958
+#: ../../../CHANGELOG.md:1084
 msgid "Python 3.9, 3.10, 3.11, 3.12"
 msgstr ""
 
-#: ../../../CHANGELOG.md:959
+#: ../../../CHANGELOG.md:1085
 msgid "tox environments: py39, py310, py311, py312, lint, type, cov"
 msgstr ""
 
-#: ../../../CHANGELOG.md:960
+#: ../../../CHANGELOG.md:1086
 msgid "**CI/CD pipeline** (GitHub Actions):"
 msgstr ""
 
-#: ../../../CHANGELOG.md:961
+#: ../../../CHANGELOG.md:1087
 msgid "Test matrix: 3 OSes × 4 Python versions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:962
+#: ../../../CHANGELOG.md:1088
 msgid "Lint (black, ruff), type check (mypy)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:963
+#: ../../../CHANGELOG.md:1089
 msgid "Code coverage reporting (Codecov)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:964
+#: ../../../CHANGELOG.md:1090
 msgid "Package build validation (twine check)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:965
+#: ../../../CHANGELOG.md:1091
 msgid "**Code quality tools**:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:966
+#: ../../../CHANGELOG.md:1092
 msgid "black (code formatting)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:967
+#: ../../../CHANGELOG.md:1093
 msgid "ruff (linting)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:968
+#: ../../../CHANGELOG.md:1094
 msgid "mypy (type checking)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:970
+#: ../../../CHANGELOG.md:1096
 msgid "Known Limitations"
 msgstr ""
 
-#: ../../../CHANGELOG.md:972
+#: ../../../CHANGELOG.md:1098
 msgid ""
 "**Requirement 11** (Extensibility and Plugin Support): Custom node "
 "handler registry not yet implemented"
 msgstr ""
 
-#: ../../../CHANGELOG.md:973
+#: ../../../CHANGELOG.md:1099
 msgid "Planned for v0.2.0"
 msgstr ""
 
-#: ../../../CHANGELOG.md:974
+#: ../../../CHANGELOG.md:1100
 msgid "Workaround: Extend TypstTranslator directly"
 msgstr ""
 
-#: ../../../CHANGELOG.md:975
+#: ../../../CHANGELOG.md:1101
 msgid "**Bibliography**: BibTeX integration not yet supported"
 msgstr ""
 
-#: ../../../CHANGELOG.md:976
+#: ../../../CHANGELOG.md:1102
 msgid "**Glossary**: Glossary generation not yet supported"
 msgstr ""
 
-#: ../../../CHANGELOG.md:977
+#: ../../../CHANGELOG.md:1103
 msgid "**Index**: Index generation not yet supported"
 msgstr ""
 
-#: ../../../CHANGELOG.md:979
+#: ../../../CHANGELOG.md:1105
 msgid "Technical Details"
 msgstr ""
 
-#: ../../../CHANGELOG.md:981
+#: ../../../CHANGELOG.md:1107
 msgid "Requirements Fulfilled"
 msgstr ""
 
-#: ../../../CHANGELOG.md:982 ../../../CHANGELOG.md:1070
+#: ../../../CHANGELOG.md:1108 ../../../CHANGELOG.md:1196
 msgid "Requirement 1: Sphinx Builder Integration (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:983 ../../../CHANGELOG.md:1071
+#: ../../../CHANGELOG.md:1109 ../../../CHANGELOG.md:1197
 msgid "Requirement 2: Doctree to Typst Conversion (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:984 ../../../CHANGELOG.md:1072
+#: ../../../CHANGELOG.md:1110 ../../../CHANGELOG.md:1198
 msgid "Requirement 3: Cross-References and Links (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:985 ../../../CHANGELOG.md:1073
+#: ../../../CHANGELOG.md:1111 ../../../CHANGELOG.md:1199
 msgid "Requirement 4: Math Support (mitex) (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:986 ../../../CHANGELOG.md:1074
+#: ../../../CHANGELOG.md:1112 ../../../CHANGELOG.md:1200
 msgid "Requirement 5: Typst Native Math (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:987 ../../../CHANGELOG.md:1075
+#: ../../../CHANGELOG.md:1113 ../../../CHANGELOG.md:1201
 msgid "Requirement 6: Figures and Tables (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:988 ../../../CHANGELOG.md:1076
+#: ../../../CHANGELOG.md:1114 ../../../CHANGELOG.md:1202
 msgid "Requirement 7: Code Highlighting (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:989 ../../../CHANGELOG.md:1077
+#: ../../../CHANGELOG.md:1115 ../../../CHANGELOG.md:1203
 msgid "Requirement 8: Templates and Customization (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:990 ../../../CHANGELOG.md:1078
+#: ../../../CHANGELOG.md:1116 ../../../CHANGELOG.md:1204
 msgid "Requirement 9: Self-Contained PDF Generation (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:991 ../../../CHANGELOG.md:1079
+#: ../../../CHANGELOG.md:1117 ../../../CHANGELOG.md:1205
 msgid "Requirement 10: Error Handling and Logging (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:992
+#: ../../../CHANGELOG.md:1118
 msgid "⏳ Requirement 11: Extensibility (Planned for v0.2.0)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:993 ../../../CHANGELOG.md:1081
+#: ../../../CHANGELOG.md:1119 ../../../CHANGELOG.md:1207
 msgid "Requirement 12: Testing and Documentation (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:994 ../../../CHANGELOG.md:1082
+#: ../../../CHANGELOG.md:1120 ../../../CHANGELOG.md:1208
 msgid "Requirement 13: Multi-Document Integration (100%)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:996
+#: ../../../CHANGELOG.md:1122
 msgid "**Total: 12 out of 13 requirements fully implemented**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:998 ../../../CHANGELOG.md:1060
+#: ../../../CHANGELOG.md:1124 ../../../CHANGELOG.md:1186
 msgid "Dependencies"
 msgstr ""
 
-#: ../../../CHANGELOG.md:999
+#: ../../../CHANGELOG.md:1125
 msgid "Python: ≥3.9"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1000
+#: ../../../CHANGELOG.md:1126
 msgid "Sphinx: ≥5.0"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1001
+#: ../../../CHANGELOG.md:1127
 msgid "docutils: ≥0.18"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1002
+#: ../../../CHANGELOG.md:1128
 msgid "typst (typst-py): ≥0.11.1"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1004
+#: ../../../CHANGELOG.md:1130
 msgid "Typst Packages Used"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1005
+#: ../../../CHANGELOG.md:1131
 msgid "`@preview/mitex:0.2.4`: LaTeX math rendering"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1006
+#: ../../../CHANGELOG.md:1132
 msgid "`@preview/codly:1.3.0`: Code syntax highlighting"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1007
+#: ../../../CHANGELOG.md:1133
 msgid "`@preview/codly-languages:0.1.1`: Language definitions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1008
+#: ../../../CHANGELOG.md:1134
 msgid "`@preview/gentle-clues:1.2.0`: Admonition styling"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1010
+#: ../../../CHANGELOG.md:1136
 msgid "Development Tools"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1011
+#: ../../../CHANGELOG.md:1137
 msgid "**uv**: Fast package management and dependency resolution"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1012
+#: ../../../CHANGELOG.md:1138
 msgid "**pytest**: Testing framework (286 tests)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1013
+#: ../../../CHANGELOG.md:1139
 msgid "**tox**: Multi-version testing automation"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1014
+#: ../../../CHANGELOG.md:1140
 msgid "**black**: Code formatting"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1015
+#: ../../../CHANGELOG.md:1141
 msgid "**ruff**: Linting"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1016
+#: ../../../CHANGELOG.md:1142
 msgid "**mypy**: Type checking"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1017
+#: ../../../CHANGELOG.md:1143
 msgid "**sphinx-testing**: Sphinx extension testing helpers"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1021
+#: ../../../CHANGELOG.md:1147
 msgid "[0.2.0] - 2025-10-16"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1025
+#: ../../../CHANGELOG.md:1151
 msgid ""
 "**Issue #5**: Fixed nested toctree relative path issues in `#include()` "
 "directives (PR #14)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1026
+#: ../../../CHANGELOG.md:1152
 msgid "Corrected relative path calculation for nested toctree structures"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1027
+#: ../../../CHANGELOG.md:1153
 msgid "Added comprehensive debug logging for path resolution"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1028
+#: ../../../CHANGELOG.md:1154
 msgid "Added E2E Typst compilation tests and integration tests"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1029
+#: ../../../CHANGELOG.md:1155
 msgid "Improved code coverage to 94%"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1031
+#: ../../../CHANGELOG.md:1157
 msgid "**Issue #10**: Fixed typstpdf builder auto-discovery (PR #12)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1032
+#: ../../../CHANGELOG.md:1158
 msgid ""
 "Registered `typstpdf` builder in `entry_points` for automatic Sphinx "
 "discovery"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1033
+#: ../../../CHANGELOG.md:1159
 msgid "Updated documentation to reflect optional extension registration"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1034
+#: ../../../CHANGELOG.md:1160
 msgid "Added test coverage for typstpdf entry point"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1036
+#: ../../../CHANGELOG.md:1162
 msgid "Improved"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1038
+#: ../../../CHANGELOG.md:1164
 msgid "**Issue #7**: Simplified toctree output format (PR #15)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1039
+#: ../../../CHANGELOG.md:1165
 msgid "Changed from multiple `#block(breakable: true)[]` to single content block"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1040
+#: ../../../CHANGELOG.md:1166
 msgid "Improved readability and maintainability of generated Typst code"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1041
+#: ../../../CHANGELOG.md:1167
 msgid "Resolved lint and format errors in test files"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1045
+#: ../../../CHANGELOG.md:1171
 msgid ""
 "**Issue #6**: Documented custom node support using Sphinx standard API "
 "(PR #16)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1046
+#: ../../../CHANGELOG.md:1172
 msgid "Added \"Working with Third-Party Extensions\" section to README.md"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1047
+#: ../../../CHANGELOG.md:1173
 msgid "Documented usage of Sphinx's standard `app.add_node()` API"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1048
+#: ../../../CHANGELOG.md:1174
 msgid "Provided practical example with sphinxcontrib-mermaid integration"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1049
+#: ../../../CHANGELOG.md:1175
 msgid ""
 "Clarified that NodeHandlerRegistry is unnecessary - Sphinx already "
 "provides this functionality"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1050
+#: ../../../CHANGELOG.md:1176
 msgid ""
 "**Requirement 11 is now complete**: Custom node support via Sphinx's "
 "standard extension mechanism"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1052
+#: ../../../CHANGELOG.md:1178
 msgid "**Issue #8**: Added acknowledgment for AI-assisted development (PR #9)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1053
+#: ../../../CHANGELOG.md:1179
 msgid ""
 "Added Claude Code and Kiro-style Spec-Driven Development to "
 "acknowledgments"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1055
+#: ../../../CHANGELOG.md:1181
 msgid "**PR #11**: Improved CLAUDE.md with repository information and guidelines"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1056
+#: ../../../CHANGELOG.md:1182
 msgid "Added repository owner and URL information"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1057
+#: ../../../CHANGELOG.md:1183
 msgid "Added language guidelines for GitHub interactions"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1058
+#: ../../../CHANGELOG.md:1184
 msgid "Added issue template references"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1062
+#: ../../../CHANGELOG.md:1188
 msgid "**Dependabot updates**:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1063
+#: ../../../CHANGELOG.md:1189
 msgid "Bump astral-sh/setup-uv from 4 to 7 (PR #1)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1064
+#: ../../../CHANGELOG.md:1190
 msgid "Bump actions/checkout from 4 to 5 (PR #2)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1065
+#: ../../../CHANGELOG.md:1191
 msgid "Bump codecov/codecov-action from 4 to 5 (PR #3)"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1067
+#: ../../../CHANGELOG.md:1193
 msgid "Requirements Status"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1069
+#: ../../../CHANGELOG.md:1195
 msgid "**All 13 requirements now fully implemented**:"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1080
+#: ../../../CHANGELOG.md:1206
 msgid "Requirement 11: Extensibility and Plugin Support (100%) - **Now complete**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1084
+#: ../../../CHANGELOG.md:1210
 msgid "Testing"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1086
+#: ../../../CHANGELOG.md:1212
 #, python-format
 msgid "**317 tests** with **94% code coverage**"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1087
+#: ../../../CHANGELOG.md:1213
 msgid "All tests passing across Python 3.9, 3.10, 3.11, 3.12"
 msgstr ""
 
-#: ../../../CHANGELOG.md:1088
+#: ../../../CHANGELOG.md:1214
 msgid "CI/CD pipeline validated on Linux, macOS, Windows"
 msgstr ""
 
@@ -2847,10 +3031,127 @@ msgid "Migration Guides"
 msgstr ""
 
 #: ../../source/changelog.rst:8
-msgid "Migrating from 0.7.x to 0.8.0"
+msgid "Migrating from 0.8.x to 0.9.0"
 msgstr ""
 
 #: ../../source/changelog.rst:10
+msgid ""
+"This release carries four breaking changes to what typsphinx validates, "
+"writes, and reads. Each item below shows the ``conf.py`` fragment you "
+"have today -- unchanged -- and what it used to do versus what it does "
+"now: the ``# v0.8.x`` block is what that fragment used to produce, the "
+"``# v0.9.0`` block is what it produces now."
+msgstr ""
+
+#: ../../source/changelog.rst:15
+msgid ""
+"**Breaking:** template layout is now validated before anything is "
+"written. With a ``conf.py`` combining ``templates_path = "
+"[\"_templates\"]`` and a Typst template resolved inside that "
+"``templates_path`` directory as ``_templates/base.typ``, v0.8.x copied "
+"that template's bundle -- everything living beside it -- with no check "
+"against Sphinx's own ``templates_path``. v0.9.0 refuses that build "
+"outright, before any file is written, because the whole bundle directory "
+"is copied wholesale to the output and would republish the project's "
+"Sphinx template directory. The same check also refuses a resolved "
+"template bundle whose parent directory is the source directory itself (or"
+" an ancestor of it), and a declared registry key differing from the "
+"built-in ``\"typst\"`` key only by case."
+msgstr ""
+
+#: ../../source/changelog.rst:46
+msgid ""
+"Fix it by moving the Typst template into a directory that is not on "
+"``templates_path`` -- this project's own documentation build uses "
+"``_typst/`` -- and updating ``typst_template`` / "
+"``typst_document_templates`` to match."
+msgstr ""
+
+#: ../../source/changelog.rst:50
+msgid ""
+"**Breaking:** the template bundle relocated from a single shared file to "
+"a per-key directory. With ``typst_documents = [(\"index\", "
+"\"output.typ\", \"Title\", \"Author\")]`` and no custom template "
+"declared, v0.8.x wrote one shared ``_template.typ`` at the output root, "
+"imported by every wrapper as ``#import \"_template.typ\": project``. "
+"v0.9.0 writes the resolved template file's whole parent directory, "
+"wholesale, to ``_template/<key>/`` -- the built-in key's own directory is"
+" ``_template/typst/`` -- and every wrapper imports it by that project-"
+"root-absolute path instead. A template referencing an asset by relative "
+"path must now keep that asset inside its own bundle directory, since that"
+" whole directory is what gets copied."
+msgstr ""
+
+#: ../../source/changelog.rst:73
+msgid ""
+"**Breaking:** the ``typst_template_assets`` config value is removed. With"
+" ``typst_template_assets = [\"logo.png\"]`` set, v0.8.x used that list to"
+" select which extra files the template bundle carried into the output. "
+"v0.9.0 ignores the setting -- with one build warning -- because the whole"
+" bundle directory is now copied wholesale, so an explicit asset list is "
+"no longer needed to reach the output; MORE files reach it than the list "
+"used to select."
+msgstr ""
+
+#: ../../source/changelog.rst:96
+msgid "Delete the setting; no replacement is needed."
+msgstr ""
+
+#: ../../source/changelog.rst:98
+msgid ""
+"**Breaking:** the ``<srcdir>/base.typ`` shadow-template route moved to "
+"``<srcdir>/_typst/base.typ``. A project with no ``typst_template`` set "
+"and a ``base.typ`` file sitting at the source directory's own root used, "
+"in v0.8.x, that file as its template -- a documented but easy-to-miss "
+"\"shadow\" convention. v0.9.0 no longer searches the source directory's "
+"root for it; the same file must now live at ``<srcdir>/_typst/base.typ``."
+" There is **no build-time warning** for this relocation -- an untouched "
+"``<srcdir>/base.typ`` is silently skipped, and the build falls back to "
+"the bundled default template instead, so this changelog entry and this "
+"guide are the only places the change is announced."
+msgstr ""
+
+#: ../../source/changelog.rst:119
+msgid "Move the file to ``<srcdir>/_typst/base.typ``."
+msgstr ""
+
+#: ../../source/changelog.rst:121
+msgid ""
+"The new ``typst_document_templates`` registry itself is additive. An "
+"untouched ``conf.py`` -- one declaring no registry and no fifth element "
+"on any ``typst_documents`` entry -- keeps working exactly as before; "
+"``typst_documents`` element ``[4]`` only starts selecting a template once"
+" a project actually declares one in the registry and names it there -- no"
+" action is needed."
+msgstr ""
+
+#: ../../source/changelog.rst:126
+msgid ""
+"Two different relocations touch the output tree across the 0.8.0 and "
+"0.9.0 releases, and they are easy to conflate. v0.8.0 split what used to "
+"be one file into two: the wrapper (template application plus one "
+"``#include()``) and a separate content file holding the document body -- "
+"a change to how many files exist and what each one contains, described in"
+" the section below. v0.9.0 does not touch that split at all -- a "
+"wrapper's ``#include(...)`` line is unchanged across this release; only "
+"its ``#import(...)`` line moves, from a bare ``_template.typ`` to the "
+"per-key bundle path. If your tooling parses a wrapper's include line, "
+"this release does not affect it; if it parses the import line, that is "
+"what changed."
+msgstr ""
+
+#: ../../source/changelog.rst:135
+msgid ""
+"See :doc:`/user_guide/output_layout` for the full current output-layout "
+"contract, including the bundle-directory rule and which key's directory a"
+" given ``typst_documents`` entry's element ``[4]`` selects."
+msgstr ""
+
+#: ../../source/changelog.rst:140
+msgid "Migrating from 0.7.x to 0.8.0"
+msgstr ""
+
+#: ../../source/changelog.rst:142
 msgid ""
 "This release carries three breaking changes to what typsphinx writes to "
 "disk. Each item below shows the ``conf.py`` fragment you have today -- "
@@ -2859,7 +3160,7 @@ msgid ""
 "now."
 msgstr ""
 
-#: ../../source/changelog.rst:15
+#: ../../source/changelog.rst:147
 msgid ""
 "**Breaking:** the output shape. One ``typst_documents`` entry now writes "
 "TWO files instead of one. With ``typst_documents = [(\"index\", "
@@ -2872,7 +3173,7 @@ msgid ""
 "file, not only the ones named in ``typst_documents``."
 msgstr ""
 
-#: ../../source/changelog.rst:36
+#: ../../source/changelog.rst:168
 msgid ""
 "**Breaking:** the target-as-path reversal. A target containing a path "
 "separator was rejected in v0.7.x -- a build warning, and the file written"
@@ -2886,7 +3187,7 @@ msgid ""
 " this section."
 msgstr ""
 
-#: ../../source/changelog.rst:57
+#: ../../source/changelog.rst:189
 msgid ""
 "**Breaking:** the collision hard error. A configuration whose target "
 "resolves onto a path another claimant already owns now aborts the build. "
@@ -2900,7 +3201,7 @@ msgid ""
 "wrapper."
 msgstr ""
 
-#: ../../source/changelog.rst:79
+#: ../../source/changelog.rst:211
 msgid ""
 "A document reached from more than one master now renders in each of those"
 " masters' PDFs, at that master's own position and heading level, where "
@@ -2908,7 +3209,7 @@ msgid ""
 "defect this release fixes."
 msgstr ""
 
-#: ../../source/changelog.rst:83
+#: ../../source/changelog.rst:215
 msgid ""
 "Two different renames touch ``typst_documents`` targets across these "
 "releases, and they are easy to confuse. v0.7.1 already renamed the "
@@ -2921,18 +3222,18 @@ msgid ""
 "contract."
 msgstr ""
 
-#: ../../source/changelog.rst:91
+#: ../../source/changelog.rst:223
 msgid "Migrating from 0.7.0 to 0.7.1"
 msgstr ""
 
-#: ../../source/changelog.rst:93
+#: ../../source/changelog.rst:225
 msgid ""
 "This patch release carries three breaking configuration changes. Each "
 "item below shows the rewrite: the ``conf.py``/template fragment you have "
 "today, and the corrected fragment to replace it with."
 msgstr ""
 
-#: ../../source/changelog.rst:97
+#: ../../source/changelog.rst:229
 msgid ""
 "**Breaking:** the ``typst_authors`` config value is removed. It was pure "
 "sugar over the ``typst_template_function`` ``params`` route -- Phase 44.2"
@@ -2946,7 +3247,7 @@ msgid ""
 "rather than loudly."
 msgstr ""
 
-#: ../../source/changelog.rst:135
+#: ../../source/changelog.rst:267
 msgid ""
 "**Breaking:** a declared ``typst_template_function`` ``params`` dict is "
 "now the **complete** parameter set. Previously, auto-derived values "
@@ -2957,7 +3258,7 @@ msgid ""
 "no author) instead of the previous merged result -- write all nine."
 msgstr ""
 
-#: ../../source/changelog.rst:172
+#: ../../source/changelog.rst:304
 msgid ""
 "**Breaking:** a custom template must now declare ``lang``. The auto-"
 "derived ``lang`` reaches every non-``typst_package`` template route -- an"
@@ -2967,11 +3268,11 @@ msgid ""
 "argument: lang``."
 msgstr ""
 
-#: ../../source/changelog.rst:214
+#: ../../source/changelog.rst:346
 msgid "Migrating from 0.6.x to 0.7.0"
 msgstr ""
 
-#: ../../source/changelog.rst:216
+#: ../../source/changelog.rst:348
 msgid ""
 "No breaking config changes. Autodoc/API reference output changes "
 "visually: monospace signatures, hanging-indented description bodies, and "
@@ -2980,7 +3281,7 @@ msgid ""
 "documentation looks different on your next build."
 msgstr ""
 
-#: ../../source/changelog.rst:221
+#: ../../source/changelog.rst:353
 msgid ""
 "Citations (``.. [Label]`` / ``[Label]_``) now compile. Previously a "
 "document containing a citation failed the Typst compile outright; "
@@ -2988,24 +3289,24 @@ msgid ""
 "links and back-references."
 msgstr ""
 
-#: ../../source/changelog.rst:224
+#: ../../source/changelog.rst:356
 msgid ""
 "Admonition bucket changes are visual only: ``seealso`` now uses the "
 "``hint``/``tip`` styling and ``attention`` uses the red family instead of"
 " the orange warning bucket."
 msgstr ""
 
-#: ../../source/changelog.rst:228
+#: ../../source/changelog.rst:360
 msgid "Migrating from 0.5.x to 0.6.x"
 msgstr ""
 
-#: ../../source/changelog.rst:230
+#: ../../source/changelog.rst:362
 msgid ""
 "Several breaking config removals landed across this range, alongside a "
 "large set of rendering-fidelity fixes that need no action."
 msgstr ""
 
-#: ../../source/changelog.rst:233
+#: ../../source/changelog.rst:365
 msgid ""
 "**Breaking:** a ``typst_elements`` key outside "
 "``papersize``/``fontsize``/``lang`` now fails the build instead of being "
@@ -3013,21 +3314,21 @@ msgid ""
 " template's ``typst_template_function.params`` instead."
 msgstr ""
 
-#: ../../source/changelog.rst:236
+#: ../../source/changelog.rst:368
 msgid ""
 "**Breaking:** the inert ``typst_toctree_defaults`` config value was "
 "removed. Delete it from your ``conf.py`` if present — it never affected "
 "any build's output."
 msgstr ""
 
-#: ../../source/changelog.rst:238
+#: ../../source/changelog.rst:370
 msgid ""
 "**Breaking:** ``typst_output_dir`` and ``typst_author_params`` config "
 "values were removed. Neither ever affected output; delete them if "
 "present."
 msgstr ""
 
-#: ../../source/changelog.rst:240
+#: ../../source/changelog.rst:372
 msgid ""
 "``sphinx-build -b typstpdf`` now names the output PDF after your "
 "configured ``typst_documents`` target rather than the source docname — "
@@ -3035,7 +3336,7 @@ msgid ""
 "step that hardcodes the old filename."
 msgstr ""
 
-#: ../../source/changelog.rst:243
+#: ../../source/changelog.rst:375
 msgid ""
 "No action needed for the rendering-fidelity fixes across this range "
 "(pixel-unit figure/image widths, footnotes, glossaries, wide tables, and "
@@ -3043,160 +3344,160 @@ msgid ""
 "silently or clipped now simply renders correctly."
 msgstr ""
 
-#: ../../source/changelog.rst:248
+#: ../../source/changelog.rst:380
 msgid "Migrating from 0.2.x to 0.3.x"
 msgstr ""
 
-#: ../../source/changelog.rst:250
+#: ../../source/changelog.rst:382
 msgid "No breaking changes. Documentation site is a new feature."
 msgstr ""
 
-#: ../../source/changelog.rst:253
+#: ../../source/changelog.rst:385
 msgid "Migrating from 0.1.x to 0.2.x"
 msgstr ""
 
-#: ../../source/changelog.rst:255
+#: ../../source/changelog.rst:387
 msgid "**Breaking Changes**"
 msgstr ""
 
-#: ../../source/changelog.rst:257
+#: ../../source/changelog.rst:389
 msgid "None. Version 0.2.0 is backward compatible with 0.1.x."
 msgstr ""
 
-#: ../../source/changelog.rst:259
+#: ../../source/changelog.rst:391
 msgid "**New Features**"
 msgstr ""
 
-#: ../../source/changelog.rst:261
+#: ../../source/changelog.rst:393
 msgid "Use ``typstpdf`` builder for direct PDF generation:"
 msgstr ""
 
-#: ../../source/changelog.rst:274
+#: ../../source/changelog.rst:406
 msgid "Configure templates with dict format:"
 msgstr ""
 
-#: ../../source/changelog.rst:291
+#: ../../source/changelog.rst:423
 msgid "Deprecation Policy"
 msgstr ""
 
-#: ../../source/changelog.rst:293
+#: ../../source/changelog.rst:425
 msgid "We follow semantic versioning:"
 msgstr ""
 
-#: ../../source/changelog.rst:295
+#: ../../source/changelog.rst:427
 msgid "**Major versions** (x.0.0): May include breaking changes"
 msgstr ""
 
-#: ../../source/changelog.rst:296
+#: ../../source/changelog.rst:428
 msgid "**Minor versions** (0.x.0): New features, backward compatible"
 msgstr ""
 
-#: ../../source/changelog.rst:297
+#: ../../source/changelog.rst:429
 msgid "**Patch versions** (0.0.x): Bug fixes, backward compatible"
 msgstr ""
 
-#: ../../source/changelog.rst:299
+#: ../../source/changelog.rst:431
 msgid "Deprecated features are:"
 msgstr ""
 
-#: ../../source/changelog.rst:301
+#: ../../source/changelog.rst:433
 msgid "Announced in the release notes"
 msgstr ""
 
-#: ../../source/changelog.rst:302
+#: ../../source/changelog.rst:434
 msgid "Kept for at least one minor version"
 msgstr ""
 
-#: ../../source/changelog.rst:303
+#: ../../source/changelog.rst:435
 msgid "Removed in the next major version"
 msgstr ""
 
-#: ../../source/changelog.rst:306
+#: ../../source/changelog.rst:438
 msgid "Upcoming Features"
 msgstr ""
 
-#: ../../source/changelog.rst:308
+#: ../../source/changelog.rst:440
 msgid ""
 "See our `GitHub Issues "
 "<https://github.com/YuSabo90002/typsphinx/issues>`_ for planned features."
 msgstr ""
 
-#: ../../source/changelog.rst:312
+#: ../../source/changelog.rst:444
 msgid "Versioning"
 msgstr ""
 
-#: ../../source/changelog.rst:314
+#: ../../source/changelog.rst:446
 msgid "typsphinx uses semantic versioning (SemVer):"
 msgstr ""
 
-#: ../../source/changelog.rst:316
+#: ../../source/changelog.rst:448
 msgid "**MAJOR**: Incompatible API changes"
 msgstr ""
 
-#: ../../source/changelog.rst:317
+#: ../../source/changelog.rst:449
 msgid "**MINOR**: New functionality, backward compatible"
 msgstr ""
 
-#: ../../source/changelog.rst:318
+#: ../../source/changelog.rst:450
 msgid "**PATCH**: Bug fixes, backward compatible"
 msgstr ""
 
-#: ../../source/changelog.rst:321
+#: ../../source/changelog.rst:453
 msgid "Release Process"
 msgstr ""
 
-#: ../../source/changelog.rst:323
+#: ../../source/changelog.rst:455
 msgid ""
 "The released version lives in ``pyproject.toml``'s ``[project].version``."
 " A release runs through ``.github/workflows/release.yml``, triggered by "
 "pushing a matching ``vX.Y.Z`` tag:"
 msgstr ""
 
-#: ../../source/changelog.rst:326
+#: ../../source/changelog.rst:458
 msgid ""
 "Update ``pyproject.toml``'s version and add a curated ``## [X.Y.Z]`` "
 "section to ``CHANGELOG.md``, then push the ``vX.Y.Z`` tag (or trigger the"
 " workflow manually with the tag as input)."
 msgstr ""
 
-#: ../../source/changelog.rst:329
+#: ../../source/changelog.rst:461
 msgid ""
 "The ``validate`` job checks the tag against ``pyproject.toml``'s version "
 "and aborts on a mismatch, aborts if ``CHANGELOG.md`` has no matching non-"
 "empty ``## [X.Y.Z]`` section, then runs the test suite and linters."
 msgstr ""
 
-#: ../../source/changelog.rst:332
+#: ../../source/changelog.rst:464
 msgid "The ``build`` job produces the wheel and sdist."
 msgstr ""
 
-#: ../../source/changelog.rst:333
+#: ../../source/changelog.rst:465
 msgid ""
 "The ``publish-pypi`` job runs behind the protected ``pypi`` GitHub "
 "environment and requires a manual approval before it uploads the package "
 "to PyPI."
 msgstr ""
 
-#: ../../source/changelog.rst:335
+#: ../../source/changelog.rst:467
 msgid ""
 "The ``create-release`` job extracts that same ``## [X.Y.Z]`` CHANGELOG "
 "section and publishes it as the body of a GitHub Release, with the built "
 "wheel and sdist attached."
 msgstr ""
 
-#: ../../source/changelog.rst:339
+#: ../../source/changelog.rst:471
 msgid "See Also"
 msgstr ""
 
-#: ../../source/changelog.rst:341
+#: ../../source/changelog.rst:473
 msgid "`GitHub Releases <https://github.com/YuSabo90002/typsphinx/releases>`_"
 msgstr ""
 
-#: ../../source/changelog.rst:342
+#: ../../source/changelog.rst:474
 msgid "`PyPI Release History <https://pypi.org/project/typsphinx/#history>`_"
 msgstr ""
 
-#: ../../source/changelog.rst:343
+#: ../../source/changelog.rst:475
 msgid ":doc:`contributing` for development guidelines"
 msgstr ""
 

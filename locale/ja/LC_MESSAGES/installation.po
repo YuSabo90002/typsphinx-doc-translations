@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 21:21+0900\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: 2025-11-01 21:40+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../source/installation.rst:2
 msgid "Installation"
@@ -27,11 +27,13 @@ msgid "Requirements"
 msgstr "要件"
 
 #: ../../source/installation.rst:7
-msgid "Python 3.9 or later"
+#, fuzzy
+msgid "Python 3.12 or later"
 msgstr "Python 3.9以降"
 
 #: ../../source/installation.rst:8
-msgid "Sphinx 5.0 or later"
+#, fuzzy
+msgid "Sphinx 9.1 or later (below 10)"
 msgstr "Sphinx 5.0以降"
 
 #: ../../source/installation.rst:11
@@ -106,6 +108,5 @@ msgstr "次のステップ"
 msgid ""
 "Continue to :doc:`quickstart` to learn how to use typsphinx in your "
 "Sphinx project."
-msgstr ""
-"Sphinxプロジェクトでtypsphinxを使用する方法を学ぶには、:doc:`quickstart` に進んでください。"
+msgstr "Sphinxプロジェクトでtypsphinxを使用する方法を学ぶには、:doc:`quickstart` に進んでください。"
 

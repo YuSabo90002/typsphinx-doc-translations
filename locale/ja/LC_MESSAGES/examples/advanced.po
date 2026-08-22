@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-15 03:10+0000\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: 2025-11-01 22:25+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -39,10 +39,10 @@ msgid "Use the charged-ieee package for IEEE-style papers:"
 msgstr "IEEEスタイルの論文にはcharged-ieeeパッケージを使用します:"
 
 #: ../../source/examples/advanced.rst:14 ../../source/examples/advanced.rst:113
-#: ../../source/examples/advanced.rst:149
-#: ../../source/examples/advanced.rst:212
-#: ../../source/examples/advanced.rst:249
-#: ../../source/examples/advanced.rst:407
+#: ../../source/examples/advanced.rst:148
+#: ../../source/examples/advanced.rst:211
+#: ../../source/examples/advanced.rst:248
+#: ../../source/examples/advanced.rst:406
 msgid "**conf.py**:"
 msgstr "**conf.py**:"
 
@@ -55,7 +55,8 @@ msgid "Wrap external packages with custom logic:"
 msgstr "外部パッケージをカスタムロジックでラップ:"
 
 #: ../../source/examples/advanced.rst:62
-msgid "**_templates/custom_ieee.typ**:"
+#, fuzzy
+msgid "**_typst/custom_ieee.typ**:"
 msgstr "**_templates/custom_ieee.typ**:"
 
 #: ../../source/examples/advanced.rst:121
@@ -63,17 +64,17 @@ msgid ""
 "``bibliography`` takes the **result of a call to** Typst's own "
 "``bibliography()`` function, not a bare path string -- ``ieee()`` rejects"
 " a plain ``\"refs.bib\"`` string with a type error. Place ``refs.bib`` "
-"next to ``custom_ieee.typ`` in your ``_templates/`` directory; "
-"typsphinx's automatic asset copying (see :doc:`/user_guide/templates`'s "
-"Template Assets section) copies it to the output directory under that "
-"same ``_templates/`` path. The template file itself is written to the "
-"output root (as ``_template.typ``), so a relative path written inside it "
-"resolves from the output root too -- reference the copied asset as "
-"``\"_templates/refs.bib\"``, matching where the copy lands, not the bare "
-"filename."
+"next to ``custom_ieee.typ`` in your ``_typst/`` directory: typsphinx "
+"copies that whole directory -- the template's bundle -- to its own "
+"directory under the output tree (see :doc:`/user_guide/templates`'s "
+"Template Assets section), so ``refs.bib`` lands **beside** the template "
+"file, not at the output root. The relative reference written inside the "
+"template therefore resolves against that same directory -- reference the "
+"asset by its bare filename, ``\"refs.bib\"``, matching where the copy "
+"lands."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:135
+#: ../../source/examples/advanced.rst:134
 msgid ""
 "Do **not** also set ``typst_package`` here. The wrapping template already"
 " declares ``#import \"@preview/charged-ieee:0.1.4\": ieee`` itself, and "
@@ -83,19 +84,19 @@ msgid ""
 "so the wrapper is written and imported as before."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:142
+#: ../../source/examples/advanced.rst:141
 msgid "Use ``typst_package`` **or** ``typst_template`` — not both."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:145
+#: ../../source/examples/advanced.rst:144
 msgid "Multi-Document Projects"
 msgstr "複数ドキュメントプロジェクト"
 
-#: ../../source/examples/advanced.rst:147
+#: ../../source/examples/advanced.rst:146
 msgid "Build multiple related documents:"
 msgstr "複数の関連ドキュメントをビルド:"
 
-#: ../../source/examples/advanced.rst:160
+#: ../../source/examples/advanced.rst:159
 msgid ""
 "Each entry gets its own wrapper file at the entry's target -- "
 "``main.typ``, ``api-reference.typ`` and ``tutorial.typ`` -- and each is "
@@ -105,19 +106,20 @@ msgid ""
 "full wrapper/content contract and which file to compile."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:168
+#: ../../source/examples/advanced.rst:167
 msgid "Custom Styling"
 msgstr "カスタムスタイリング"
 
-#: ../../source/examples/advanced.rst:170
+#: ../../source/examples/advanced.rst:169
 msgid "Apply custom fonts and colors:"
 msgstr "カスタムフォントと色を適用:"
 
-#: ../../source/examples/advanced.rst:172
-msgid "**_templates/styled.typ**:"
+#: ../../source/examples/advanced.rst:171
+#, fuzzy
+msgid "**_typst/styled.typ**:"
 msgstr "**_templates/styled.typ**:"
 
-#: ../../source/examples/advanced.rst:226
+#: ../../source/examples/advanced.rst:225
 msgid ""
 "Declaring ``params`` makes it the **complete** parameter set (see "
 ":doc:`/user_guide/configuration`'s Author Information section for the "
@@ -126,7 +128,7 @@ msgid ""
 "the styled title page above would render empty."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:234
+#: ../../source/examples/advanced.rst:233
 msgid ""
 "``primary-color`` is declared as a **hex string**, not a raw Typst color "
 "literal such as ``blue`` or a ``rgb(...)`` call. Every value that reaches"
@@ -138,82 +140,82 @@ msgid ""
 "(primary-color)``, which Typst's ``rgb()`` constructor accepts directly."
 msgstr ""
 
-#: ../../source/examples/advanced.rst:245
+#: ../../source/examples/advanced.rst:244
 msgid "Conditional Content"
 msgstr "条件付きコンテンツ"
 
-#: ../../source/examples/advanced.rst:247
+#: ../../source/examples/advanced.rst:246
 msgid "Use different templates for different documents:"
 msgstr "異なるドキュメントに異なるテンプレートを使用:"
 
-#: ../../source/examples/advanced.rst:262
+#: ../../source/examples/advanced.rst:261
 msgid ""
 "For document-specific templates, you can use Sphinx's ``per-file`` "
 "configuration or conditional logic in your template."
 msgstr "ドキュメント固有のテンプレートには、Sphinxの ``per-file`` 設定またはテンプレート内の条件ロジックを使用できます。"
 
-#: ../../source/examples/advanced.rst:266
+#: ../../source/examples/advanced.rst:265
 msgid "Bibliographies"
 msgstr "参考文献"
 
-#: ../../source/examples/advanced.rst:268
+#: ../../source/examples/advanced.rst:267
 msgid "Include bibliographies with BibTeX:"
 msgstr "BibTeXで参考文献を含める:"
 
-#: ../../source/examples/advanced.rst:270
-#: ../../source/examples/advanced.rst:319
+#: ../../source/examples/advanced.rst:269
+#: ../../source/examples/advanced.rst:318
 msgid "**index.rst**:"
 msgstr "**index.rst**:"
 
-#: ../../source/examples/advanced.rst:285
+#: ../../source/examples/advanced.rst:284
 msgid "**Custom template with bibliography**:"
 msgstr "**参考文献付きカスタムテンプレート**:"
 
-#: ../../source/examples/advanced.rst:315
+#: ../../source/examples/advanced.rst:314
 msgid "Advanced Math"
 msgstr "高度な数式"
 
-#: ../../source/examples/advanced.rst:317
+#: ../../source/examples/advanced.rst:316
 msgid "Complex mathematical expressions:"
 msgstr "複雑な数式:"
 
-#: ../../source/examples/advanced.rst:354
+#: ../../source/examples/advanced.rst:353
 msgid "CI/CD Integration"
 msgstr "CI/CD統合"
 
-#: ../../source/examples/advanced.rst:356
+#: ../../source/examples/advanced.rst:355
 msgid "GitHub Actions workflow for documentation:"
 msgstr "ドキュメント用のGitHub Actionsワークフロー:"
 
-#: ../../source/examples/advanced.rst:358
+#: ../../source/examples/advanced.rst:357
 msgid "**.github/workflows/docs.yml**:"
 msgstr "**.github/workflows/docs.yml**:"
 
-#: ../../source/examples/advanced.rst:403
+#: ../../source/examples/advanced.rst:402
 msgid "Performance Optimization"
 msgstr "パフォーマンス最適化"
 
-#: ../../source/examples/advanced.rst:405
+#: ../../source/examples/advanced.rst:404
 msgid "For large documentation projects:"
 msgstr "大規模なドキュメントプロジェクトの場合:"
 
-#: ../../source/examples/advanced.rst:422
+#: ../../source/examples/advanced.rst:421
 msgid "See Also"
 msgstr "関連項目"
 
-#: ../../source/examples/advanced.rst:424
+#: ../../source/examples/advanced.rst:423
 msgid ":doc:`/user_guide/configuration` - All configuration options"
 msgstr ":doc:`/user_guide/configuration` - すべての設定オプション"
 
-#: ../../source/examples/advanced.rst:425
+#: ../../source/examples/advanced.rst:424
 msgid ":doc:`/user_guide/templates` - Template system details"
 msgstr ":doc:`/user_guide/templates` - テンプレートシステムの詳細"
 
-#: ../../source/examples/advanced.rst:426
+#: ../../source/examples/advanced.rst:425
 msgid "`Typst Documentation <https://typst.app/docs>`_ - Official Typst reference"
 msgstr "`Typst Documentation <https://typst.app/docs>`_ - 公式Typstリファレンス"
 
-#: ../../source/examples/advanced.rst:427
+#: ../../source/examples/advanced.rst:426
 msgid "`Typst Universe <https://typst.app/universe>`_ - Package repository"
 msgstr "`Typst Universe <https://typst.app/universe>`_ - パッケージリポジトリ"
 
@@ -225,4 +227,26 @@ msgstr "`Typst Universe <https://typst.app/universe>`_ - パッケージリポ�
 
 #~ msgid "Each document is built separately with its own output file."
 #~ msgstr "各ドキュメントは独自の出力ファイルで個別にビルドされます。"
+
+#~ msgid ""
+#~ "``bibliography`` takes the **result of a"
+#~ " call to** Typst's own ``bibliography()``"
+#~ " function, not a bare path string "
+#~ "-- ``ieee()`` rejects a plain "
+#~ "``\"refs.bib\"`` string with a type "
+#~ "error. Place ``refs.bib`` next to "
+#~ "``custom_ieee.typ`` in your ``_templates/`` "
+#~ "directory; typsphinx's automatic asset copying"
+#~ " (see :doc:`/user_guide/templates`'s Template "
+#~ "Assets section) copies it to the "
+#~ "output directory under that same "
+#~ "``_templates/`` path. The template file "
+#~ "itself is written to the output "
+#~ "root (as ``_template.typ``), so a "
+#~ "relative path written inside it resolves"
+#~ " from the output root too -- "
+#~ "reference the copied asset as "
+#~ "``\"_templates/refs.bib\"``, matching where the "
+#~ "copy lands, not the bare filename."
+#~ msgstr ""
 

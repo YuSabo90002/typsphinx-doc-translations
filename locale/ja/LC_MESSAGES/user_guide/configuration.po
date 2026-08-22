@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-15 03:10+0000\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: 2025-11-01 22:05+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -120,36 +120,44 @@ msgstr ""
 
 #: ../../source/user_guide/configuration.rst:80
 msgid ""
-"**Document class** (usually \"typst\") -- **accepted and ignored**: "
-"typsphinx reads nothing from this position today, and a five-element "
-"tuple is valid and behaves identically to a four-element one. Real five-"
-"element tuples already exist in this repository -- "
+"**Document registry key** -- the registry key into "
+"``typst_document_templates`` that this entry's wrapper resolves its "
+"template, package, and template function through. An absent element [4] "
+"resolves to the reserved ``\"typst\"`` registry key, which typsphinx "
+"synthesizes on every build from the global ``typst_template`` / "
+"``typst_package`` / ``typst_template_function`` settings -- so a four-"
+"element entry and a five-element entry naming ``\"typst\"`` behave "
+"identically. The lookup is exact string equality and is never case-"
+"folded: a registry declaring ``\"Paper\"`` does not satisfy an entry "
+"naming ``\"paper\"``. See `Per-Document Templates`_ below for the "
+"registry itself, including what happens when a named key is not "
+"registered. Real five-element tuples already exist in this repository -- "
 "``docs/source/conf.py`` and both ``examples/charged-ieee`` configs "
 "(``approach1`` and ``approach2``) all set one -- so this is not merely a "
 "hypothetical shape."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:89
+#: ../../source/user_guide/configuration.rst:97
 msgid "Template Configuration"
 msgstr "テンプレート設定"
 
-#: ../../source/user_guide/configuration.rst:92
+#: ../../source/user_guide/configuration.rst:100
 msgid "Template Function"
 msgstr "テンプレート関数"
 
-#: ../../source/user_guide/configuration.rst:94
+#: ../../source/user_guide/configuration.rst:102
 msgid "Specify the Typst template function:"
 msgstr "Typstテンプレート関数を指定します："
 
-#: ../../source/user_guide/configuration.rst:111
+#: ../../source/user_guide/configuration.rst:119
 msgid "Custom Template File"
 msgstr "カスタムテンプレートファイル"
 
-#: ../../source/user_guide/configuration.rst:113
+#: ../../source/user_guide/configuration.rst:121
 msgid "Use a custom Typst template file:"
 msgstr "カスタムTypstテンプレートファイルを使用します："
 
-#: ../../source/user_guide/configuration.rst:119
+#: ../../source/user_guide/configuration.rst:127
 msgid ""
 "The template file should define a ``project`` function (or the function "
 "specified in ``typst_template_function``)."
@@ -157,103 +165,439 @@ msgstr ""
 "テンプレートファイルは、``project`` 関数（または ``typst_template_function`` "
 "で指定された関数）を定義する必要があります。"
 
-#: ../../source/user_guide/configuration.rst:123
+#: ../../source/user_guide/configuration.rst:130
+msgid ""
+"The template's own directory must not also be named in Sphinx's own "
+"``templates_path`` -- since the whole bundle directory is copied to the "
+"output, doing so would republish the project's Sphinx template directory "
+"in the build output. This repository uses ``_typst/`` for exactly that "
+"reason."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:137
 msgid "Typst Package"
 msgstr "Typstパッケージ"
 
-#: ../../source/user_guide/configuration.rst:125
+#: ../../source/user_guide/configuration.rst:139
 msgid "Use external Typst packages from Typst Universe:"
 msgstr "Typst Universeから外部Typstパッケージを使用します："
 
-#: ../../source/user_guide/configuration.rst:132
+#: ../../source/user_guide/configuration.rst:146
 msgid "Template Assets"
 msgstr "テンプレートアセット"
 
-#: ../../source/user_guide/configuration.rst:134
-msgid "Control how template assets (fonts, images, logos) are copied:"
-msgstr "テンプレートアセット（フォント、画像、ロゴ）のコピー方法を制御します："
-
-#: ../../source/user_guide/configuration.rst:152
-msgid "**Default**: ``None`` (automatic directory copy)"
-msgstr "**デフォルト**: ``None`` （ディレクトリの自動コピー）"
-
-#: ../../source/user_guide/configuration.rst:154
-msgid "**Type**: ``list[str] | None``"
-msgstr "**型**: ``list[str] | None``"
-
-#: ../../source/user_guide/configuration.rst:156
-msgid "When ``typst_template_assets`` is:"
-msgstr "``typst_template_assets`` の設定："
-
-#: ../../source/user_guide/configuration.rst:158
-msgid "``None`` (default): Automatically copy entire template directory"
-msgstr "``None`` （デフォルト）: テンプレートディレクトリ全体を自動的にコピー"
-
-#: ../../source/user_guide/configuration.rst:159
+#: ../../source/user_guide/configuration.rst:148
 msgid ""
-"List of paths: Copy only specified files/directories (supports glob "
-"patterns)"
-msgstr "パスのリスト: 指定されたファイル/ディレクトリのみをコピー（globパターンをサポート）"
-
-#: ../../source/user_guide/configuration.rst:160
-msgid "Empty list ``[]``: Disable automatic asset copying"
-msgstr "空のリスト ``[]``: アセットの自動コピーを無効化"
-
-#: ../../source/user_guide/configuration.rst:164
-msgid ""
-"This setting only applies to local custom templates (``typst_template``)."
-" Typst Universe packages (``typst_package``) handle assets automatically."
+"Every used template's bundle directory (the resolved template file's own "
+"parent directory) is copied wholesale to the output tree automatically --"
+" fonts, images, logos, and any other file alongside the template file all"
+" reach the output with no configuration needed."
 msgstr ""
-"この設定は、ローカルのカスタムテンプレート（``typst_template``）にのみ適用されます。Typst "
-"Universeパッケージ（``typst_package``）は、アセットを自動的に処理します。"
 
-#: ../../source/user_guide/configuration.rst:167
+#: ../../source/user_guide/configuration.rst:153
 msgid "See :doc:`templates` for detailed examples."
 msgstr "詳細な例については :doc:`templates` を参照してください。"
 
-#: ../../source/user_guide/configuration.rst:170
+#: ../../source/user_guide/configuration.rst:156
+msgid "Per-Document Templates"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:158
+msgid ""
+"Every ``typst_documents`` entry's registry key (element [4], or the "
+"reserved ``\"typst\"`` key when the element is absent) selects a "
+"definition from ``typst_document_templates`` -- the dict mapping a "
+"registry key to its own ``template``, ``package``, and "
+"``template_function`` settings, so each master document can use a "
+"different Typst template, Typst Universe package, or template-function "
+"arguments instead of one globally-configured template being applied to "
+"every master."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:167
+msgid ""
+"Setting ``typst_document_templates`` is entirely additive: a ``conf.py`` "
+"that never sets it behaves exactly as before, using only the synthesized "
+"reserved key."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:171
+msgid ""
+"**Definition schema.** A definition is a dict carrying ``template`` "
+"exclusively or ``package`` -- setting both is refused (CONF-15) -- plus "
+"an optional ``template_function``, taking the same string form or dict-"
+"with-``params`` form the `Template Function`_ subsection above already "
+"documents. The reserved key ``typst`` itself may not be declared in "
+"``typst_document_templates`` (CONF-16), because typsphinx owns it."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:178
+msgid ""
+"**Worked example.** ``typst_document_templates`` declaring one key on the"
+" ``template`` route, and a ``typst_documents`` list with two entries -- "
+"one resolving to the reserved key, one naming the declared key:"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:195
+msgid ""
+"The first entry has no element [4], so its wrapper resolves through the "
+"synthesized reserved ``typst`` key -- using whatever ``typst_template`` /"
+" ``typst_package`` / ``typst_template_function`` are globally configured."
+" The second entry's element [4] names ``report``, so its wrapper instead "
+"uses ``report``'s own ``_typst/report.typ`` template, independent of the "
+"global settings. This is the only place the published documentation shows"
+" a non-default registry key."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:203
+msgid ""
+"**Package route.** A definition may use ``package`` instead of "
+"``template``:"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:214
+msgid ""
+"The wrapper for a key using ``package`` imports the Typst Universe "
+"package directly, matching the shape shown in `Typst Package`_ above -- "
+"and no bundle is copied for that key."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:218
+msgid ""
+"**Which bundles reach the output.** Every key some ``typst_documents`` "
+"entry actually names has its bundle -- the resolved template file's own "
+"parent directory -- copied wholesale to the output tree; a key that is "
+"declared but that no entry names is still validated, but its bundle is "
+"not copied. See :doc:`output_layout` for where the copies land. Nothing "
+"under the output directory is ever deleted, so a file removed from a "
+"source bundle can linger at the destination across an incremental "
+"rebuild."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:227
+msgid ""
+"**Empty registry.** An empty ``typst_document_templates`` dict is "
+"accepted, and leaves only the synthesized reserved key -- the same state "
+"as not setting the value at all."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:232
+msgid "Registry Key Naming Rules"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:234
+msgid ""
+"A registry key becomes a directory name under the output tree's reserved "
+"``_template/`` directory, so it must be a single, portable path segment. "
+"The seven shapes below are refused, in the order they are checked:"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:242
+msgid "Rejected key shape"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:243
+msgid "Why"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:244
+msgid "Empty or whitespace-only"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:245
+msgid ""
+"A key becomes a directory name, so it must contain at least one non-"
+"whitespace character."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:247
+msgid "Exactly ``.`` or ``..``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:248
+msgid ""
+"These are reserved by every filesystem for the current and parent "
+"directory."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:250
+msgid "Contains a path separator (``/`` or ``\\``)"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:251
+msgid ""
+"A registry key is a single path segment; a separator would split it into "
+"more than one."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:253
+msgid ""
+"A Windows reserved device name, matched case-insensitively against "
+"everything before the first ``.`` -- ``CON.txt`` is reserved, ``ICONIC`` "
+"is not"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:256
+msgid ""
+"Some of these names cannot be created as an ordinary file or directory on"
+" Windows."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:258
+msgid "Ends with a trailing dot"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:259
+msgid ""
+"Windows silently strips a trailing dot from a directory name, so the "
+"written directory would not match the declared key."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:261
+msgid "Ends with a trailing space"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:262
+msgid ""
+"Windows silently strips a trailing space from a directory name, for the "
+"same reason."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:264
+msgid "Differs from another declared key only by case"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:265
+msgid ""
+"Two keys that fold to the same directory name would collide when their "
+"bundles are copied to the output tree."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:268
+msgid ""
+"The case comparison in the last row folds ``/``/``\\`` separators, "
+"normalizes path shape, then applies Python's ``casefold()`` -- and "
+"applies no Unicode normalization at all, so the composed (NFC) and "
+"decomposed (NFD) spellings of one accented character are two DIFFERENT "
+"keys, on every platform, with no ``sys.platform`` branch."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:274
+msgid ""
+"A declared key that folds onto the reserved ``typst`` key the same way is"
+" also refused, before any file is written -- reported by the ``pre-write "
+"template path failure(s):`` shape below, not by this key-shape check "
+"itself, since the comparison there is against the synthesized built-in "
+"key rather than another declared key."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:280
+msgid ""
+"The ``typst_documents`` element [4] lookup itself, in contrast, is exact "
+"``str`` equality and is never case-folded, so a key must be spelled in an"
+" entry exactly as it was declared."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:285
+msgid "When the Build Stops"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:287
+msgid ""
+"A misconfigured registry or an unwritable template bundle stops the build"
+" with an ``ExtensionError``. The table below identifies each config-"
+"caused shape by the leading clause of the message it raises; column three"
+" names what to change."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:296
+msgid "What went wrong"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:297
+msgid "What the build says"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:298
+msgid "What to change"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:299
+msgid "``typst_document_templates`` is set to a truthy value that is not a dict"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:301
+msgid ""
+"``typst_document_templates must be a dict mapping registry key to "
+"definition,``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:302
+msgid ""
+"Set ``typst_document_templates`` to a dict mapping each registry key to "
+"its own definition."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:304
+msgid ""
+"One or more registry definitions are invalid -- this single shape "
+"aggregates every per-definition failure into one message: a non-``str`` "
+"key, a rejected key shape, a reserved-key redeclaration (CONF-16), a "
+"non-``dict`` definition, a definition setting both ``template`` and "
+"``package`` (CONF-15), a ``template`` value that is neither a path string"
+" nor ``os.PathLike``, a CONF-17 source-tree bundle, or a template file "
+"that does not exist"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:312
+msgid "``invalid definition(s):``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:313
+msgid ""
+"See `Registry Key Naming Rules`_ for the key-shape cases; for the others,"
+" correct the named definition's ``template`` or ``package`` value."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:316
+msgid "A ``typst_documents`` entry's element [4] is set to a non-string value"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:318
+msgid "``which is not a string -- registered typst_document_templates keys:``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:319
+msgid ""
+"Set element [4] to a string naming one of the registered keys the message"
+" lists."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:321
+msgid ""
+"A ``typst_documents`` entry names a registry key that was never declared "
+"in ``typst_document_templates``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:323
+msgid ""
+"``which is not a registered typst_document_templates key -- registered "
+"keys:``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:324
+msgid ""
+"Either declare the named key in ``typst_document_templates`` or point "
+"element [4] at one of the registered keys the message lists."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:327
+msgid ""
+"Two things claim the same output path, including the reserved template-"
+"bundle directory"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:329
+msgid "``output path collision(s):``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:330
+msgid ""
+"Rename one of the colliding wrapper targets, or move a definition out of "
+"the reserved bundle directory."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:332
+msgid ""
+"A used registry key's template path fails validation before anything is "
+"written -- covers both a CONF-17 source-tree bundle and a collision with "
+"Sphinx's own ``templates_path``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:335
+msgid ""
+"``pre-write template path failure(s):`` -- the CONF-17 sub-case "
+"specifically also reports ``put the template in its own subdirectory "
+"(CONF-17, A-01)``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:337
+msgid ""
+"Move the template out of ``srcdir`` (or an ancestor of it) and out of any"
+" directory named in Sphinx's ``templates_path`` -- this repository uses "
+"``_typst/``."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:340
+msgid "Two used registry keys resolve to the same bundle destination"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:341
+msgid "``bundle destination collision(s):``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:342
+msgid ""
+"Give the colliding keys' definitions distinct template paths so their "
+"bundles do not land at the same ``_template/<key>/`` destination."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:348
+msgid ""
+"The two remaining shapes report a filesystem failure at copy time, not a "
+"``conf.py`` mistake. ``typst_document_templates: failed to copy the "
+"resolved template for registry key`` means the source template file could"
+" not be read, or the destination could not be written. ``was never copied"
+" from`` means the resolved template file was expected inside its own "
+"bundle directory but never arrived there, so a wrapper naming this key "
+"would import a file that does not exist. Neither names a "
+"``suppress_warnings`` route, because neither is a warning -- both abort "
+"the build."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:361
 msgid "Math Rendering"
 msgstr "数式のレンダリング"
 
-#: ../../source/user_guide/configuration.rst:173
+#: ../../source/user_guide/configuration.rst:364
 msgid "mitex Support"
 msgstr "mitexサポート"
 
-#: ../../source/user_guide/configuration.rst:175
+#: ../../source/user_guide/configuration.rst:366
 msgid "Enable LaTeX math rendering with mitex:"
 msgstr "mitexを使用してLaTeX数式レンダリングを有効化します："
 
-#: ../../source/user_guide/configuration.rst:181
+#: ../../source/user_guide/configuration.rst:372
 msgid ""
 "When enabled, LaTeX math expressions are converted to Typst using the "
 "mitex package. When disabled, math is passed directly as Typst math "
 "syntax."
 msgstr "有効にすると、LaTeX数式はmitexパッケージを使用してTypstに変換されます。無効にすると、数式はTypstの数式構文として直接渡されます。"
 
-#: ../../source/user_guide/configuration.rst:185
+#: ../../source/user_guide/configuration.rst:376
 msgid "Author Information"
 msgstr "著者情報"
 
-#: ../../source/user_guide/configuration.rst:188
+#: ../../source/user_guide/configuration.rst:379
 #, fuzzy
 msgid "Detailed Author Structure"
 msgstr "詳細な形式"
 
-#: ../../source/user_guide/configuration.rst:190
+#: ../../source/user_guide/configuration.rst:381
 msgid ""
 "Rich per-author structure -- department, organization, location, email --"
 " is expressed through ``typst_template_function``'s dict-form ``params`` "
 "route, the same route used for any other custom parameter:"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:218
+#: ../../source/user_guide/configuration.rst:409
 msgid ""
 "**Precedence.** One question decides the parameter set your template "
 "function receives: **is a** ``params`` **key present in** "
 "``typst_template_function``'s dictionary form?"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:222
+#: ../../source/user_guide/configuration.rst:413
 #, python-brace-format
 msgid ""
 "If it is, ``params`` is the **complete, exclusive** parameter set, on "
@@ -267,7 +611,7 @@ msgid ""
 "a legitimate configuration."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:232
+#: ../../source/user_guide/configuration.rst:423
 msgid ""
 "A user who has named both the template function and its arguments has "
 "already made a more specific decision than either -- that sentence "
@@ -275,7 +619,7 @@ msgid ""
 "literally what the code does, with no residual merge behind it."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:237
+#: ../../source/user_guide/configuration.rst:428
 msgid ""
 "If ``params`` is **not** present, the parameter mapping decides what "
 "reaches ``authors`` instead: **does the active parameter mapping send "
@@ -289,7 +633,7 @@ msgid ""
 "appears in the mapping at all:"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:248
+#: ../../source/user_guide/configuration.rst:439
 #, python-brace-format
 msgid ""
 "A mapping that sends ``\"author\"`` somewhere other than ``authors`` -- "
@@ -299,7 +643,7 @@ msgid ""
 "package back-fill then supplies an empty array instead."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:253
+#: ../../source/user_guide/configuration.rst:444
 #, python-brace-format
 msgid ""
 "A mapping that sends some other key to ``authors`` -- for example "
@@ -308,7 +652,7 @@ msgid ""
 "value would take."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:258
+#: ../../source/user_guide/configuration.rst:449
 msgid ""
 "A ``typst_package`` build with ``typst_template_mapping`` not set at all "
 "reaches this same case by a side door rather than by a rule of its own: "
@@ -319,7 +663,7 @@ msgid ""
 "Configuration-Based Templates section)."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:268
+#: ../../source/user_guide/configuration.rst:459
 #, python-brace-format
 msgid ""
 "A **partial** migration to the ``params`` route is a silent trap. "
@@ -335,22 +679,22 @@ msgid ""
 " need inside ``params``; there is no partial-override mechanism."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:282
+#: ../../source/user_guide/configuration.rst:473
 msgid "Paper Size and Format"
 msgstr "用紙サイズとフォーマット"
 
-#: ../../source/user_guide/configuration.rst:288
+#: ../../source/user_guide/configuration.rst:479
 msgid ""
 "``papersize`` and ``fontsize`` set the paper size and the base font size."
 " ``typst_elements`` supports three keys in total; the third, ``lang``, is"
 " documented in `Document Language`_ below."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:293
+#: ../../source/user_guide/configuration.rst:484
 msgid "Document Language"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:295
+#: ../../source/user_guide/configuration.rst:486
 msgid ""
 "The ``lang`` key controls the language Typst uses when generating its own"
 " labels -- most notably the figure and table supplement text (for example"
@@ -361,11 +705,11 @@ msgid ""
 "\"Table 1\" and \"Figure 1\"."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:304
+#: ../../source/user_guide/configuration.rst:495
 msgid "Automatic derivation"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:306
+#: ../../source/user_guide/configuration.rst:497
 msgid ""
 "On every non-package template route, ``lang`` is derived automatically "
 "from Sphinx's own ``language`` setting -- no explicit configuration is "
@@ -373,19 +717,19 @@ msgid ""
 "the first underscore, hyphen, or at-sign, and lowercase it. For example:"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:311
+#: ../../source/user_guide/configuration.rst:502
 msgid "``ja`` becomes ``ja``"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:312
+#: ../../source/user_guide/configuration.rst:503
 msgid "``zh_CN`` becomes ``zh``"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:313
+#: ../../source/user_guide/configuration.rst:504
 msgid "``pt_BR`` becomes ``pt``"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:315
+#: ../../source/user_guide/configuration.rst:506
 msgid ""
 "If a ``language`` value cannot be reduced to a two- or three-letter code,"
 " typsphinx emits a build warning naming the value and leaves the "
@@ -393,22 +737,22 @@ msgid ""
 "still succeeds."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:321
+#: ../../source/user_guide/configuration.rst:512
 msgid "Scope: every non-package route"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:323
+#: ../../source/user_guide/configuration.rst:514
 msgid ""
 "Automatic derivation applies on every route **except** ``typst_package``:"
 " the bundled default template, an explicit ``typst_template``, and a "
-"``<srcdir>/base.typ`` shadow of the bundled template all receive the "
-"auto-derived ``lang`` argument unconditionally. It is withheld only when "
-"``typst_package`` is configured, because typsphinx never introspects a "
-"third-party Typst Universe function's signature and would otherwise hand "
-"it an argument it never declared."
+"``<srcdir>/_typst/base.typ`` shadow of the bundled template all receive "
+"the auto-derived ``lang`` argument unconditionally. It is withheld only "
+"when ``typst_package`` is configured, because typsphinx never introspects"
+" a third-party Typst Universe function's signature and would otherwise "
+"hand it an argument it never declared."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:331
+#: ../../source/user_guide/configuration.rst:522
 msgid ""
 "This means declaring a ``lang`` parameter in a custom template is not an "
 "opt-in -- on every non-package route it is **mandatory**: an existing "
@@ -417,31 +761,31 @@ msgid ""
 "nine-parameter contract for the full parameter list."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:337
+#: ../../source/user_guide/configuration.rst:528
 msgid ""
 "If you use ``typst_package`` and want the same behavior, opt in "
 "explicitly: declare a ``lang`` parameter in your own wrapping template "
 "and then set it through ``typst_elements``, as shown below."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:342
+#: ../../source/user_guide/configuration.rst:533
 msgid "Precedence and known limitation"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:344
+#: ../../source/user_guide/configuration.rst:535
 msgid ""
 "An explicit ``typst_elements`` ``lang`` entry always wins over the value "
 "derived from ``language``, on every template path, and an explicit value "
 "is passed through to Typst exactly as written with no validation."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:353
+#: ../../source/user_guide/configuration.rst:544
 msgid ""
 "Here the derived value would be ``ja``, but the explicit entry wins, so "
 "Typst typesets in German and renders 「Tabelle 1」."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:356
+#: ../../source/user_guide/configuration.rst:547
 msgid ""
 "**Known limitation:** region subtags are not supported, so a ``zh_TW`` "
 "project resolves to ``zh`` and renders simplified-Chinese supplement text"
@@ -449,31 +793,113 @@ msgid ""
 "Chinese, set the value explicitly through your own template."
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:362
+#: ../../source/user_guide/configuration.rst:553
 msgid "Complete Example"
 msgstr "完全な例"
 
-#: ../../source/user_guide/configuration.rst:364
+#: ../../source/user_guide/configuration.rst:555
 msgid "Here's a complete ``conf.py`` example:"
 msgstr "以下は完全な ``conf.py`` の例です："
 
-#: ../../source/user_guide/configuration.rst:413
+#: ../../source/user_guide/configuration.rst:604
+#, fuzzy
+msgid "Removed Configuration Values"
+msgstr "テンプレート設定"
+
+#: ../../source/user_guide/configuration.rst:606
+msgid ""
+"typsphinx detects a removed configuration name still present in "
+"``conf.py`` and emits one build warning per name. The warning fires for "
+"every builder, including ``-b html``, because the check runs on Sphinx's "
+"``config-inited`` event before a builder even exists. Setting a removed "
+"name to ``None`` or an empty list still warns, because writing the line "
+"at all means holding a wrong belief about what it does. Detection is "
+"exact name matching, so a differently-spelled or differently-cased name "
+"is not detected at all. There is no per-warning suppression route -- the "
+"warning carries no warning type -- so the only lever is ``sphinx-build "
+"-W``, which turns it into a build failure."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:621
+msgid "Removed value"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:622
+msgid "Removed in"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:623
+msgid "What to do instead"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:624
+#, fuzzy
+msgid "``typst_template_assets``"
+msgstr "``typst_template_assets`` の設定："
+
+#: ../../source/user_guide/configuration.rst:625
+msgid "v0.9.0"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:626
+msgid ""
+"Delete the setting. Every used template's bundle directory is now copied "
+"wholesale, so MORE files reach the output than the explicit list used to "
+"select -- no asset list is needed."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:629
+msgid "``typst_authors``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:630
+msgid "v0.7.1"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:631
+msgid ""
+"Express rich author structure through ``typst_template_function``'s "
+"``params`` route (see `Author Information`_ above). Author department, "
+"organization, and email do not reach the output unless supplied that way."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:635
+msgid "``typst_toctree_defaults``"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:636
+msgid "v0.6.3"
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:637
+msgid ""
+"No replacement -- it was registered but never read even when it existed, "
+"so deleting it changes no build output."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:640
+msgid ""
+"A ``conf.py`` setting more than one of these emits one separate warning "
+"per name, in the order listed above, never a single combined warning."
+msgstr ""
+
+#: ../../source/user_guide/configuration.rst:644
 msgid "See Also"
 msgstr "関連項目"
 
-#: ../../source/user_guide/configuration.rst:415
+#: ../../source/user_guide/configuration.rst:646
 msgid ":doc:`output_layout` - The wrapper/content output contract"
 msgstr ""
 
-#: ../../source/user_guide/configuration.rst:416
+#: ../../source/user_guide/configuration.rst:647
 msgid ":doc:`builders` - Understanding the typst and typstpdf builders"
 msgstr ":doc:`builders` - typstおよびtypstpdfビルダーの理解"
 
-#: ../../source/user_guide/configuration.rst:417
+#: ../../source/user_guide/configuration.rst:648
 msgid ":doc:`templates` - Customizing Typst templates"
 msgstr ":doc:`templates` - Typstテンプレートのカスタマイズ"
 
-#: ../../source/user_guide/configuration.rst:418
+#: ../../source/user_guide/configuration.rst:649
 msgid ":doc:`/examples/advanced` - Advanced configuration examples"
 msgstr ":doc:`/examples/advanced` - 高度な設定例"
 
@@ -568,5 +994,64 @@ msgstr ":doc:`/examples/advanced` - 高度な設定例"
 #~ " produces a build warning and the "
 #~ "file is written under its basename "
 #~ "next to the source document."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**Document class** (usually \"typst\") -- "
+#~ "**accepted and ignored**: typsphinx reads "
+#~ "nothing from this position today, and"
+#~ " a five-element tuple is valid "
+#~ "and behaves identically to a four-"
+#~ "element one. Real five-element tuples"
+#~ " already exist in this repository --"
+#~ " ``docs/source/conf.py`` and both ``examples"
+#~ "/charged-ieee`` configs (``approach1`` and "
+#~ "``approach2``) all set one -- so "
+#~ "this is not merely a hypothetical "
+#~ "shape."
+#~ msgstr ""
+
+#~ msgid "Control how template assets (fonts, images, logos) are copied:"
+#~ msgstr "テンプレートアセット（フォント、画像、ロゴ）のコピー方法を制御します："
+
+#~ msgid "**Default**: ``None`` (automatic directory copy)"
+#~ msgstr "**デフォルト**: ``None`` （ディレクトリの自動コピー）"
+
+#~ msgid "**Type**: ``list[str] | None``"
+#~ msgstr "**型**: ``list[str] | None``"
+
+#~ msgid "``None`` (default): Automatically copy entire template directory"
+#~ msgstr "``None`` （デフォルト）: テンプレートディレクトリ全体を自動的にコピー"
+
+#~ msgid ""
+#~ "List of paths: Copy only specified "
+#~ "files/directories (supports glob patterns)"
+#~ msgstr "パスのリスト: 指定されたファイル/ディレクトリのみをコピー（globパターンをサポート）"
+
+#~ msgid "Empty list ``[]``: Disable automatic asset copying"
+#~ msgstr "空のリスト ``[]``: アセットの自動コピーを無効化"
+
+#~ msgid ""
+#~ "This setting only applies to local "
+#~ "custom templates (``typst_template``). Typst "
+#~ "Universe packages (``typst_package``) handle "
+#~ "assets automatically."
+#~ msgstr ""
+#~ "この設定は、ローカルのカスタムテンプレート（``typst_template``）にのみ適用されます。Typst "
+#~ "Universeパッケージ（``typst_package``）は、アセットを自動的に処理します。"
+
+#~ msgid ""
+#~ "Automatic derivation applies on every "
+#~ "route **except** ``typst_package``: the "
+#~ "bundled default template, an explicit "
+#~ "``typst_template``, and a ``<srcdir>/base.typ`` "
+#~ "shadow of the bundled template all "
+#~ "receive the auto-derived ``lang`` "
+#~ "argument unconditionally. It is withheld "
+#~ "only when ``typst_package`` is configured, "
+#~ "because typsphinx never introspects a "
+#~ "third-party Typst Universe function's "
+#~ "signature and would otherwise hand it"
+#~ " an argument it never declared."
 #~ msgstr ""
 

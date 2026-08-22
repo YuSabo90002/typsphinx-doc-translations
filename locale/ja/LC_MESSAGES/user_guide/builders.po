@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-15 03:10+0000\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: 2025-11-01 22:10+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -208,110 +208,113 @@ msgstr "ドキュメント定義"
 msgid ""
 "The second tuple element names the **wrapper** file for that entry, and "
 "only the wrapper -- it does not govern the entry's content file. With the"
-" configuration shown above, the builders emit five ``.typ`` files: "
-"wrappers ``main.typ`` and ``api-ref.typ``, content files ``index.typ`` "
-"and ``api.typ``, named after the two source documents shown above, and "
-"``_template.typ``, which both wrappers import. Under the ``typstpdf`` "
+" configuration shown above, the builders emit four root-level ``.typ`` "
+"files: wrappers ``main.typ`` and ``api-ref.typ``, and content files "
+"``index.typ`` and ``api.typ``, named after the two source documents shown"
+" above. Both entries use the same registry key -- the reserved "
+"``\"typst\"`` key, since neither entry names a fifth element -- so its "
+"bundle is copied once, one directory down under the reserved output "
+"directory, rather than adding a root-level file. Under the ``typstpdf`` "
 "builder only the wrappers become PDFs: ``main.pdf`` and ``api-ref.pdf``, "
 "and no others. See :doc:`output_layout` for the full wrapper/content "
 "contract."
 msgstr ""
 
-#: ../../source/user_guide/builders.rst:133
+#: ../../source/user_guide/builders.rst:135
 msgid "Builder-Specific Options"
 msgstr "ビルダー固有のオプション"
 
-#: ../../source/user_guide/builders.rst:135
+#: ../../source/user_guide/builders.rst:137
 msgid ""
 "There are no builder-specific options currently. All ``typst_*`` "
 "configuration options apply to both builders."
 msgstr "現在、ビルダー固有のオプションはありません。すべての ``typst_*`` 設定オプションは両方のビルダーに適用されます。"
 
-#: ../../source/user_guide/builders.rst:139
+#: ../../source/user_guide/builders.rst:141
 msgid "Choosing a Builder"
 msgstr "ビルダーの選択"
 
-#: ../../source/user_guide/builders.rst:141
+#: ../../source/user_guide/builders.rst:143
 msgid "Use ``typst`` if:"
 msgstr "``typst`` を使用すべき場合："
 
-#: ../../source/user_guide/builders.rst:143
+#: ../../source/user_guide/builders.rst:145
 msgid "You want to customize the generated Typst code"
 msgstr "生成されたTypstコードをカスタマイズしたい場合"
 
-#: ../../source/user_guide/builders.rst:144
+#: ../../source/user_guide/builders.rst:146
 msgid "You need specific Typst CLI features"
 msgstr "特定のTypst CLI機能が必要な場合"
 
-#: ../../source/user_guide/builders.rst:145
+#: ../../source/user_guide/builders.rst:147
 msgid "You're learning Typst and want to see the markup"
 msgstr "Typstを学習中でマークアップを確認したい場合"
 
-#: ../../source/user_guide/builders.rst:147
+#: ../../source/user_guide/builders.rst:149
 msgid "Use ``typstpdf`` if:"
 msgstr "``typstpdf`` を使用すべき場合："
 
-#: ../../source/user_guide/builders.rst:149
+#: ../../source/user_guide/builders.rst:151
 msgid "You just want PDF output"
 msgstr "単にPDF出力が必要な場合"
 
-#: ../../source/user_guide/builders.rst:150
+#: ../../source/user_guide/builders.rst:152
 msgid "You're building in CI/CD"
 msgstr "CI/CDでビルドしている場合"
 
-#: ../../source/user_guide/builders.rst:151
+#: ../../source/user_guide/builders.rst:153
 msgid "You want the simplest workflow"
 msgstr "最もシンプルなワークフローが必要な場合"
 
-#: ../../source/user_guide/builders.rst:152
+#: ../../source/user_guide/builders.rst:154
 msgid "You don't need to edit Typst code"
 msgstr "Typstコードを編集する必要がない場合"
 
-#: ../../source/user_guide/builders.rst:155
+#: ../../source/user_guide/builders.rst:157
 msgid "Common Workflow"
 msgstr "一般的なワークフロー"
 
-#: ../../source/user_guide/builders.rst:158
+#: ../../source/user_guide/builders.rst:160
 msgid "Development"
 msgstr "開発"
 
-#: ../../source/user_guide/builders.rst:160
+#: ../../source/user_guide/builders.rst:162
 msgid "During development, use ``typstpdf`` for quick feedback:"
 msgstr "開発中は、迅速なフィードバックのために ``typstpdf`` を使用します："
 
-#: ../../source/user_guide/builders.rst:170
+#: ../../source/user_guide/builders.rst:172
 msgid "Production"
 msgstr "プロダクション"
 
-#: ../../source/user_guide/builders.rst:172
+#: ../../source/user_guide/builders.rst:174
 msgid "For production, you can use either builder:"
 msgstr "プロダクション環境では、どちらのビルダーも使用できます："
 
-#: ../../source/user_guide/builders.rst:186
+#: ../../source/user_guide/builders.rst:188
 msgid "CI/CD"
 msgstr "CI/CD"
 
-#: ../../source/user_guide/builders.rst:188
+#: ../../source/user_guide/builders.rst:190
 msgid "In CI/CD, ``typstpdf`` is recommended for simplicity:"
 msgstr "CI/CDでは、シンプルさのために ``typstpdf`` が推奨されます："
 
-#: ../../source/user_guide/builders.rst:198
+#: ../../source/user_guide/builders.rst:200
 msgid "See Also"
 msgstr "関連項目"
 
-#: ../../source/user_guide/builders.rst:200
+#: ../../source/user_guide/builders.rst:202
 msgid ":doc:`output_layout` - The wrapper/content output contract"
 msgstr ""
 
-#: ../../source/user_guide/builders.rst:201
+#: ../../source/user_guide/builders.rst:203
 msgid ":doc:`configuration` - Configuration options"
 msgstr ":doc:`configuration` - 設定オプション"
 
-#: ../../source/user_guide/builders.rst:202
+#: ../../source/user_guide/builders.rst:204
 msgid ":doc:`templates` - Customizing templates"
 msgstr ":doc:`templates` - テンプレートのカスタマイズ"
 
-#: ../../source/user_guide/builders.rst:203
+#: ../../source/user_guide/builders.rst:205
 msgid ":doc:`/examples/basic` - Basic usage examples"
 msgstr ":doc:`/examples/basic` - 基本的な使用例"
 
@@ -341,5 +344,24 @@ msgstr ":doc:`/examples/basic` - 基本的な使用例"
 #~ "target name agree, so their docname-"
 #~ "named artifacts are correct for that "
 #~ "configuration."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The second tuple element names the "
+#~ "**wrapper** file for that entry, and "
+#~ "only the wrapper -- it does not"
+#~ " govern the entry's content file. "
+#~ "With the configuration shown above, the"
+#~ " builders emit five ``.typ`` files: "
+#~ "wrappers ``main.typ`` and ``api-ref.typ``, "
+#~ "content files ``index.typ`` and ``api.typ``,"
+#~ " named after the two source documents"
+#~ " shown above, and ``_template.typ``, which"
+#~ " both wrappers import. Under the "
+#~ "``typstpdf`` builder only the wrappers "
+#~ "become PDFs: ``main.pdf`` and ``api-"
+#~ "ref.pdf``, and no others. See "
+#~ ":doc:`output_layout` for the full "
+#~ "wrapper/content contract."
 #~ msgstr ""
 

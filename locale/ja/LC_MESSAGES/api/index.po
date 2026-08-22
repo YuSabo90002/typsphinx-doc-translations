@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-15 03:10+0000\n"
+"POT-Creation-Date: 2026-08-22 09:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -57,7 +57,7 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.render
 #: typsphinx.translator.TypstTranslator.visit_toctree
 #: typsphinx.writer.compute_content_include_path
-#: typsphinx.writer.compute_template_import_path_for_dir
+#: typsphinx.writer.compute_template_import_path
 msgid "Parameters"
 msgstr ""
 
@@ -105,16 +105,15 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.resolve_template
 #: typsphinx.translator.TypstTranslator.visit_toctree
 #: typsphinx.writer.compute_content_include_path
-#: typsphinx.writer.compute_template_import_path_for_dir
+#: typsphinx.writer.compute_template_import_path
 msgid "Return type"
 msgstr ""
 
 #: of typsphinx.builder.TypstBuilder.copy_image_files:6
-#: typsphinx.builder.TypstBuilder.copy_template_assets:15
-#: typsphinx.builder.TypstBuilder.finish:6
+#: typsphinx.builder.TypstBuilder.finish:15
 #: typsphinx.builder.TypstBuilder.init:5
 #: typsphinx.builder.TypstBuilder.post_process_images:26
-#: typsphinx.builder.TypstBuilder.prepare_writing:9
+#: typsphinx.builder.TypstBuilder.prepare_writing:12
 #: typsphinx.builder.TypstBuilder.write:16
 #: typsphinx.builder.TypstBuilder.write_doc:13
 #: typsphinx.builder.TypstPDFBuilder.finish:23
@@ -335,7 +334,7 @@ msgstr ""
 #: typsphinx.template_engine.TemplateEngine.render
 #: typsphinx.template_engine.TemplateEngine.resolve_template
 #: typsphinx.writer.compute_content_include_path
-#: typsphinx.writer.compute_template_import_path_for_dir
+#: typsphinx.writer.compute_template_import_path
 msgid "Returns"
 msgstr ""
 
@@ -378,7 +377,7 @@ msgstr ""
 #: of typsphinx.builder.TypstBuilder.get_target_uri:27
 #: typsphinx.pdf.get_typst_version:3
 #: typsphinx.template_engine.TemplateEngine.generate_package_import:3
-#: typsphinx.template_engine.TemplateEngine.get_default_template_path:3
+#: typsphinx.template_engine.TemplateEngine.get_default_template_path:8
 #: typsphinx.template_engine.TemplateEngine.get_template_content:3
 #: typsphinx.template_engine.TemplateEngine.load_template:9
 #: typsphinx.template_engine.TemplateEngine.render:12
@@ -387,9 +386,9 @@ msgstr ""
 #: typsphinx.translator.make_include_edge_key:27
 #: typsphinx.translator.render_include_edge_state:23
 #: typsphinx.translator.render_include_guard:32
-#: typsphinx.writer.TypstWriter.render_wrapper:40
+#: typsphinx.writer.TypstWriter.render_wrapper:49
 #: typsphinx.writer.compute_content_include_path:23
-#: typsphinx.writer.compute_template_import_path_for_dir:21
+#: typsphinx.writer.compute_template_import_path:25
 msgid ":sphinx_autodoc_typehints_type:`\\:py\\:class\\:\\`str\\``"
 msgstr ""
 
@@ -403,11 +402,14 @@ msgstr ""
 
 #: of typsphinx.builder.TypstBuilder.prepare_writing:3
 msgid ""
-"This method is called before writing begins. Writes the template file to "
-"the output directory for master documents to import."
+"This method is called before writing begins. Creates the writer instance "
+"every wrapper/content write below uses; the per-key template bundle each "
+"wrapper imports is copied later, at ``finish()`` time (Phase 54, OUT-04),"
+" fed by the write-time ``self._used_template_keys`` accumulator -- not "
+"written here."
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.prepare_writing:7
+#: of typsphinx.builder.TypstBuilder.prepare_writing:10
 msgid "Set of document names to be written"
 msgstr ""
 
@@ -500,30 +502,6 @@ msgid ""
 "directory to the output directory, preserving relative paths."
 msgstr ""
 
-#: of typsphinx.builder.TypstBuilder.copy_template_assets:1
-msgid "Copy template-associated assets to the output directory."
-msgstr ""
-
-#: of typsphinx.builder.TypstBuilder.copy_template_assets:3
-msgid ""
-"When using custom Typst templates via typst_template configuration, this "
-"method copies assets (fonts, images, logos, etc.) referenced by the "
-"template to the output directory."
-msgstr ""
-
-#: of typsphinx.builder.TypstBuilder.copy_template_assets:7
-msgid ""
-"Behavior: - If typst_template_assets is configured, copies only specified"
-" files/directories - If typst_template_assets is None (default), "
-"automatically copies entire template directory - If typst_template_assets"
-" is empty list, disables automatic copying - Skips .typ files to avoid "
-"duplicating template file (already handled by _write_template_file)"
-msgstr ""
-
-#: of typsphinx.builder.TypstBuilder.copy_template_assets:13
-msgid "This follows the same pattern as copy_image_files() from Issue #38."
-msgstr ""
-
 #: of typsphinx.builder.TypstBuilder.finish:1
 msgid "Finish the build process."
 msgstr ""
@@ -531,7 +509,13 @@ msgstr ""
 #: of typsphinx.builder.TypstBuilder.finish:3
 msgid ""
 "This method is called once after all documents have been written. Copies "
-"image files and template assets to the output directory."
+"image files, then copies every USED registry key's resolved template "
+"bundle wholesale to ``<outdir>/_template/<key>/`` (Phase 54, OUT-04) -- "
+"the ONLY route from a template directory to the output tree. The parallel"
+" asset-copy path this bundle copy superseded (three early returns, plus "
+"the explicit-list expander and its single-asset copier) was deleted in "
+"this same plan (`54-05`); \"has no bundle\" is now a per-key property of "
+"``_copy_used_template_bundles()`` itself, not a build-wide early return."
 msgstr ""
 
 #: of typsphinx.builder.TypstPDFBuilder:1
@@ -772,7 +756,6 @@ msgstr ""
 
 #: of typsphinx.writer.TypstWriter.render_wrapper:22
 #: typsphinx.writer.compute_content_include_path:16
-#: typsphinx.writer.compute_template_import_path_for_dir:17
 msgid ""
 "The wrapper's own resolved output directory, relative to the outdir root "
 "(``\"\"`` for the outdir root itself)."
@@ -789,34 +772,47 @@ msgid "The relative path to hand to Typst's ``#include()``."
 msgstr ""
 
 #: of typsphinx.writer.compute_content_include_path:27
-#: typsphinx.writer.compute_template_import_path_for_dir:26
+#: typsphinx.writer.compute_template_import_path:30
 msgid "Examples"
 msgstr ""
 
-#: of typsphinx.writer.compute_template_import_path_for_dir:1
+#: of typsphinx.writer.compute_template_import_path:1
 msgid ""
-"Compute a wrapper's import path for the shared ``_template.typ`` file, "
-"from the WRAPPER's own resolved output directory."
+"Compute a wrapper's root-absolute import path for its own registry key's "
+"bundled template (OUT-06)."
 msgstr ""
 
-#: of typsphinx.writer.compute_template_import_path_for_dir:4
+#: of typsphinx.writer.compute_template_import_path:4
 msgid ""
-"``_write_template_file()`` (``typsphinx/builder.py``) always writes "
-"``_template.typ`` at the outdir root, unconditionally, regardless of "
-"where any given wrapper is written -- so this is a pure function of the "
-"wrapper's own nesting depth. Unlike ``compute_content_include_path``, a "
-"depth-only ``\"../\"`` counter IS correct here, because the imported "
-"file's location (the outdir root) is a fixed, known constant rather than "
-"another entry's independently resolved path -- but the depth must come "
-"from the WRAPPER's resolved directory, not from the master's docname, or "
-"a wrapper written outside its docname's own directory would import a file"
-" that was never written at the depth the docname implied."
+"Replaces the depth-counted ``\"../\"`` computation the previous per-"
+"wrapper-directory helper used to perform against a single shared file "
+"written at the outdir root. The returned string is IDENTICAL for the same"
+" key regardless of where the importing wrapper is written, because a "
+"leading ``/`` makes Typst resolve the path against the PROJECT ROOT "
+"rather than the importing file's own directory -- and the builder already"
+" fixes that root at the output directory for every compile call "
+"(``pdf.py``'s ``typst.compile(typ_path, root=root_dir)``), so no depth "
+"counting, and no dependence on the wrapper's own nesting, is needed at "
+"all."
 msgstr ""
 
-#: of typsphinx.writer.compute_template_import_path_for_dir:22
+#: of typsphinx.writer.compute_template_import_path:16
 msgid ""
-"The complete relative import path, including the ``.typ`` suffix, e.g. "
-"``\"_template.typ\"`` or ``\"../_template.typ\"``."
+"The registry key the importing wrapper resolved (TPL-04) -- the same key "
+"``_copy_used_template_bundles()`` (builder.py) copies this bundle under."
+msgstr ""
+
+#: of typsphinx.writer.compute_template_import_path:20
+msgid ""
+"The resolved template's own basename (e.g. ``\"base.typ\"``), exactly as "
+"copied into ``<outdir>/_template/<key>/`` alongside the rest of its "
+"bundle."
+msgstr ""
+
+#: of typsphinx.writer.compute_template_import_path:26
+msgid ""
+"The complete root-absolute import path, including the ``.typ`` suffix, "
+"e.g. ``\"/_template/typst/base.typ\"``."
 msgstr ""
 
 #: of typsphinx.writer.TypstWriter:1
@@ -894,7 +890,17 @@ msgid ""
 "ever derived."
 msgstr ""
 
-#: of typsphinx.writer.TypstWriter.render_wrapper:41
+#: of typsphinx.writer.TypstWriter.render_wrapper:40
+msgid ""
+"The resolved ``TemplateRegistryEntry`` this wrapper's template is built "
+"from (Phase 53, TPL-01/TPL-03). Defaults to ``None`` so every EXISTING "
+"direct caller keeps working unchanged -- when ``None``, the built-in "
+"``\"typst\"`` entry is derived through the same "
+"``resolve_template_registry()`` function the builder's write path calls, "
+"never a second, independently-written config read."
+msgstr ""
+
+#: of typsphinx.writer.TypstWriter.render_wrapper:50
 msgid "The complete wrapper ``.typ`` document text."
 msgstr ""
 
@@ -988,9 +994,14 @@ msgstr ""
 #: of typsphinx.translator.make_include_edge_key:28
 msgid ""
 "The edge key, e.g. ``\"index#0>child\"``. Both docnames route through "
-"``escape_typst_string()`` (T-49-01), so a docname containing a double "
-"quote or a backslash still produces a key that is byte-identical whether "
-"derived on the graph side or the emission side."
+"``escape_typst_string()`` (T-49-01) AND the separator-escaping helper "
+"above it (Phase 55 plan 02, BLD-07), so a docname containing a double "
+"quote, a backslash, a ``#`` or a ``>`` still produces a key that is byte-"
+"identical whether derived on the graph side or the emission side, and two"
+" structurally different edges can no longer collide onto one key. A "
+"docname containing NEITHER separator character produces a byte-identical "
+"key to before this fix, e.g. ``make_include_edge_key('index', 'child', 0)"
+" == 'index#0>child'``."
 msgstr ""
 
 #: of typsphinx.translator.derive_master_edge_keys:1
@@ -1030,10 +1041,19 @@ msgid ""
 "helper solved a DIFFERENT problem, a flat cross-master docname union for "
 "XREF-safety), and COMP-05/SC#3 forbids reusing it here. This function's "
 "genuine recursion preserves document order; a naive forward-push LIFO "
-"stack does not."
+"stack does not. The recursion is deliberately PRESERVED by the depth "
+"bound below (Phase 55 plan 02, BLD-08), rather than replaced by that "
+"forbidden work-stack shape: a chain deeper than "
+"``_MAX_INCLUDE_CHAIN_DEPTH`` now raises a named "
+"``sphinx.errors.ExtensionError`` instead of an uncaught "
+"``RecursionError`` escaping through Sphinx's own traceback. This bound "
+"can ONLY ever be reached by a genuinely deep ACYCLIC chain -- a CYCLE is "
+"already structurally dark through the ``traversed`` membership check at "
+"any depth (see above), so the raised message never claims a repeated "
+"document was found."
 msgstr ""
 
-#: of typsphinx.translator.derive_master_edge_keys:33
+#: of typsphinx.translator.derive_master_edge_keys:42
 msgid ""
 "Occurrence is always 0 on this side: a child is claimed by its parent at "
 "that child's FIRST non-traversed appearance in the parent's ordered list,"
@@ -1044,7 +1064,7 @@ msgid ""
 "side to ever claim it."
 msgstr ""
 
-#: of typsphinx.translator.derive_master_edge_keys:42
+#: of typsphinx.translator.derive_master_edge_keys:51
 msgid ""
 "A mapping from docname to its ordered include-file list "
 "(``env.toctree_includes``, or an equivalent mapping in a unit test). A "
@@ -1053,19 +1073,25 @@ msgid ""
 "toctree."
 msgstr ""
 
-#: of typsphinx.translator.derive_master_edge_keys:48
+#: of typsphinx.translator.derive_master_edge_keys:57
 msgid "The master document's own docname -- the DFS seed."
 msgstr ""
 
-#: of typsphinx.translator.derive_master_edge_keys:50
+#: of typsphinx.translator.derive_master_edge_keys:59
 msgid ""
 ":sphinx_autodoc_typehints_type:`\\:py\\:data\\:\\`\\~typing.Tuple\\`\\\\ "
 "\\\\\\[\\:py\\:class\\:\\`str\\`\\, "
 "\\:py\\:data\\:\\`...\\<Ellipsis\\>\\`\\]`"
 msgstr ""
 
-#: of typsphinx.translator.derive_master_edge_keys:51
+#: of typsphinx.translator.derive_master_edge_keys:60
 msgid "The master's edge keys, in discovery order, as an ordered tuple."
+msgstr ""
+
+#: of typsphinx.translator.derive_master_edge_keys:62
+msgid ""
+"If the include chain reaches a depth greater than     "
+"``_MAX_INCLUDE_CHAIN_DEPTH`` edges below ``master_docname``."
 msgstr ""
 
 #: of typsphinx.translator.render_include_edge_state:1
@@ -4071,6 +4097,18 @@ msgid ""
 " bundled ``templates/base.typ``)."
 msgstr ""
 
+#: of typsphinx.template_engine.TemplateResolution.path:1
+msgid ""
+"The resolved template's own file path -- ``self.template_path`` at "
+"Priority 1, ``Path(search_dir) / self.template_name`` at Priority 2, "
+"``Path(get_default_template_path())`` at Priority 3. No branch inside "
+"``resolve_template()`` itself yields ``None`` here; the field is typed "
+"Optional only for a hypothetical future caller that resolves no file at "
+"all (e.g. a package-only engine with a distinct entry point) -- a caller "
+"that does not exist today and is deliberately not added by this change "
+"(53-04-PLAN.md)."
+msgstr ""
+
 #: of typsphinx.template_engine.derive_typst_lang:1
 msgid "Convert a Sphinx ``language`` config value into a Typst ``lang`` code."
 msgstr ""
@@ -4178,6 +4216,35 @@ msgstr ""
 msgid "``typst_package`` when the package route applies, otherwise ``None``"
 msgstr ""
 
+#: of typsphinx.template_engine.default_template_bundle_traversable:1
+msgid ""
+"Return the ``importlib.resources`` traversable for the packaged "
+"``templates`` directory -- the ``\"typst\"`` registry key's bundle "
+"(BLD-05/OUT-04)."
+msgstr ""
+
+#: of typsphinx.template_engine.default_template_bundle_traversable:5
+msgid ""
+"The bundle-copy driver (``typsphinx/builder.py``) needs the DIRECTORY, "
+"not merely ``base.typ`` alone, and must hold "
+"``importlib.resources.as_file()``'s context manager open around the "
+"ENTIRE walk-and-copy, not just this lookup -- for a non-filesystem loader"
+" that context manager may delete a temporary extraction on exit "
+"(T-54-10). This is a SEPARATE accessor from "
+"``TemplateEngine.get_default_template_path()``, which resolves only the "
+"single ``base.typ`` file and is safe to call standalone because its "
+"caller reads the file's content immediately, before the ``with`` block it"
+" opened and closed internally ever exits."
+msgstr ""
+
+#: of typsphinx.template_engine.default_template_bundle_traversable:16
+msgid ":sphinx_autodoc_typehints_type:`\\:py\\:data\\:\\`\\~typing.Any\\``"
+msgstr ""
+
+#: of typsphinx.template_engine.default_template_bundle_traversable:17
+msgid "An ``importlib.resources.abc.Traversable`` for ``typsphinx/templates/``."
+msgstr ""
+
 #: of typsphinx.template_engine.TemplateEngine:1
 msgid "Manages Typst templates for document generation."
 msgstr ""
@@ -4203,7 +4270,15 @@ msgstr ""
 msgid "Get the path to the default template bundled with the package."
 msgstr ""
 
-#: of typsphinx.template_engine.TemplateEngine.get_default_template_path:4
+#: of typsphinx.template_engine.TemplateEngine.get_default_template_path:3
+msgid ""
+"Phase 54 (SC#2): resolved through ``importlib.resources`` rather than "
+"module-file-location arithmetic -- loader-agnostic, so it stays correct "
+"under a non-filesystem loader (zipimport/frozen), unlike the path math it"
+" replaces."
+msgstr ""
+
+#: of typsphinx.template_engine.TemplateEngine.get_default_template_path:9
 msgid "Absolute path to default template file"
 msgstr ""
 
@@ -4945,5 +5020,115 @@ msgstr ""
 #~ "single #[...] block containing all "
 #~ "includes - D-07: apply `heading.offset +"
 #~ " 1` once per toctree, inside a"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This method is called before writing "
+#~ "begins. Writes the template file to "
+#~ "the output directory for master "
+#~ "documents to import."
+#~ msgstr ""
+
+#~ msgid "Copy template-associated assets to the output directory."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When using custom Typst templates via"
+#~ " typst_template configuration, this method "
+#~ "copies assets (fonts, images, logos, "
+#~ "etc.) referenced by the template to "
+#~ "the output directory."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Behavior: - If typst_template_assets is "
+#~ "configured, copies only specified "
+#~ "files/directories - If typst_template_assets "
+#~ "is None (default), automatically copies "
+#~ "entire template directory - If "
+#~ "typst_template_assets is empty list, disables"
+#~ " automatic copying - Skips .typ files"
+#~ " to avoid duplicating template file "
+#~ "(already handled by _write_template_file)"
+#~ msgstr ""
+
+#~ msgid "This follows the same pattern as copy_image_files() from Issue #38."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This method is called once after "
+#~ "all documents have been written. Copies"
+#~ " image files and template assets to"
+#~ " the output directory."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Compute a wrapper's import path for "
+#~ "the shared ``_template.typ`` file, from "
+#~ "the WRAPPER's own resolved output "
+#~ "directory."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``_write_template_file()`` (``typsphinx/builder.py``) "
+#~ "always writes ``_template.typ`` at the "
+#~ "outdir root, unconditionally, regardless of"
+#~ " where any given wrapper is written"
+#~ " -- so this is a pure function"
+#~ " of the wrapper's own nesting depth."
+#~ " Unlike ``compute_content_include_path``, a "
+#~ "depth-only ``\"../\"`` counter IS correct"
+#~ " here, because the imported file's "
+#~ "location (the outdir root) is a "
+#~ "fixed, known constant rather than "
+#~ "another entry's independently resolved path"
+#~ " -- but the depth must come "
+#~ "from the WRAPPER's resolved directory, "
+#~ "not from the master's docname, or "
+#~ "a wrapper written outside its docname's"
+#~ " own directory would import a file"
+#~ " that was never written at the "
+#~ "depth the docname implied."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The complete relative import path, "
+#~ "including the ``.typ`` suffix, e.g. "
+#~ "``\"_template.typ\"`` or ``\"../_template.typ\"``."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The edge key, e.g. ``\"index#0>child\"``. "
+#~ "Both docnames route through "
+#~ "``escape_typst_string()`` (T-49-01), so a "
+#~ "docname containing a double quote or "
+#~ "a backslash still produces a key "
+#~ "that is byte-identical whether derived"
+#~ " on the graph side or the "
+#~ "emission side."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The FORBIDDEN shape, by name and "
+#~ "by defect: an explicit work-stack "
+#~ "seeded with the master, fed by "
+#~ "iterating each parent's children with "
+#~ "forward ``append`` calls, and drained "
+#~ "LAST-IN-FIRST-OUT (removing and "
+#~ "processing the most-recently-appended "
+#~ "element each iteration, the way a "
+#~ "call stack unwinds) processes the "
+#~ "LAST-listed child of any given parent"
+#~ " FIRST, silently REVERSING sibling order"
+#~ " with NO compile error -- this "
+#~ "is a DIFFERENT, already Phase-48-deleted "
+#~ "helper's own traversal shape (that "
+#~ "helper solved a DIFFERENT problem, a "
+#~ "flat cross-master docname union for "
+#~ "XREF-safety), and COMP-05/SC#3 forbids "
+#~ "reusing it here. This function's genuine"
+#~ " recursion preserves document order; a "
+#~ "naive forward-push LIFO stack does "
+#~ "not."
 #~ msgstr ""
 
