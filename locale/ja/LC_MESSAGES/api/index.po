@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-13 11:23+0000\n"
+"POT-Creation-Date: 2026-09-22 13:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -154,6 +154,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_desc_sig_space:3
 #: typsphinx.translator.TypstTranslator.depart_desc_signature:14
 #: typsphinx.translator.TypstTranslator.depart_desc_signature_line:3
+#: typsphinx.translator.TypstTranslator.depart_doctest_block:9
 #: typsphinx.translator.TypstTranslator.depart_document:8
 #: typsphinx.translator.TypstTranslator.depart_emphasis:8
 #: typsphinx.translator.TypstTranslator.depart_entry:6
@@ -246,6 +247,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_desc_sig_space:7
 #: typsphinx.translator.TypstTranslator.visit_desc_signature:57
 #: typsphinx.translator.TypstTranslator.visit_desc_signature_line:11
+#: typsphinx.translator.TypstTranslator.visit_doctest_block:24
 #: typsphinx.translator.TypstTranslator.visit_document:24
 #: typsphinx.translator.TypstTranslator.visit_emphasis:9
 #: typsphinx.translator.TypstTranslator.visit_entry:6
@@ -302,7 +304,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_tip:3
 #: typsphinx.translator.TypstTranslator.visit_title:22
 #: typsphinx.translator.TypstTranslator.visit_title_reference:5
-#: typsphinx.translator.TypstTranslator.visit_toctree:37
+#: typsphinx.translator.TypstTranslator.visit_toctree:40
 #: typsphinx.translator.TypstTranslator.visit_todo_node:23
 #: typsphinx.translator.TypstTranslator.visit_topic:14
 #: typsphinx.translator.TypstTranslator.visit_transition:8
@@ -1774,7 +1776,7 @@ msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_literal_block:6
 #: typsphinx.translator.TypstTranslator.visit_literal_block:11
-msgid "The literal block node"
+msgid "The literal block node, or a doctest block delegated here"
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_literal_block:1
@@ -1783,6 +1785,54 @@ msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_literal_block:3
 msgid "Issue #20: Handle closing figure bracket and labels."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_doctest_block:1
+msgid "Visit a doctest block (a ``>>>`` interactive example) node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_doctest_block:3
+msgid ""
+"docutils' parser builds a ``doctest_block`` for any line beginning with "
+"``>>> `` (``Body.doctest`` in ``docutils/parsers/rst/states.py``), so a "
+"reST author cannot opt out of this node appearing in a doctree."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_doctest_block:7
+msgid ""
+"``doctest_block`` is a sibling of ``literal_block`` under "
+"``FixedTextElement``, not a subclass of it, so it needs its own dispatch "
+"entry rather than being reached through ``literal_block``'s."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_doctest_block:11
+msgid ""
+"This method delegates wholesale to ``visit_literal_block``: the fence, "
+"the codly configuration, id anchors and the list-item separator "
+"discipline are all shared, with no second emission path. This is the same"
+" shape Sphinx's own writers use for this node -- a delegating call in the"
+" HTML5 writer, a class-attribute alias in the LaTeX and Texinfo writers."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_doctest_block:18
+msgid ""
+"The ``python`` fence language is supplied in ``visit_literal_block`` "
+"itself when the node carries none."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_doctest_block:7
+#: typsphinx.translator.TypstTranslator.visit_doctest_block:22
+msgid "The doctest block node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_doctest_block:1
+msgid "Depart a doctest block (a ``>>>`` interactive example) node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_doctest_block:3
+msgid ""
+"Delegates wholesale to ``depart_literal_block``, matching "
+"``visit_doctest_block``."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_definition_list:1
@@ -2466,16 +2516,16 @@ msgid "Visit a toctree node (Sphinx table of contents tree)."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_toctree:3
-msgid ""
-"Requirement 13: Multi-document integration and toctree processing - "
-"Generate a compile-time state guard for each include-file entry"
+msgid "Requirement 13: Multi-document integration and toctree processing"
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_toctree:5
-msgid "(Phase 49, COMP-05/COMP-06 -- see below)"
+msgid ""
+"Generate a compile-time state guard for each include-file entry (Phase "
+"49, COMP-05/COMP-06 -- see below)"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:6
+#: of typsphinx.translator.TypstTranslator.visit_toctree:7
 msgid ""
 "D-07: apply `set heading(offset: heading.offset + 1)` -- a context-"
 "relative increment, not an absolute assignment -- to lower heading "
@@ -2488,27 +2538,31 @@ msgid ""
 "at layout time removes the need for one to exist."
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:16
-msgid ""
-"Issue #5: Fix relative paths for nested toctrees - Calculate relative "
-"paths from current document"
+#: of typsphinx.translator.TypstTranslator.visit_toctree:17
+msgid "Issue #5: Fix relative paths for nested toctrees"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:18
-msgid ""
-"Issue #7: Simplify toctree output with single content block - Generate "
-"single #[...] block containing all guards - D-07: apply `heading.offset +"
-" 1` once per toctree, inside a"
+#: of typsphinx.translator.TypstTranslator.visit_toctree:19
+msgid "Calculate relative paths from current document"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:21
+#: of typsphinx.translator.TypstTranslator.visit_toctree:20
+msgid "Issue #7: Simplify toctree output with single content block"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_toctree:22
+msgid "Generate single #[...] block containing all guards"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_toctree:23
 #, python-brace-format
 msgid ""
-"`context { ... }` block (required because `heading.offset` is a context-"
-"dependent style query)"
+"D-07: apply `heading.offset + 1` once per toctree, inside a `context { "
+"... }` block (required because `heading.offset` is a context-dependent "
+"style query)"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:24
+#: of typsphinx.translator.TypstTranslator.visit_toctree:27
 msgid ""
 "Phase 49 (COMP-05/D-03): reads the toctree's INCLUDE-FILE list "
 "(`node[\"includefiles\"]`), never its entry list (`node[\"entries\"]`). "
@@ -2521,15 +2575,15 @@ msgid ""
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.depart_toctree:4
-#: typsphinx.translator.TypstTranslator.visit_toctree:35
+#: typsphinx.translator.TypstTranslator.visit_toctree:38
 msgid "The toctree node"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:40
+#: of typsphinx.translator.TypstTranslator.visit_toctree:43
 msgid "Notes"
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:41
+#: of typsphinx.translator.TypstTranslator.visit_toctree:44
 msgid ""
 "This method generates Typst #include() directives for each toctree entry "
 "within a single content block #[...] to apply heading offset without "
@@ -2537,7 +2591,7 @@ msgid ""
 "generated Typst code and improves readability."
 msgstr ""
 
-#: of typsphinx.translator.TypstTranslator.visit_toctree:46
+#: of typsphinx.translator.TypstTranslator.visit_toctree:49
 msgid ""
 "Phase 49: each `#include()` directive is now wrapped in its own one-line "
 "compile-time guard (`render_include_guard()`), still emitted within that "
@@ -5142,5 +5196,38 @@ msgstr ""
 #~ ":sphinx_autodoc_typehints_type:`\\:py\\:class\\:\\`\\~typing.Dict\\`\\\\"
 #~ " \\\\\\[\\:py\\:class\\:\\`str\\`\\, "
 #~ "\\:py\\:data\\:\\`\\~typing.Any\\`\\]`"
+#~ msgstr ""
+
+#~ msgid "The literal block node"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Requirement 13: Multi-document integration "
+#~ "and toctree processing - Generate a "
+#~ "compile-time state guard for each "
+#~ "include-file entry"
+#~ msgstr ""
+
+#~ msgid "(Phase 49, COMP-05/COMP-06 -- see below)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Issue #5: Fix relative paths for "
+#~ "nested toctrees - Calculate relative "
+#~ "paths from current document"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Issue #7: Simplify toctree output with"
+#~ " single content block - Generate "
+#~ "single #[...] block containing all "
+#~ "guards - D-07: apply `heading.offset +"
+#~ " 1` once per toctree, inside a"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`context { ... }` block (required "
+#~ "because `heading.offset` is a context-"
+#~ "dependent style query)"
 #~ msgstr ""
 
