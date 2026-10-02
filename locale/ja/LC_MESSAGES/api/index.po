@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-22 13:48+0000\n"
+"POT-Creation-Date: 2026-10-02 12:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -261,7 +261,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_footnote:14
 #: typsphinx.translator.TypstTranslator.visit_footnote_reference:39
 #: typsphinx.translator.TypstTranslator.visit_glossary:13
-#: typsphinx.translator.TypstTranslator.visit_graphviz:3
+#: typsphinx.translator.TypstTranslator.visit_graphviz:32
 #: typsphinx.translator.TypstTranslator.visit_hint:6
 #: typsphinx.translator.TypstTranslator.visit_image:9
 #: typsphinx.translator.TypstTranslator.visit_important:6
@@ -3072,7 +3072,50 @@ msgid ""
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_graphviz:1
-msgid "Visit a graphviz node; renders a placeholder (DEG-01, D-01)."
+msgid "Visit a graphviz node; renders the DOT source as a real diagram."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_graphviz:3
+msgid ""
+"Emits ``@preview/diagraph``'s ``render(\"<dot>\")`` (declared at all "
+"three import-declaration sites) so ``.. graphviz::``, ``.. digraph::`` "
+"and ``.. graph::`` produce vector diagrams with no Graphviz binary "
+"present -- replacing the former ``[graphviz diagram omitted]`` "
+"placeholder (Issue #114 / DEG-01)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_graphviz:9
+msgid ""
+"The external-file form (``.. graphviz:: some.dot``) stays on the "
+"graceful-degrade placeholder path (D-005): Sphinx has already read the "
+"file into ``node['code']`` by the time this visitor runs, so without the "
+"explicit refusal the scoped-out form would silently start working."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_graphviz:15
+msgid ""
+"DOT is escaped once, via the shared ``escape_typst_string`` helper -- no "
+"second escaping layer. ``:align:`` is discarded without a warning, "
+"matching the project-wide state of alignment (D-004)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_graphviz:19
+msgid ""
+"``:layout:`` and its ``:graphviz_dot:`` alias -- Sphinx normalises both "
+"onto ``node['options']['graphviz_dot']`` -- route to diagraph's "
+"``engine:`` parameter, and ``:alt:`` (a top-level node attribute) routes "
+"to its ``alt:`` parameter. Both values go through the same single "
+"``escape_typst_string`` layer as the DOT itself. Neither parameter is "
+"emitted when its option is absent: diagraph's own signature already "
+"defaults ``engine: \"dot\"``, so emitting a redundant default would churn"
+" every byte-identity expectation."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_graphviz:28
+msgid ""
+"Always raises ``SkipNode``: a graphviz node keeps its DOT in "
+"``node['code']`` rather than in Text children, so descending would leak "
+"raw source into the body."
 msgstr ""
 
 #: of typsphinx.translator.TypstTranslator.visit_inheritance_diagram:1
@@ -5229,5 +5272,8 @@ msgstr ""
 #~ "`context { ... }` block (required "
 #~ "because `heading.offset` is a context-"
 #~ "dependent style query)"
+#~ msgstr ""
+
+#~ msgid "Visit a graphviz node; renders a placeholder (DEG-01, D-01)."
 #~ msgstr ""
 
