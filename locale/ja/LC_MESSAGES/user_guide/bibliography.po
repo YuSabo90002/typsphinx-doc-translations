@@ -1,0 +1,308 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025, YuSabo
+# This file is distributed under the same license as the typsphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: typsphinx 0.9.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-03 11:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/user_guide/bibliography.rst:2
+msgid "Bibliography and Citations"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:4
+msgid ""
+"typsphinx renders bibliographies and citations by rendering "
+"`sphinxcontrib-bibtex <https://pypi.org/project/sphinxcontrib-"
+"bibtex/>`_'s *resolved* citation nodes as ordinary Typst content. That is"
+" the defining guarantee for this feature: typsphinx carries **zero** "
+"bibliography-specific code. By the time a document reaches the Typst "
+"translator, sphinxcontrib-bibtex has already turned every ``:cite:`` role"
+" and every ``.. bibliography::`` directive into plain docutils citation, "
+"reference and inline nodes, and the generic visitors that already existed"
+" handle them. Nothing in the pipeline knows what a BibTeX key is."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:14
+msgid ""
+"The practical consequence is that what sphinxcontrib-bibtex supports is "
+"what typsphinx supports, and the constraints you can trip are its "
+"constraints rather than typsphinx's."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:19
+msgid "Setup"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:21
+msgid ""
+"``sphinxcontrib-bibtex`` is **not** a typsphinx dependency. typsphinx "
+"itself carries only Sphinx, docutils and Typst at runtime, so you install"
+" the bibliography extension yourself::"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:27
+msgid ""
+"Then enable it in your own ``conf.py`` alongside typsphinx, and point it "
+"at your ``.bib`` files:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:39
+msgid ""
+"No typsphinx setting needs to change. There is no bibliography-related "
+"configuration value in typsphinx, because there is no bibliography-"
+"related code path to configure."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:44
+msgid "What Is Supported"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:46
+msgid ""
+"Every form below is exercised end to end by the test suite, in both the "
+"emitted ``.typ`` markup and the compiled PDF."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:50
+msgid "Parenthetical Citations"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:52
+msgid ""
+"``:cite:p:`` renders as a bracketed citation group, the usual "
+"``[1]``-style parenthetical reference:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:60
+msgid "Textual Citations"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:62
+msgid ""
+"``:cite:t:`` renders the author name *outside* the bracket group, so the "
+"citation reads as part of the sentence:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:70
+msgid "Multi-Key Citations"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:72
+msgid ""
+"A single role naming several keys renders as **one** bracketed group, not"
+" as one group per key:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:80
+msgid "Footnote Citations"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:82
+msgid ""
+"``:footcite:`` paired with ``.. footbibliography::`` renders as real "
+"Typst footnotes, printed at the foot of the page where the citing site "
+"appears -- not collected into a list at the end of the document:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:92
+msgid ""
+"Citing the same key a second time emits a bare reuse reference rather "
+"than a second footnote body, so the entry text is not duplicated on the "
+"page."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:96
+msgid "Reference Lists"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:98
+msgid ""
+"``.. bibliography::`` renders as a Typst ``grid``: one row per entry, "
+"each row carrying the pybtex label and the formatted entry body."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:108
+msgid ""
+"A bare directive renders only the entries actually cited somewhere in the"
+" project, not every entry in your ``.bib`` files. Add the ``:all:`` "
+"option if you want the whole file listed."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:113
+msgid "Several Reference Lists in One Project"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:115
+msgid ""
+"Multiple ``.. bibliography::`` directives render as independent grids. A "
+"common shape is one chapter-local list narrowed with ``:filter:`` plus a "
+"corpus-wide list at the end of the project; each renders its own rows, "
+"and neither interferes with the other. See the first constraint below for"
+" how that interacts with an entry two lists both own."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:122
+msgid "Citations Across the ``#include()`` Boundary"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:124
+msgid ""
+"A citing site in an included document resolves against a ``.. "
+"bibliography::`` living in a *different* document, and the resulting link"
+" survives the Typst ``#include()`` boundary into the compiled PDF. This "
+"works for the ordinary layout in which a master document is a pure "
+"toctree, every chapter is an included file, and the reference list sits "
+"in its own chapter -- so every single citation has to cross an include "
+"boundary to reach its entry."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:132
+msgid "Constraints You Can Trip"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:134
+msgid ""
+"The three constraints below are measured behaviour, not theory. Each is "
+"the behaviour of sphinxcontrib-bibtex that typsphinx faithfully passes "
+"through."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:138
+msgid "Entries Appear Once Per Reference List, Not Once Per Document"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:140
+msgid ""
+"Exactly-once is a *per reference list* property. An entry owned by two "
+"``.. bibliography::`` directives -- say a chapter-local filtered list and"
+" a corpus-wide list -- legitimately renders **twice** in the finished "
+"PDF, once in each grid. That is correct output, not a duplication bug."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:145
+msgid ""
+"On the test suite's own four-entry fixture the measured entry-body "
+"occurrence counts in the compiled PDF are 1, 2, 1 and 0: the ``2`` is the"
+" key that two bibliographies both own, and the ``0`` is an entry nothing "
+"cites. If you are writing your own check over generated output, count per"
+" grid rather than per document."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:152
+msgid "The Key-on-Left ``:filter:`` Form Degrades Silently"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:154
+msgid "``:filter:`` expressions must put the key *string* on the left:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:161
+msgid ""
+"Writing the comparison the other way round -- ``key == \"Smith2020\"`` --"
+" is a **silent** failure. The grid simply empties, while the build still "
+"exits 0 with **zero warnings, even under** ``-W``. The citing sites do "
+"not warn either, because they fall back to a corpus-wide bibliography "
+"elsewhere in the project, so sphinxcontrib-bibtex's "
+"``bibtex.key_not_found`` never fires."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:167
+msgid ""
+"Build cleanliness therefore cannot detect this. If you use ``:filter:``, "
+"check the *rendered* output -- look at the grid and confirm the rows you "
+"expect are present. A clean strict build is not evidence that the filter "
+"matched anything."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:172
+msgid "``:keyprefix:`` Is Load-Bearing"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:174
+msgid ""
+"When the same key is rendered by two bibliographies in one project, the "
+"second one needs ``:keyprefix:`` to keep its anchors distinct:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:183
+msgid ""
+"This is not cosmetic. Removing ``:keyprefix:`` in that situation is a "
+"hard ``bibtex.duplicate_citation`` failure under a strict (``-W``) build."
+" The prefix stays internal to the anchors -- it does not leak into the "
+"rendered labels or entry bodies."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:189
+msgid "Citation Style Is Owned By pybtex"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:191
+msgid ""
+"Citation labels and the formatting of each entry body come from `pybtex "
+"<https://pypi.org/project/pybtex/>`_, selected through sphinxcontrib-"
+"bibtex's ``bibtex_default_style``. typsphinx does not reformat them: "
+"whatever string pybtex produced for a label or an entry body is emitted "
+"into the Typst output as-is."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:197
+msgid ""
+"In particular, **Typst's own** ``#bibliography()`` **and** ``#cite()`` "
+"**functions are deliberately not used.** A reference list is emitted as a"
+" ``grid`` of already-formatted rows, and a citation as an already-"
+"formatted reference. The consequences are worth stating plainly:"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:202
+msgid ""
+"Typst's CSL styles are **unavailable**. Supplying a ``.csl`` file has no "
+"effect on typsphinx output."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:204
+msgid ""
+"Typst never sees your ``.bib`` files. It sees only text that pybtex "
+"already rendered."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:206
+msgid ""
+"To change how citations and entries look, configure pybtex and "
+"sphinxcontrib-bibtex -- not Typst."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:209
+msgid ""
+"This is the same choice Sphinx's own LaTeX builder makes: it emits "
+"pybtex-rendered ``\\bibitem`` entries rather than handing the ``.bib`` "
+"file to BibTeX. Keeping the same ownership boundary is what lets the "
+"Typst, LaTeX and HTML builders agree on labels, bodies and ordering for "
+"the same sources, which the test suite asserts as a three-way comparison."
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:216
+msgid "See Also"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:218
+msgid ":doc:`builders` - Understanding the typst and typstpdf builders"
+msgstr ""
+
+#: ../../source/user_guide/bibliography.rst:219
+msgid ":doc:`configuration` - Configuration options available in ``conf.py``"
+msgstr ""
+

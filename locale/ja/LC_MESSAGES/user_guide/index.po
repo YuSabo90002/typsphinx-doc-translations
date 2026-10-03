@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-02 12:10+0000\n"
+"POT-Creation-Date: 2026-10-03 11:21+0000\n"
 "PO-Revision-Date: 2025-11-01 22:00+0900\n"
 "Last-Translator: YuSabo <yusabo90002@gmail.com>\n"
 "Language: ja\n"
@@ -26,73 +26,82 @@ msgstr "ユーザーガイド"
 msgid "This section provides comprehensive documentation on using typsphinx."
 msgstr "このセクションでは、typsphinxの使用に関する包括的なドキュメントを提供します。"
 
-#: ../../source/user_guide/index.rst:16
+#: ../../source/user_guide/index.rst:17
 msgid "Overview"
 msgstr "概要"
 
-#: ../../source/user_guide/index.rst:18
+#: ../../source/user_guide/index.rst:19
 msgid ""
 "typsphinx integrates Sphinx with Typst to provide high-quality PDF output"
 " without the complexity of LaTeX."
 msgstr "typsphinxは、SphinxとTypstを統合し、LaTeXの複雑さなしに高品質なPDF出力を提供します。"
 
-#: ../../source/user_guide/index.rst:21
+#: ../../source/user_guide/index.rst:22
 msgid "The extension provides two builders:"
 msgstr "この拡張機能は2つのビルダーを提供します："
 
-#: ../../source/user_guide/index.rst:23
+#: ../../source/user_guide/index.rst:24
 msgid "**typst**: Generates Typst markup files (``.typ``)"
 msgstr "**typst**: Typstマークアップファイル（``.typ``）を生成"
 
-#: ../../source/user_guide/index.rst:24
+#: ../../source/user_guide/index.rst:25
 msgid "**typstpdf**: Generates PDF files directly using typst-py"
 msgstr "**typstpdf**: typst-pyを使用してPDFファイルを直接生成"
 
-#: ../../source/user_guide/index.rst:27
+#: ../../source/user_guide/index.rst:28
 msgid "Main Topics"
 msgstr "主なトピック"
 
-#: ../../source/user_guide/index.rst:29
+#: ../../source/user_guide/index.rst:30
 msgid ":doc:`configuration`"
 msgstr ":doc:`configuration`"
 
-#: ../../source/user_guide/index.rst:30
+#: ../../source/user_guide/index.rst:31
 msgid "Learn about all configuration options available in ``conf.py``"
 msgstr "``conf.py`` で利用可能なすべての設定オプションについて学ぶ"
 
-#: ../../source/user_guide/index.rst:32
+#: ../../source/user_guide/index.rst:33
 msgid ":doc:`builders`"
 msgstr ":doc:`builders`"
 
-#: ../../source/user_guide/index.rst:33
+#: ../../source/user_guide/index.rst:34
 msgid "Understand the difference between typst and typstpdf builders"
 msgstr "typstとtypstpdfビルダーの違いを理解する"
 
-#: ../../source/user_guide/index.rst:35
+#: ../../source/user_guide/index.rst:36
 msgid ":doc:`templates`"
 msgstr ":doc:`templates`"
 
-#: ../../source/user_guide/index.rst:36
+#: ../../source/user_guide/index.rst:37
 msgid "Customize output using Typst templates"
 msgstr "Typstテンプレートを使用して出力をカスタマイズする"
 
-#: ../../source/user_guide/index.rst:38
+#: ../../source/user_guide/index.rst:39
 #, fuzzy
 msgid ":doc:`output_layout`"
 msgstr ":doc:`templates`"
 
-#: ../../source/user_guide/index.rst:39
+#: ../../source/user_guide/index.rst:40
 msgid "Understand which emitted ``.typ`` file to compile and where it is written"
 msgstr ""
 
-#: ../../source/user_guide/index.rst:41
+#: ../../source/user_guide/index.rst:42
 #, fuzzy
 msgid ":doc:`diagrams`"
 msgstr ":doc:`builders`"
 
-#: ../../source/user_guide/index.rst:42
+#: ../../source/user_guide/index.rst:43
 msgid ""
 "Render Graphviz DOT diagrams into Typst and PDF output without a dot "
 "binary"
+msgstr ""
+
+#: ../../source/user_guide/index.rst:45
+#, fuzzy
+msgid ":doc:`bibliography`"
+msgstr ":doc:`builders`"
+
+#: ../../source/user_guide/index.rst:46
+msgid "Cite sources and render reference lists via sphinxcontrib-bibtex"
 msgstr ""
 
