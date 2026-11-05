@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:52+0000\n"
+"POT-Creation-Date: 2026-11-05 14:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -268,10 +268,27 @@ msgid ""
 msgstr ""
 
 #: ../../source/user_guide/output_layout.rst:200
-msgid "Documents Shared by Several Masters"
+msgid "Multi-Document Projects"
 msgstr ""
 
 #: ../../source/user_guide/output_layout.rst:202
+msgid "Use a toctree to combine multiple documents:"
+msgstr ""
+
+#: ../../source/user_guide/output_layout.rst:214
+msgid ""
+"Each toctree entry becomes an ``#include()`` of that document's content "
+"file in the Typst output, with heading levels adjusted: a toctree's "
+"``#include()`` calls run inside a scope that applies ``set "
+"heading(offset: heading.offset + 1)``, so an included document's headings"
+" sit one level below the document that includes it."
+msgstr ""
+
+#: ../../source/user_guide/output_layout.rst:220
+msgid "Documents Shared by Several Masters"
+msgstr ""
+
+#: ../../source/user_guide/output_layout.rst:222
 msgid ""
 "A document reached from more than one master appears in EVERY one of "
 "those masters' outputs. It appears exactly once in each. It appears at "
@@ -282,7 +299,7 @@ msgid ""
 "intended behaviour, and no configuration is needed to get it."
 msgstr ""
 
-#: ../../source/user_guide/output_layout.rst:210
+#: ../../source/user_guide/output_layout.rst:230
 msgid ""
 "This implies a file-count rule worth stating plainly, since it is what "
 "you will actually observe when you build: a build writes one wrapper per "
@@ -296,19 +313,19 @@ msgid ""
 "at nine."
 msgstr ""
 
-#: ../../source/user_guide/output_layout.rst:222
+#: ../../source/user_guide/output_layout.rst:242
 msgid "See Also"
 msgstr ""
 
-#: ../../source/user_guide/output_layout.rst:224
+#: ../../source/user_guide/output_layout.rst:244
 msgid ":doc:`configuration` - Configuration options"
 msgstr ""
 
-#: ../../source/user_guide/output_layout.rst:225
+#: ../../source/user_guide/output_layout.rst:245
 msgid ":doc:`builders` - Understanding the typst and typstpdf builders"
 msgstr ""
 
-#: ../../source/user_guide/output_layout.rst:226
+#: ../../source/user_guide/output_layout.rst:246
 msgid ":doc:`/changelog` - What changed from v0.7.x to v0.8.0"
 msgstr ""
 
