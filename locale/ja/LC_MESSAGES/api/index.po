@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: typsphinx 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:52+0000\n"
+"POT-Creation-Date: 2026-11-23 17:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -127,6 +127,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_caption:6
 #: typsphinx.translator.TypstTranslator.depart_caution:3
 #: typsphinx.translator.TypstTranslator.depart_citation:13
+#: typsphinx.translator.TypstTranslator.depart_classifier:7
 #: typsphinx.translator.TypstTranslator.depart_colspec:6
 #: typsphinx.translator.TypstTranslator.depart_comment:8
 #: typsphinx.translator.TypstTranslator.depart_compound:6
@@ -152,6 +153,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_desc_sig_space:3
 #: typsphinx.translator.TypstTranslator.depart_desc_signature:14
 #: typsphinx.translator.TypstTranslator.depart_desc_signature_line:3
+#: typsphinx.translator.TypstTranslator.depart_description:6
 #: typsphinx.translator.TypstTranslator.depart_doctest_block:9
 #: typsphinx.translator.TypstTranslator.depart_document:8
 #: typsphinx.translator.TypstTranslator.depart_emphasis:8
@@ -181,8 +183,12 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_math:6
 #: typsphinx.translator.TypstTranslator.depart_math_block:6
 #: typsphinx.translator.TypstTranslator.depart_note:3
+#: typsphinx.translator.TypstTranslator.depart_option_group:7
+#: typsphinx.translator.TypstTranslator.depart_option_list:6
+#: typsphinx.translator.TypstTranslator.depart_option_list_item:6
 #: typsphinx.translator.TypstTranslator.depart_paragraph:21
 #: typsphinx.translator.TypstTranslator.depart_pending_xref:6
+#: typsphinx.translator.TypstTranslator.depart_productionlist:7
 #: typsphinx.translator.TypstTranslator.depart_raw:8
 #: typsphinx.translator.TypstTranslator.depart_reference:6
 #: typsphinx.translator.TypstTranslator.depart_row:6
@@ -209,7 +215,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.depart_versionmodified:3
 #: typsphinx.translator.TypstTranslator.depart_warning:3
 #: typsphinx.translator.TypstTranslator.unknown_departure:6
-#: typsphinx.translator.TypstTranslator.unknown_visit:6
+#: typsphinx.translator.TypstTranslator.unknown_visit:19
 #: typsphinx.translator.TypstTranslator.visit_Text:11
 #: typsphinx.translator.TypstTranslator.visit_abbreviation:5
 #: typsphinx.translator.TypstTranslator.visit_admonition:9
@@ -220,6 +226,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_caption:8
 #: typsphinx.translator.TypstTranslator.visit_caution:3
 #: typsphinx.translator.TypstTranslator.visit_citation:96
+#: typsphinx.translator.TypstTranslator.visit_classifier:14
 #: typsphinx.translator.TypstTranslator.visit_colspec:6
 #: typsphinx.translator.TypstTranslator.visit_comment:11
 #: typsphinx.translator.TypstTranslator.visit_compound:9
@@ -245,6 +252,7 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_desc_sig_space:7
 #: typsphinx.translator.TypstTranslator.visit_desc_signature:57
 #: typsphinx.translator.TypstTranslator.visit_desc_signature_line:11
+#: typsphinx.translator.TypstTranslator.visit_description:7
 #: typsphinx.translator.TypstTranslator.visit_doctest_block:24
 #: typsphinx.translator.TypstTranslator.visit_document:24
 #: typsphinx.translator.TypstTranslator.visit_emphasis:9
@@ -279,8 +287,12 @@ msgstr ""
 #: typsphinx.translator.TypstTranslator.visit_math:20
 #: typsphinx.translator.TypstTranslator.visit_math_block:21
 #: typsphinx.translator.TypstTranslator.visit_note:3
+#: typsphinx.translator.TypstTranslator.visit_option_group:15
+#: typsphinx.translator.TypstTranslator.visit_option_list:12
+#: typsphinx.translator.TypstTranslator.visit_option_list_item:6
 #: typsphinx.translator.TypstTranslator.visit_paragraph:40
 #: typsphinx.translator.TypstTranslator.visit_pending_xref:17
+#: typsphinx.translator.TypstTranslator.visit_productionlist:15
 #: typsphinx.translator.TypstTranslator.visit_raw:10
 #: typsphinx.translator.TypstTranslator.visit_reference:8
 #: typsphinx.translator.TypstTranslator.visit_row:6
@@ -1990,6 +2002,135 @@ msgstr ""
 msgid "Saves buffered definition content and pairs it with the term."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.visit_classifier:1
+msgid "Visit a classifier (``term : classifier``) node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_classifier:3
+msgid ""
+"A classifier is a SIBLING of its ``term`` inside the "
+"``definition_list_item``, so by the time it is visited ``depart_term`` "
+"has already restored the body and stored the term string in "
+"``current_term_buffer``. Render the classifier's inline children in the "
+"same ``+``-concat term context and append them to that stored term as `` "
+": `` + italics, so the classifier ends up inside its own ``terms.item`` "
+"term in source order (SC2)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_classifier:5
+#: typsphinx.translator.TypstTranslator.visit_classifier:12
+msgid "The classifier node"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_classifier:1
+msgid ""
+"Depart a classifier node (never reached: ``visit_classifier`` raises "
+"``SkipNode`` after rendering the children itself)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_option_list:1
+msgid "Visit an option list node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_option_list:3
+msgid ""
+"Rendered exactly like a definition list -- one ``terms(separator: "
+"linebreak(), ...)`` statement -- with each option group as the term and "
+"its description as the item body (SC1). The definition-list frame, anchor"
+" and list-item separator handling are reused verbatim."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_option_list:4
+#: typsphinx.translator.TypstTranslator.visit_option_list:10
+msgid "The option list node"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_option_list:1
+msgid "Depart an option list node, emitting the collected ``terms(...)``."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_option_list_item:1
+msgid "Visit an option list item node (no markup of its own)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_option_list_item:4
+#: typsphinx.translator.TypstTranslator.visit_option_list_item:4
+msgid "The option list item node"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_option_list_item:1
+msgid "Depart an option list item node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_option_group:1
+msgid "Visit an option group node: build the item's term."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_option_group:3
+msgid ""
+"Each ``option`` becomes its ``option_string`` in monospace (``raw``) "
+"followed, per ``option_argument``, by the argument's docutils "
+"``delimiter`` (space or ``=``) in monospace and the argument itself in "
+"italic monospace. The options of a group are joined by ``, ``. The pieces"
+" are ``+``-joined (the term is the code-mode 1st argument of "
+"``terms.item``) and stored in ``current_term_buffer`` for "
+"``visit_description`` to pair, exactly as ``depart_term`` does for a "
+"definition-list term."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_option_group:5
+#: typsphinx.translator.TypstTranslator.visit_option_group:13
+msgid "The option group node"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_option_group:1
+msgid ""
+"Depart an option group node (never reached: ``visit_option_group`` raises"
+" ``SkipNode``)."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_description:1
+msgid ""
+"Visit an option description node: buffered as the item body, exactly like"
+" a definition-list definition."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_description:4
+#: typsphinx.translator.TypstTranslator.visit_description:5
+msgid "The description node"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_description:1
+msgid "Depart an option description node, pairing it with its term."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_productionlist:1
+msgid "Visit a productionlist (``.. productionlist::``) node."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.visit_productionlist:3
+msgid ""
+"Emits one monospace three-column ``grid(...)`` statement -- token name, "
+"``::=``, rule -- with a continuation production (empty ``tokenname``) "
+"placed in the rule column under the previous rule line (SC3). Each "
+"production's name cell carries a ``<label>`` for every id on the "
+"production and on its ``literal_strong`` name node (Sphinx puts the "
+"``grammar-token-*`` id there), namespaced exactly as the same-document "
+"``refid`` branch of ``visit_reference`` namespaces it, so a ``:token:`` "
+"reference links to it."
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_productionlist:5
+#: typsphinx.translator.TypstTranslator.visit_productionlist:13
+msgid "The productionlist node"
+msgstr ""
+
+#: of typsphinx.translator.TypstTranslator.depart_productionlist:1
+msgid ""
+"Depart a productionlist node (never reached: ``visit_productionlist`` "
+"raises ``SkipNode``)."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.visit_figure:1
 msgid "Visit a figure node."
 msgstr ""
@@ -2692,8 +2833,24 @@ msgstr ""
 msgid "Handle unknown nodes during visit."
 msgstr ""
 
+#: of typsphinx.translator.TypstTranslator.unknown_visit:3
+msgid ""
+"The warning is always logged and the node's children are always rendered "
+"(its text is never dropped). Where the surrounding context already "
+"separates sibling expressions -- a paragraph (newline), a list item "
+"(``list_item_needs_separator``), a code-mode ``+`` concat context (term /"
+" link / desc parameter / field body / attribution / production) or markup"
+" mode -- the children are left to descend normally. Otherwise the node "
+"sits in a bare code-mode statement context (document body, table cell, "
+"definition, ...), where the children's juxtaposed expressions would be a "
+"Typst syntax error (\"expected semicolon or line break\", issue #194): "
+"treat the subtree like list-item content (each child newline-separated) "
+"and put the node on its own lines; ``unknown_departure`` restores the "
+"state."
+msgstr ""
+
 #: of typsphinx.translator.TypstTranslator.unknown_departure:4
-#: typsphinx.translator.TypstTranslator.unknown_visit:4
+#: typsphinx.translator.TypstTranslator.unknown_visit:17
 msgid "The unknown node"
 msgstr ""
 
